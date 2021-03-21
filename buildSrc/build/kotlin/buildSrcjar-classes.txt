@@ -1,0 +1,1 @@
+/Users/yds/AndroidWorkspace/githubDemo/wanandroid-mvvm-yds/buildSrc/build/classes/kotlin/main/yds/dependencies/Configs.class:/Users/yds/AndroidWorkspace/githubDemo/wanandroid-mvvm-yds/buildSrc/build/classes/kotlin/main/yds/dependencies/Deps.class:/Users/yds/AndroidWorkspace/githubDemo/wanandroid-mvvm-yds/buildSrc/build/classes/kotlin/main/yds/dependencies/Versions.class

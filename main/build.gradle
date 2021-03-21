@@ -1,0 +1,62 @@
+import yds.dependencies.Configs
+import yds.dependencies.Deps
+import yds.dependencies.Versions
+
+if (Configs.isModule) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+android {
+    compileSdkVersion Versions.compileSdk
+    buildToolsVersion Versions.buildTools
+
+
+    defaultConfig {
+        if (Configs.isModule.toBoolean()) {
+            applicationId "com.yds.main"
+        }
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.targetSdk
+        versionCode Versions.versionCode
+        versionName Versions.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main{
+            if(Configs.isModule.toBoolean()){
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            }else{
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                java {
+                    exclude 'debug/**'
+                }
+            }
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation Deps.appcompat
+    implementation Deps.core_ktx
+    implementation Deps.constraintlayout
+    implementation project(":core")
+    testImplementation Deps.test_junit
+    androidTestImplementation Deps.androidTest_junit
+    androidTestImplementation Deps.androidTest_espresso_core
+}

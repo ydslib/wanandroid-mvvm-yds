@@ -1,0 +1,43 @@
+import yds.dependencies.Versions
+import yds.dependencies.Deps
+import yds.dependencies.Configs
+
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion Versions.compileSdk
+    buildToolsVersion Versions.buildTools
+    defaultConfig {
+        applicationId "com.yds.wanandroid"
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.targetSdk
+        versionCode Versions.versionCode
+        versionName Versions.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation Deps.appcompat
+    implementation Deps.core_ktx
+    implementation Deps.constraintlayout
+
+    if (!Configs.isModule.toBoolean()){
+        implementation project(":main")
+    }
+    testImplementation Deps.test_junit
+    androidTestImplementation Deps.androidTest_junit
+    androidTestImplementation Deps.androidTest_espresso_core
+}
