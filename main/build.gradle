@@ -1,4 +1,4 @@
-if (!isLibrary) {
+if (!isLibrary.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
