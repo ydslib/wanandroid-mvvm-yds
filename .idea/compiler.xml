@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel>
-      <module name="wanandroid-mvvm-yds.app" target="1.8" />
-      <module name="wanandroid-mvvm-yds.buildSrc" target="1.8" />
-      <module name="wanandroid-mvvm-yds.core" target="1.8" />
-      <module name="wanandroid-mvvm-yds.main" target="1.8" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="11" />
   </component>
 </project>
