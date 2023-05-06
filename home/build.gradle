@@ -5,23 +5,37 @@ if (!isLibrary.toBoolean()) {
 }
 
 apply from: "../config.gradle"
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     defaultConfig {
         if (!isLibrary.toBoolean()) {
             applicationId "com.yds.home"
         }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+    buildFeatures {
+        dataBinding = true
     }
 }
 
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation "androidx.core:core-ktx:${Deps.core_ktx}"
+    implementation "androidx.appcompat:appcompat:${Deps.appcompat}"
+    implementation "androidx.constraintlayout:constraintlayout:${Deps.constraintlayout}"
+    testImplementation "junit:junit:${Deps.test_junit}"
+    androidTestImplementation "androidx.test.ext:junit:${Deps.androidTest_junit}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${Deps.androidTest_espresso_core}"
+
+    implementation "com.github.ydslib:Base:1.0.2"
+    implementation "com.alibaba:arouter-api:1.5.1"
+    kapt "com.alibaba:arouter-compiler:1.5.1"
 }

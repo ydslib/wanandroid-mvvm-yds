@@ -1,12 +1,13 @@
 package com.yds.main
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import com.crystallake.base.activity.DataBindingActivity
+import com.crystallake.base.config.DataBindingConfig
+import com.crystallake.base.vm.BaseViewModel
+import com.yds.main.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DataBindingActivity<ActivityMainBinding,BaseViewModel>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    override fun initDataBindingConfig(): DataBindingConfig {
+        return DataBindingConfig(R.layout.activity_main)
     }
 }

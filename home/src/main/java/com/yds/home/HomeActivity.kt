@@ -1,11 +1,13 @@
 package com.yds.home
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import com.crystallake.base.activity.DataBindingActivity
+import com.crystallake.base.config.DataBindingConfig
+import com.crystallake.base.vm.BaseViewModel
+import com.yds.home.databinding.ActivityHomeBinding
 
-class HomeActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+class HomeActivity : DataBindingActivity<ActivityHomeBinding, BaseViewModel>() {
+
+    override fun initDataBindingConfig(): DataBindingConfig {
+        return DataBindingConfig(R.layout.activity_home)
     }
 }

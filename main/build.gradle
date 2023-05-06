@@ -5,10 +5,17 @@ if (!isLibrary.toBoolean()) {
 }
 apply from: "../config.gradle"
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 android {
     defaultConfig {
         if (!isLibrary.toBoolean()) {
             applicationId "com.yds.main"
+        }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
         }
     }
 }
@@ -20,6 +27,9 @@ dependencies {
     implementation "androidx.core:core-ktx:${Deps.core_ktx}"
     implementation "androidx.constraintlayout:constraintlayout:${Deps.constraintlayout}"
     implementation project(":core")
+    implementation "com.github.ydslib:Base:1.0.2"
+    implementation "com.alibaba:arouter-api:1.5.1"
+    kapt "com.alibaba:arouter-compiler:1.5.1"
     testImplementation "junit:junit:${Deps.test_junit}"
     androidTestImplementation "androidx.test.ext:junit:${Deps.androidTest_junit}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${Deps.androidTest_espresso_core}"
