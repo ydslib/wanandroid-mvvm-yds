@@ -1,0 +1,42 @@
+if (!isLibrary.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
+apply from: "../config.gradle"
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    defaultConfig {
+        if (!isLibrary.toBoolean()) {
+            applicationId "com.crystallake.scan"
+        }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+    buildFeatures {
+        dataBinding = true
+    }
+}
+
+dependencies {
+
+    implementation "androidx.core:core-ktx:${Deps.core_ktx}"
+    implementation "androidx.appcompat:appcompat:${Deps.appcompat}"
+    implementation "androidx.constraintlayout:constraintlayout:${Deps.constraintlayout}"
+    implementation project(":core")
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation 'com.google.mlkit:text-recognition:16.0.0'
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0"
+    implementation "com.github.ydslib:Base:1.0.2"
+    implementation "com.alibaba:arouter-api:1.5.1"
+    kapt "com.alibaba:arouter-compiler:1.5.1"
+}

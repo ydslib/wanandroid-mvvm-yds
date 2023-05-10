@@ -33,4 +33,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    // lifecycle
+    // noinspection GradleDependency
+    api "androidx.lifecycle:lifecycle-process:${Deps.lifecycleVersion}"
+    // noinspection GradleDependency
+    api "androidx.lifecycle:lifecycle-runtime-ktx:${Deps.lifecycleVersion}"
+    // noinspection GradleDependency
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:${Deps.lifecycleVersion}"
+    // noinspection GradleDependency
+    api "androidx.lifecycle:lifecycle-livedata-ktx:${Deps.lifecycleVersion}"
 }

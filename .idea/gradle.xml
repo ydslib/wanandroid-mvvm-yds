@@ -19,6 +19,7 @@
             <option value="$PROJECT_DIR$/main" />
             <option value="$PROJECT_DIR$/mine" />
             <option value="$PROJECT_DIR$/navigation" />
+            <option value="$PROJECT_DIR$/scan" />
           </set>
         </option>
       </GradleProjectSettings>

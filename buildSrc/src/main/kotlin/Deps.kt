@@ -12,4 +12,6 @@ object Deps{
     const val test_junit = "4.13"
     const val androidTest_junit = "1.1.2"
     const val androidTest_espresso_core = "3.3.0"
+    //lifecycle
+    const val lifecycleVersion = "2.2.0"
 }

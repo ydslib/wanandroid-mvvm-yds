@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="main/src/main/res/layout/activity_main.xml" value="0.12447916666666667" />
+        <entry key="scan/src/main/res/drawable/crop_texture.xml" value="0.1655" />
+        <entry key="scan/src/main/res/layout/activity_crop.xml" value="0.12447916666666667" />
+        <entry key="scan/src/main/res/layout/activity_main.xml" value="0.17037037037037037" />
       </map>
     </option>
   </component>
