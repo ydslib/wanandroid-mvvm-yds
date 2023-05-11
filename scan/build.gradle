@@ -36,7 +36,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation 'com.google.mlkit:text-recognition:16.0.0'
     implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0"
-    implementation "com.github.ydslib:Base:1.0.2"
+    implementation "com.github.ydslib:Base:${Deps.baseVersion}"
     implementation "com.alibaba:arouter-api:1.5.1"
     kapt "com.alibaba:arouter-compiler:1.5.1"
 }

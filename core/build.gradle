@@ -42,4 +42,9 @@ dependencies {
     api "androidx.lifecycle:lifecycle-viewmodel-ktx:${Deps.lifecycleVersion}"
     // noinspection GradleDependency
     api "androidx.lifecycle:lifecycle-livedata-ktx:${Deps.lifecycleVersion}"
+
+    // 基础依赖包，必须要依赖
+    api 'com.geyifeng.immersionbar:immersionbar:3.2.2'
+    // kotlin扩展（可选）
+    api 'com.geyifeng.immersionbar:immersionbar-ktx:3.2.2'
 }
