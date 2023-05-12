@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:layout_gravity="center"
-                android:text="@string/home"
+                android:text="@string/home_pager"
                 android:textSize="@dimen/sp_32" />
         </androidx.appcompat.widget.Toolbar>
 

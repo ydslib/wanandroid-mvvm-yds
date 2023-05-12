@@ -23,12 +23,12 @@
             app:navigationIcon="@drawable/ic_back">
 
             <TextView
-                android:id="@+id/home_title"
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:layout_gravity="center"
-                android:text="@string/home"
+                android:text="@string/home_pager"
                 android:textSize="@dimen/sp_28" />
         </androidx.appcompat.widget.Toolbar>
 
