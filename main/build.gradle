@@ -4,7 +4,7 @@ if (!isLibrary.toBoolean()) {
     apply plugin: 'com.android.library'
 }
 apply from: "../config.gradle"
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 android {
     defaultConfig {
@@ -18,6 +18,9 @@ android {
             }
         }
     }
+    buildFeatures {
+        dataBinding = true
+    }
 }
 
 dependencies {
@@ -27,10 +30,14 @@ dependencies {
     implementation "androidx.core:core-ktx:${Deps.core_ktx}"
     implementation "androidx.constraintlayout:constraintlayout:${Deps.constraintlayout}"
     implementation project(":core")
+    implementation project(":resources")
     implementation "com.github.ydslib:Base:${Deps.baseVersion}"
-    implementation "com.alibaba:arouter-api:1.5.1"
-    kapt "com.alibaba:arouter-compiler:1.5.1"
+    implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
+    kapt "com.alibaba:arouter-compiler:${Deps.routerApiVersion}"
     testImplementation "junit:junit:${Deps.test_junit}"
     androidTestImplementation "androidx.test.ext:junit:${Deps.androidTest_junit}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${Deps.androidTest_espresso_core}"
+    implementation "com.google.android.material:material:${Deps.materialVersion}"
+    implementation "androidx.navigation:navigation-fragment-ktx:${Deps.navigationVersion}"
+    implementation "androidx.navigation:navigation-ui-ktx:${Deps.navigationVersion}"
 }

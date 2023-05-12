@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">main</string>
+    <string name="home_pager">首页</string>
+    <string name="knowledge_hierarchy">知识体系</string>
+    <string name="wx_article">公众号</string>
+    <string name="navigation">导航</string>
+    <string name="project">项目</string>
 </resources>

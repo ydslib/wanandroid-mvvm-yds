@@ -5,7 +5,7 @@ if (!isLibrary.toBoolean()) {
 }
 
 apply from: "../config.gradle"
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -32,11 +32,11 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:${Deps.constraintlayout}"
     implementation project(":core")
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    implementation 'com.google.mlkit:text-recognition:16.0.0'
-    implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0"
+    androidTestImplementation "androidx.test.ext:junit:${Deps.androidTest_junit}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${Deps.androidTest_espresso_core}"
+    implementation "com.google.mlkit:text-recognition:${Deps.textRecognitionVersion}"
+    implementation "androidx.lifecycle:lifecycle-common-java8:${Deps.lifecycleVersion}"
     implementation "com.github.ydslib:Base:${Deps.baseVersion}"
-    implementation "com.alibaba:arouter-api:1.5.1"
-    kapt "com.alibaba:arouter-compiler:1.5.1"
+    implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
+    kapt "com.alibaba:arouter-compiler:${Deps.routerApiVersion}"
 }

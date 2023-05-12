@@ -36,7 +36,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:${Deps.appcompat}"
     implementation "androidx.constraintlayout:constraintlayout:${Deps.constraintlayout}"
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation "androidx.test.ext:junit:${Deps.androidTest_junit}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${Deps.androidTest_espresso_core}"
     implementation "com.github.ydslib:Base:${Deps.baseVersion}"
 }

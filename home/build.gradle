@@ -5,7 +5,7 @@ if (!isLibrary.toBoolean()) {
 }
 
 apply from: "../config.gradle"
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -36,8 +36,11 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:${Deps.androidTest_espresso_core}"
 
     implementation "com.github.ydslib:Base:${Deps.baseVersion}"
-    implementation "com.alibaba:arouter-api:1.5.1"
-    kapt "com.alibaba:arouter-compiler:1.5.1"
+    implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
+    kapt "com.alibaba:arouter-compiler:${Deps.routerApiVersion}"
     implementation project(":core")
     implementation project(":resources")
+    implementation "com.google.android.material:material:${Deps.materialVersion}"
+    implementation "androidx.navigation:navigation-fragment-ktx:${Deps.navigationVersion}"
+    implementation "androidx.navigation:navigation-ui-ktx:${Deps.navigationVersion}"
 }

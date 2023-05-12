@@ -16,4 +16,12 @@ object Deps{
     const val lifecycleVersion = "2.2.0"
 
     const val baseVersion = "1.0.3-alpha"
+
+    const val materialVersion = "1.4.0"
+
+    const val routerApiVersion = "1.5.1"
+
+    const val textRecognitionVersion = "16.0.0"
+    const val immersionbarVersion = "3.2.2"
+    const val navigationVersion = "2.2.2"
 }
