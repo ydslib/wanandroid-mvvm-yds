@@ -21,8 +21,8 @@ class MainActivity : DataBindingActivity<ActivityMainBinding, BaseViewModel>() {
     override fun initData() {
         super.initData()
         immersionBar {
-            fitsSystemWindows(true)
             statusBarColor(R.color.color_333333)
+            applySystemFits(true)
         }
 
         mBinding?.viewPager?.adapter = adapter
@@ -59,11 +59,9 @@ class MainActivity : DataBindingActivity<ActivityMainBinding, BaseViewModel>() {
                 when (position) {
                     0 -> {
                         mBinding?.bottomNavigation?.selectedItemId = R.id.tab_main_pager
-                        mBinding?.title?.text = getString(R.string.home_pager)
                     }
                     1 -> {
                         mBinding?.bottomNavigation?.selectedItemId = R.id.tab_knowledge_hierarchy
-                        mBinding?.title?.text = getString(R.string.knowledge_hierarchy)
                     }
                 }
             }

@@ -38,9 +38,13 @@ dependencies {
     implementation "com.github.ydslib:Base:${Deps.baseVersion}"
     implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
     kapt "com.alibaba:arouter-compiler:${Deps.routerApiVersion}"
+    implementation  "io.github.scwang90:refresh-layout-kernel:${Deps.refreshLayoutVersion}"
+    implementation  "io.github.scwang90:refresh-header-classics:${Deps.refreshLayoutVersion}"
     implementation project(":core")
     implementation project(":resources")
     implementation "com.google.android.material:material:${Deps.materialVersion}"
     implementation "androidx.navigation:navigation-fragment-ktx:${Deps.navigationVersion}"
     implementation "androidx.navigation:navigation-ui-ktx:${Deps.navigationVersion}"
+    implementation 'io.github.youth5201314:banner:2.2.2'
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
 }

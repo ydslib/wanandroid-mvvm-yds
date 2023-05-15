@@ -24,4 +24,6 @@ object Deps{
     const val textRecognitionVersion = "16.0.0"
     const val immersionbarVersion = "3.2.2"
     const val navigationVersion = "2.2.2"
+
+    const val refreshLayoutVersion = "2.0.6"
 }
