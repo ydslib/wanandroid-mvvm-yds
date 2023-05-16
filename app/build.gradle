@@ -55,6 +55,7 @@ dependencies {
 
     implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
     kapt "com.alibaba:arouter-compiler:${Deps.routerApiVersion}"
+    implementation "com.github.ydslib:Base:${Deps.baseVersion}"
 
     testImplementation "junit:junit:${Deps.test_junit}"
     androidTestImplementation "androidx.test.ext:junit:${Deps.androidTest_junit}"
