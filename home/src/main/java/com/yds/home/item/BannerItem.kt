@@ -25,12 +25,6 @@ class BannerItem(val bannerItem: List<BannerItem>,private val lifecycleOwner: Li
         position: Int,
         binding: HomeBannerItemBinding
     ) {
-        val dataList = mutableListOf<String>(
-            "https://scpic.chinaz.net/files/default/imgs/2023-05-04/bf6cf407a4b098cd.jpg",
-            "https://scpic.chinaz.net/files/default/imgs/2023-05-06/8b75e20fa0bda198.jpg",
-            "https://scpic.chinaz.net/files/default/imgs/2023-04-27/5202d1e005f23f95.jpg",
-            "https://scpic.chinaz.net/files/default/imgs/2023-04-26/927afbe5af4fec22.jpg"
-        )
         binding.homeBanner.addBannerLifecycleObserver(lifecycleOwner)
         binding.homeBanner.setAdapter(object :BannerImageAdapter<BannerItem>(bannerItem){
             override fun onBindView(
@@ -47,7 +41,4 @@ class BannerItem(val bannerItem: List<BannerItem>,private val lifecycleOwner: Li
             }
         }).indicator = CircleIndicator(binding.homeBanner.context)
     }
-
-
-
 }
