@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.crystallake.base.config.DataBindingConfig
+import com.crystallake.base.fastrecycler.ItemProxy
 import com.crystallake.base.fastrecycler.adapter.MultiDataBindingAdapter
 import com.crystallake.base.fragment.DataBindingFragment
 import com.crystallake.resources.RouterPath
@@ -34,11 +35,18 @@ class HomeFragment : DataBindingFragment<FragmentHomeBinding, HomeFragmentViewMo
             it.layoutManager = linearLayoutManager
             it.adapter = homeAdapter
         }
-        homeAdapter.addItem(BannerItem(this))
+
+        mBinding?.smartRefreshLayout?.setOnRefreshListener {
+            mViewModel.getHomeArticle(0, 0)
+        }
+
+        mBinding?.smartRefreshLayout?.setOnLoadMoreListener {
+            mViewModel.getLoadMoreHomeData(mViewModel.curPage.value ?: 0)
+        }
     }
 
     override fun lazyLoadData() {
-        mViewModel.getHomeArticle(0)
+        mViewModel.getHomeArticle(mViewModel.curPage.value ?: 0, 2)
     }
 
     override fun initDataBindingConfig(): DataBindingConfig {
@@ -48,19 +56,26 @@ class HomeFragment : DataBindingFragment<FragmentHomeBinding, HomeFragmentViewMo
     override fun initOtherVM() {
         super.initOtherVM()
         mViewModel.homeArticleLiveData.observe(this) {
-            it?.datas?.forEach {
-                homeAdapter.addItem(HomeCarItem(it))
+            homeAdapter.clear()
+            it.banner?.let { bannerBean ->
+                homeAdapter.addItem(BannerItem(bannerBean, this))
+            }
+            it.articleModel?.let { article ->
+                article.datas?.forEach { baseArticle ->
+                    homeAdapter.addItem(HomeCarItem(baseArticle))
+                }
+            }
+            homeAdapter.notifyDataSetChanged()
+        }
+        mViewModel.refresh.observe(this) {
+            if (!it) {
+                mBinding?.smartRefreshLayout?.finishRefresh()
             }
         }
-    }
-
-    private fun setItemDecoration(){
-        val divider = DividerItemDecoration(
-            requireContext(),
-            DividerItemDecoration.VERTICAL
-        )
-        ContextCompat.getDrawable(requireContext(),R.drawable.item_divider)?.let {
-            divider.setDrawable(it)
+        mViewModel.loadMore.observe(this) {
+            if (!it) {
+                mBinding?.smartRefreshLayout?.finishLoadMore()
+            }
         }
     }
 }

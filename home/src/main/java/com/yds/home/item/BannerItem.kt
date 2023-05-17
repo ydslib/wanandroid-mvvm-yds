@@ -9,9 +9,10 @@ import com.yds.home.databinding.HomeBannerItemBinding
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 import com.bumptech.glide.Glide
+import com.yds.home.model.BannerItem
 import com.youth.banner.indicator.CircleIndicator
 
-class BannerItem(private val lifecycleOwner: LifecycleOwner) : ItemProxy<HomeBannerItemBinding>() {
+class BannerItem(val bannerItem: List<BannerItem>,private val lifecycleOwner: LifecycleOwner) : ItemProxy<HomeBannerItemBinding>() {
     override fun generateItemViewBinding(
         inflater: LayoutInflater,
         parent: ViewGroup?
@@ -31,15 +32,15 @@ class BannerItem(private val lifecycleOwner: LifecycleOwner) : ItemProxy<HomeBan
             "https://scpic.chinaz.net/files/default/imgs/2023-04-26/927afbe5af4fec22.jpg"
         )
         binding.homeBanner.addBannerLifecycleObserver(lifecycleOwner)
-        binding.homeBanner.setAdapter(object :BannerImageAdapter<String>(dataList){
+        binding.homeBanner.setAdapter(object :BannerImageAdapter<BannerItem>(bannerItem){
             override fun onBindView(
                 holder: BannerImageHolder,
-                data: String?,
+                data: BannerItem?,
                 position: Int,
                 size: Int
             ) {
                 Glide.with(binding.homeBanner.context)
-                    .load(data)
+                    .load(data?.imagePath)
                     .centerCrop()
                     .into(holder.imageView)
 

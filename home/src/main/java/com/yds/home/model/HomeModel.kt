@@ -3,7 +3,7 @@ package com.yds.home.model
 
 data class ArticleModel(
     val curPage: Int? = null,
-    val datas: List<BaseArticle>? = null,
+    val datas: MutableList<BaseArticle>? = null,
     val offset: Int? = null,
     val over: Boolean? = null,
     val pageCount: Int? = null,
@@ -47,4 +47,20 @@ data class BaseArticle(
     val userId: Int? = null,
     val visible: Int? = null,
     val zan: Int? = null,
+)
+
+data class BannerItem(
+    val desc: String? = null,
+    val id: Int? = null,
+    val imagePath: String? = null,
+    val isVisible: Int? = null,
+    val order: Int? = null,
+    val title: String? = null,
+    val type: Int? = null,
+    val url: String? = null
+)
+
+data class HomeModel(
+    var articleModel: ArticleModel? = null,
+    var banner: List<BannerItem>? = null
 )
