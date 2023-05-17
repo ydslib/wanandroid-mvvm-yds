@@ -39,4 +39,5 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:${Deps.androidTest_junit}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${Deps.androidTest_espresso_core}"
     implementation "com.github.ydslib:Base:${Deps.baseVersion}"
+    api "com.airbnb.android:lottie:${Deps.lottieVersion}"
 }

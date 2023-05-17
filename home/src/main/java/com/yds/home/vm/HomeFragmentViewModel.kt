@@ -13,6 +13,7 @@ class HomeFragmentViewModel : BaseViewModel() {
     val refresh = MutableLiveData<Boolean>()
     val loadMore = MutableLiveData<Boolean>()
     val curPage = MutableLiveData(0)
+    val showLoading = MutableLiveData<Boolean>()
     val homeModel = HomeModel()
 
     fun getHomeArticle(num: Int, state: Int) {
@@ -58,9 +59,11 @@ class HomeFragmentViewModel : BaseViewModel() {
         )
     }
 
-    fun setState(requestState: Boolean, state: Int) {
+    private fun setState(requestState: Boolean, state: Int) {
         if (state == 0) {
             refresh.value = requestState
+        } else if(state == 2){
+            showLoading.value = requestState
         }
     }
 }

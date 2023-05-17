@@ -26,4 +26,6 @@ object Deps{
     const val navigationVersion = "2.2.2"
 
     const val refreshLayoutVersion = "2.0.6"
+
+    const val lottieVersion = "6.0.0"
 }

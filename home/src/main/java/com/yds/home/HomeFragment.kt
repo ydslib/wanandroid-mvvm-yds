@@ -1,12 +1,11 @@
 package com.yds.home
 
 import android.os.Bundle
-import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.airbnb.lottie.LottieDrawable
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.crystallake.base.config.DataBindingConfig
-import com.crystallake.base.fastrecycler.ItemProxy
 import com.crystallake.base.fastrecycler.adapter.MultiDataBindingAdapter
 import com.crystallake.base.fragment.DataBindingFragment
 import com.crystallake.resources.RouterPath
@@ -49,12 +48,35 @@ class HomeFragment : DataBindingFragment<FragmentHomeBinding, HomeFragmentViewMo
         mViewModel.getHomeArticle(mViewModel.curPage.value ?: 0, 2)
     }
 
+    fun showLoading() {
+        mBinding?.loadViewPage?.isVisible = true
+        mBinding?.loadingView?.let {
+            it.setAnimation("loading_bus.json")
+            it.repeatCount = LottieDrawable.INFINITE
+            it.repeatMode = LottieDrawable.REVERSE
+            it.playAnimation()
+        }
+
+    }
+
+    fun hideLoading() {
+        mBinding?.loadViewPage?.isVisible = false
+        mBinding?.loadingView?.pauseAnimation()
+    }
+
     override fun initDataBindingConfig(): DataBindingConfig {
         return DataBindingConfig(R.layout.fragment_home)
     }
 
     override fun initOtherVM() {
         super.initOtherVM()
+        mViewModel.showLoading.observe(this) {
+            if (it) {
+                showLoading()
+            } else {
+                hideLoading()
+            }
+        }
         mViewModel.homeArticleLiveData.observe(this) {
             homeAdapter.clear()
             it.banner?.let { bannerBean ->
