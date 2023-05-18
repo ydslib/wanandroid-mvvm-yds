@@ -7,3 +7,4 @@ include ':navigation'
 include ':scan'
 
 include ':resources'
+include ':knowledgehierarchy'

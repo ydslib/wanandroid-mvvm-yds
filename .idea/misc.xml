@@ -3,11 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="featured/src/main/res/layout/activity_featured.xml" value="0.25" />
         <entry key="home/src/main/res/drawable/ic_launcher_background.xml" value="0.15" />
         <entry key="home/src/main/res/layout/activity_home.xml" value="0.165" />
         <entry key="home/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="home/src/main/res/layout/home_banner_item.xml" value="0.13095238095238096" />
         <entry key="home/src/main/res/layout/home_car_item.xml" value="0.25" />
+        <entry key="knowledgehierarchy/src/main/res/layout/activity_main.xml" value="0.13145896656534956" />
+        <entry key="knowledgehierarchy/src/main/res/layout/fragment_knowledge.xml" value="0.13095238095238096" />
         <entry key="main/src/main/res/drawable/ic_wx_article.xml" value="0.1" />
         <entry key="main/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="main/src/main/res/menu/bottom_navigation_main.xml" value="0.25" />

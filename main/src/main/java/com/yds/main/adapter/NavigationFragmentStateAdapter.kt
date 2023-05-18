@@ -18,7 +18,9 @@ class NavigationFragmentStateAdapter(
         when (position) {
             0 -> return ARouter.getInstance().build(RouterPath.HOME_FRAGMENT)
                 .navigation() as Fragment
-            1 -> return ARouter.getInstance().build(RouterPath.MINE_FRAGMENT)
+            1 -> return ARouter.getInstance().build(RouterPath.KNOWLEDGE_FRAGMENT)
+                .navigation() as Fragment
+            2 -> return ARouter.getInstance().build(RouterPath.MINE_FRAGMENT)
                 .navigation() as Fragment
         }
         return ARouter.getInstance().build(RouterPath.HOME_FRAGMENT).navigation() as Fragment
