@@ -23,12 +23,12 @@ class KnowledgeArticleItem(private val itemData: KnowledgeModel) :
         binding: ItemKnowledgeArticleBinding
     ) {
         binding.title.text = itemData.name
-        val sb = StringBuilder()
+        val tags = mutableListOf<String>()
         itemData.children?.forEach {
             if (!it.name.isNullOrEmpty()) {
-                sb.append(it.name).append("   ")
+                tags.add(it.name)
             }
         }
-        binding.subTitle.text = sb.toString()
+        binding.subTitle.tags = tags
     }
 }

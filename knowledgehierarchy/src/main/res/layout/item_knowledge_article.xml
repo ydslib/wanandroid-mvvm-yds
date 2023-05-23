@@ -27,11 +27,13 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 />
-            <TextView
+            <co.lujun.androidtagview.TagContainerLayout
                 android:id="@+id/sub_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constrainedWidth="true"
+                app:container_background_color="#ffffff"
+                app:container_border_color="#ffffff"
                 app:layout_constraintTop_toBottomOf="@+id/title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/navigation_ic"

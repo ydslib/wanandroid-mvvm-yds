@@ -53,6 +53,7 @@ dependencies {
     implementation project(":mine")
     implementation project(":core")
     implementation project(":knowledgehierarchy")
+    implementation project(":navigation")
 
     implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
     kapt "com.alibaba:arouter-compiler:${Deps.routerApiVersion}"

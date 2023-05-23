@@ -40,10 +40,12 @@ class MainActivity : DataBindingActivity<ActivityMainBinding, BaseViewModel>() {
                 }
                 R.id.tab_wx_article -> {
                     println("公众号")
+                    mBinding?.viewPager?.currentItem = 2
                     return@setOnItemSelectedListener true
                 }
                 R.id.tab_navigation -> {
                     println("导航")
+                    mBinding?.viewPager?.currentItem = 3
                     return@setOnItemSelectedListener true
                 }
                 R.id.tab_project -> {
@@ -62,6 +64,12 @@ class MainActivity : DataBindingActivity<ActivityMainBinding, BaseViewModel>() {
                     }
                     1 -> {
                         mBinding?.bottomNavigation?.selectedItemId = R.id.tab_knowledge_hierarchy
+                    }
+                    2 -> {
+                        mBinding?.bottomNavigation?.selectedItemId = R.id.tab_wx_article
+                    }
+                    3 -> {
+                        mBinding?.bottomNavigation?.selectedItemId = R.id.tab_navigation
                     }
                 }
             }
