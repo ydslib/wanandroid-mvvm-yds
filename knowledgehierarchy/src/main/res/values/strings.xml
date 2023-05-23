@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">knowledgehierarchy</string>
+    <string name="add_tag">add tag</string>
 </resources>

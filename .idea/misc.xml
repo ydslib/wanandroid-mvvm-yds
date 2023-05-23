@@ -11,11 +11,13 @@
         <entry key="home/src/main/res/layout/home_car_item.xml" value="0.25" />
         <entry key="knowledgehierarchy/src/main/res/layout/activity_main.xml" value="0.13145896656534956" />
         <entry key="knowledgehierarchy/src/main/res/layout/fragment_knowledge.xml" value="0.13095238095238096" />
+        <entry key="knowledgehierarchy/src/main/res/layout/item_knowledge_article.xml" value="0.25" />
         <entry key="main/src/main/res/drawable/ic_wx_article.xml" value="0.1" />
         <entry key="main/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="main/src/main/res/menu/bottom_navigation_main.xml" value="0.25" />
         <entry key="mine/src/main/res/layout/fragment_mine.xml" value="0.1" />
         <entry key="resources/src/main/res/drawable/font_style_selector.xml" value="0.136" />
+        <entry key="resources/src/main/res/drawable/ic_enter.xml" value="0.1805" />
         <entry key="resources/src/main/res/drawable/ic_time.xml" value="0.1215" />
         <entry key="resources/src/main/res/drawable/icon_like.xml" value="0.1215" />
         <entry key="resources/src/main/res/drawable/item_divider.xml" value="0.1" />
