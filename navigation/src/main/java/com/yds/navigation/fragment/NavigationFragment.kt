@@ -106,6 +106,7 @@ class NavigationFragment : DataBindingFragment<FragmentNavigationBinding, Naviga
                     }
                     adapter.notifyDataSetChanged()
                 }
+                rightLinkageLeft(newState)
             }
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -115,6 +116,14 @@ class NavigationFragment : DataBindingFragment<FragmentNavigationBinding, Naviga
                 }
             }
         })
+    }
+
+    private fun rightLinkageLeft(state: Int) {
+        if (state == RecyclerView.SCROLL_STATE_IDLE) {
+            val i = layoutManager.findFirstVisibleItemPosition()
+            mBinding?.tabLayout?.setTabSelected(i)
+            index = i
+        }
     }
 
     private fun scrollRecycler() {
