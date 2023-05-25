@@ -20,9 +20,9 @@ class NavigationFragmentStateAdapter(
                 .navigation() as Fragment
             1 -> return ARouter.getInstance().build(RouterPath.KNOWLEDGE_FRAGMENT)
                 .navigation() as Fragment
-            2 -> return ARouter.getInstance().build(RouterPath.MINE_FRAGMENT)
+            2 -> return ARouter.getInstance().build(RouterPath.NAVIGATION_FRAGMENT)
                 .navigation() as Fragment
-            3 -> return ARouter.getInstance().build(RouterPath.NAVIGATION_FRAGMENT)
+            3 -> return ARouter.getInstance().build(RouterPath.PROJECT_FRAGMENT)
                 .navigation() as Fragment
         }
         return ARouter.getInstance().build(RouterPath.HOME_FRAGMENT).navigation() as Fragment

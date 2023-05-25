@@ -1,0 +1,46 @@
+if (!isLibrary.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
+apply from: "../config.gradle"
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'kotlin-kapt'
+
+android {
+    defaultConfig {
+        if (!isLibrary.toBoolean()) {
+            applicationId "com.yds.project"
+        }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+    buildFeatures {
+        dataBinding = true
+    }
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.core:core-ktx:${Deps.core_ktx}"
+    implementation "androidx.appcompat:appcompat:${Deps.appcompat}"
+    implementation "com.google.android.material:material:${Deps.materialVersion}"
+    implementation "androidx.constraintlayout:constraintlayout:${Deps.constraintlayout}"
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation "androidx.test.ext:junit:${Deps.androidTest_junit}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${Deps.androidTest_espresso_core}"
+    implementation "com.github.ydslib:Base:${Deps.baseVersion}"
+    implementation project(":core")
+    implementation project(":resources")
+    implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
+    kapt "com.alibaba:arouter-compiler:${Deps.routerApiVersion}"
+    implementation 'io.github.h07000223:flycoTabLayout:3.0.0'
+    implementation  "io.github.scwang90:refresh-layout-kernel:${Deps.refreshLayoutVersion}"
+    implementation  "io.github.scwang90:refresh-header-classics:${Deps.refreshLayoutVersion}"
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+}

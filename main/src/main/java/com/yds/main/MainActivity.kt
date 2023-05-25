@@ -4,6 +4,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.crystallake.base.activity.DataBindingActivity
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.vm.BaseViewModel
+import com.google.android.material.bottomnavigation.LabelVisibilityMode
+import com.google.android.material.navigation.NavigationBarView
 import com.gyf.immersionbar.ktx.immersionBar
 import com.yds.main.adapter.NavigationFragmentStateAdapter
 import com.yds.main.databinding.ActivityMainBinding
@@ -38,23 +40,20 @@ class MainActivity : DataBindingActivity<ActivityMainBinding, BaseViewModel>() {
                     mBinding?.viewPager?.currentItem = 1
                     return@setOnItemSelectedListener true
                 }
-                R.id.tab_wx_article -> {
-                    println("公众号")
-                    mBinding?.viewPager?.currentItem = 2
-                    return@setOnItemSelectedListener true
-                }
                 R.id.tab_navigation -> {
                     println("导航")
-                    mBinding?.viewPager?.currentItem = 3
+                    mBinding?.viewPager?.currentItem = 2
                     return@setOnItemSelectedListener true
                 }
                 R.id.tab_project -> {
                     println("项目")
+                    mBinding?.viewPager?.currentItem = 3
                     return@setOnItemSelectedListener true
                 }
             }
             false
         }
+        mBinding?.bottomNavigation?.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
         mBinding?.viewPager?.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -66,10 +65,10 @@ class MainActivity : DataBindingActivity<ActivityMainBinding, BaseViewModel>() {
                         mBinding?.bottomNavigation?.selectedItemId = R.id.tab_knowledge_hierarchy
                     }
                     2 -> {
-                        mBinding?.bottomNavigation?.selectedItemId = R.id.tab_wx_article
+                        mBinding?.bottomNavigation?.selectedItemId = R.id.tab_navigation
                     }
                     3 -> {
-                        mBinding?.bottomNavigation?.selectedItemId = R.id.tab_navigation
+                        mBinding?.bottomNavigation?.selectedItemId = R.id.tab_project
                     }
                 }
             }

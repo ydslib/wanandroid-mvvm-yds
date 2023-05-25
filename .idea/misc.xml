@@ -18,6 +18,9 @@
         <entry key="mine/src/main/res/layout/fragment_mine.xml" value="0.1" />
         <entry key="navigation/src/main/res/layout/fragment_navigation.xml" value="0.1" />
         <entry key="navigation/src/main/res/layout/navigation_item.xml" value="0.25" />
+        <entry key="project/src/main/res/layout/fragment_project.xml" value="0.1" />
+        <entry key="project/src/main/res/layout/fragment_project_article.xml" value="0.1" />
+        <entry key="project/src/main/res/layout/project_article_item.xml" value="0.25" />
         <entry key="resources/src/main/res/drawable/font_style_selector.xml" value="0.136" />
         <entry key="resources/src/main/res/drawable/ic_enter.xml" value="0.1805" />
         <entry key="resources/src/main/res/drawable/ic_time.xml" value="0.1215" />
@@ -27,6 +30,7 @@
         <entry key="scan/src/main/res/drawable/crop_texture.xml" value="0.1655" />
         <entry key="scan/src/main/res/layout/activity_crop.xml" value="0.12447916666666667" />
         <entry key="scan/src/main/res/layout/activity_main.xml" value="0.17037037037037037" />
+        <entry key="wxarticle/src/main/res/layout/fragment_wx.xml" value="0.1" />
       </map>
     </option>
   </component>
