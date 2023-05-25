@@ -9,6 +9,7 @@ import com.yds.project.model.BaseArticle
 class ProjectArticleFragmentViewModel : BaseViewModel() {
 
     companion object {
+        const val STATE_LOADING = 0
         const val STATE_REFRESH = 1
         const val STATE_LOAD_MORE = 2
     }
@@ -17,6 +18,7 @@ class ProjectArticleFragmentViewModel : BaseViewModel() {
     val refreshLiveData = MutableLiveData<Boolean>()
     val loadingMoreLiveData = MutableLiveData<Boolean>()
     val curPageLiveData = MutableLiveData<Int>()
+    val loadingLiveData = MutableLiveData<Boolean>()
 
     fun getProjectData(page: Int, cid: Int, state: Int) {
         setState(state, true)
@@ -37,6 +39,32 @@ class ProjectArticleFragmentViewModel : BaseViewModel() {
         )
     }
 
+    fun getLoadMoreProjectData(page: Int, cid: Int) {
+        setState(STATE_LOAD_MORE, true)
+        request(
+            block = {
+                ProjectRequest.getProjectData(page, cid)
+            },
+            success = {
+                val oldData = mutableListOf<BaseArticle>()
+                projectData.value?.let { data ->
+                    oldData.addAll(data)
+                }
+                it.data?.datas?.let {
+                    oldData.addAll(it)
+                }
+                projectData.value = oldData
+                curPageLiveData.value = it.data?.curPage
+            },
+            cancel = {
+
+            },
+            complete = {
+                setState(STATE_LOAD_MORE, false)
+            }
+        )
+    }
+
     fun setState(state: Int, enable: Boolean) {
         when (state) {
             STATE_REFRESH -> {
@@ -44,6 +72,9 @@ class ProjectArticleFragmentViewModel : BaseViewModel() {
             }
             STATE_LOAD_MORE -> {
                 loadingMoreLiveData.value = enable
+            }
+            STATE_LOADING -> {
+                loadingLiveData.value = enable
             }
         }
     }

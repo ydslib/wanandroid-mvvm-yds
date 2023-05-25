@@ -1,7 +1,9 @@
 package com.yds.project.fragment
 
 import android.os.Bundle
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.airbnb.lottie.LottieDrawable
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.fastrecycler.adapter.MultiDataBindingAdapter
@@ -11,6 +13,7 @@ import com.yds.project.R
 import com.yds.project.databinding.FragmentProjectArticleBinding
 import com.yds.project.item.ProjectArticleItem
 import com.yds.project.vm.ProjectArticleFragmentViewModel
+import com.yds.project.vm.ProjectArticleFragmentViewModel.Companion.STATE_LOADING
 
 @Route(path = RouterPath.PROJECT_ARTICLE_FRAGMENT)
 class ProjectArticleFragment :
@@ -44,6 +47,14 @@ class ProjectArticleFragment :
             }
         }
 
+        mViewModel.loadingLiveData.observe(this) {
+            if (it) {
+                showLoading()
+            } else {
+                hideLoading()
+            }
+        }
+
     }
 
     override fun initView(savedInstanceState: Bundle?) {
@@ -56,10 +67,9 @@ class ProjectArticleFragment :
         mBinding?.smartRefreshLayout?.setOnLoadMoreListener {
             if (cid != null && mViewModel.curPageLiveData.value != null) {
                 val page = mViewModel.curPageLiveData.value ?: 1
-                mViewModel.getProjectData(
-                    page,
-                    cid!!,
-                    ProjectArticleFragmentViewModel.STATE_LOAD_MORE
+                mViewModel.getLoadMoreProjectData(
+                    page + 1,
+                    cid!!
                 )
             }
         }
@@ -73,11 +83,27 @@ class ProjectArticleFragment :
     override fun lazyLoadData() {
         cid = arguments?.getInt("cid")
         cid?.let {
-            mViewModel.getProjectData(1, it, 0)
+            mViewModel.getProjectData(1, it, STATE_LOADING)
         }
     }
 
     override fun initDataBindingConfig(): DataBindingConfig {
         return DataBindingConfig(R.layout.fragment_project_article)
+    }
+
+    fun showLoading() {
+        mBinding?.loadViewPage?.isVisible = true
+        mBinding?.loadingView?.let {
+            it.setAnimation("loading_bus.json")
+            it.repeatCount = LottieDrawable.INFINITE
+            it.repeatMode = LottieDrawable.REVERSE
+            it.playAnimation()
+        }
+
+    }
+
+    fun hideLoading() {
+        mBinding?.loadViewPage?.isVisible = false
+        mBinding?.loadingView?.pauseAnimation()
     }
 }
