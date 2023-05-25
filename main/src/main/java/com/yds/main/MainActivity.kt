@@ -1,5 +1,6 @@
 package com.yds.main
 
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.isVisible
 import androidx.viewpager2.widget.ViewPager2
@@ -95,6 +96,10 @@ class MainActivity : DataBindingActivity<ActivityMainBinding, BaseViewModel>() {
                 }
             }
         })
+        mBinding?.navigation?.setNavigationItemSelectedListener { menuItem->
+            Toast.makeText(this,"点击了：${menuItem.title}",Toast.LENGTH_SHORT).show()
+            false
+        }
 
 
     }

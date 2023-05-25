@@ -64,6 +64,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation"
             android:layout_width="@dimen/dp_260"
             android:layout_height="match_parent"
             android:layout_gravity="start"
