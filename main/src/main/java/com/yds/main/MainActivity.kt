@@ -4,20 +4,23 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.isVisible
 import androidx.viewpager2.widget.ViewPager2
+import com.alibaba.android.arouter.launcher.ARouter
 import com.crystallake.base.activity.DataBindingActivity
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.vm.BaseViewModel
-import com.google.android.material.bottomnavigation.LabelVisibilityMode
+import com.crystallake.resources.RouterPath
 import com.google.android.material.navigation.NavigationBarView
 import com.gyf.immersionbar.ktx.immersionBar
 import com.yds.main.adapter.NavigationFragmentStateAdapter
 import com.yds.main.databinding.ActivityMainBinding
+import com.yds.main.databinding.DrawerHeaderBinding
 
 class MainActivity : DataBindingActivity<ActivityMainBinding, BaseViewModel>() {
 
     private val adapter by lazy {
         NavigationFragmentStateAdapter(this)
     }
+    private var drawerHeaderBinding: DrawerHeaderBinding? = null
 
     override fun initDataBindingConfig(): DataBindingConfig {
         return DataBindingConfig(R.layout.activity_main)
@@ -25,9 +28,22 @@ class MainActivity : DataBindingActivity<ActivityMainBinding, BaseViewModel>() {
 
     override fun initData() {
         super.initData()
+
         immersionBar {
             statusBarColor(R.color.color_333333)
             applySystemFits(true)
+        }
+
+        val header = mBinding?.navigation?.getHeaderView(0)
+        header?.let {
+            drawerHeaderBinding = DrawerHeaderBinding.bind(it)
+        }
+
+        drawerHeaderBinding?.group?.isVisible = false
+        drawerHeaderBinding?.login?.isVisible = true
+
+        drawerHeaderBinding?.login?.setOnClickListener {
+            ARouter.getInstance().build(RouterPath.LOGIN_ACTIVITY).navigation()
         }
 
 
@@ -96,11 +112,10 @@ class MainActivity : DataBindingActivity<ActivityMainBinding, BaseViewModel>() {
                 }
             }
         })
-        mBinding?.navigation?.setNavigationItemSelectedListener { menuItem->
-            Toast.makeText(this,"点击了：${menuItem.title}",Toast.LENGTH_SHORT).show()
+        mBinding?.navigation?.setNavigationItemSelectedListener { menuItem ->
+            Toast.makeText(this, "点击了：${menuItem.title}", Toast.LENGTH_SHORT).show()
             false
         }
-
 
     }
 }

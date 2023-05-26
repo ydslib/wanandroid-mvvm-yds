@@ -7,4 +7,5 @@ object RouterPath {
     const val NAVIGATION_FRAGMENT = "/navigation/NavigationFragment"
     const val PROJECT_FRAGMENT = "/project/ProjectFragment"
     const val PROJECT_ARTICLE_FRAGMENT = "/project/ProjectArticleFragment"
+    const val LOGIN_ACTIVITY = "/login/LoginActivity"
 }

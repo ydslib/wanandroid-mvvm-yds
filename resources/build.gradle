@@ -1,16 +1,14 @@
-plugins {
-    id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
-}
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion Deps.compileSdk
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 31
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion Deps.minSdk
+        targetSdkVersion Deps.targetSdk
+        versionCode Deps.versionCode
+        versionName Deps.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
