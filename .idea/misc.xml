@@ -13,7 +13,7 @@
         <entry key="knowledgehierarchy/src/main/res/layout/activity_main.xml" value="0.13145896656534956" />
         <entry key="knowledgehierarchy/src/main/res/layout/fragment_knowledge.xml" value="0.13095238095238096" />
         <entry key="knowledgehierarchy/src/main/res/layout/item_knowledge_article.xml" value="0.25" />
-        <entry key="login/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="login/src/main/res/layout/activity_login.xml" value="0.335" />
         <entry key="main/src/main/res/drawable/ic_wx_article.xml" value="0.1" />
         <entry key="main/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="main/src/main/res/layout/drawer_header.xml" value="0.1" />
@@ -25,6 +25,12 @@
         <entry key="project/src/main/res/layout/fragment_project.xml" value="0.1" />
         <entry key="project/src/main/res/layout/fragment_project_article.xml" value="0.1" />
         <entry key="project/src/main/res/layout/project_article_item.xml" value="0.25" />
+        <entry key="resources/src/main/res/drawable/btn_shape.xml" value="0.1735" />
+        <entry key="resources/src/main/res/drawable/edit_password_see.xml" value="0.1735" />
+        <entry key="resources/src/main/res/drawable/edit_text_focus_shape.xml" value="0.24" />
+        <entry key="resources/src/main/res/drawable/edit_text_notfocus_shape.xml" value="0.1735" />
+        <entry key="resources/src/main/res/drawable/edit_text_selector.xml" value="0.1735" />
+        <entry key="resources/src/main/res/drawable/edit_text_shape.xml" value="0.1735" />
         <entry key="resources/src/main/res/drawable/font_style_selector.xml" value="0.136" />
         <entry key="resources/src/main/res/drawable/ic_enter.xml" value="0.1805" />
         <entry key="resources/src/main/res/drawable/ic_time.xml" value="0.1215" />

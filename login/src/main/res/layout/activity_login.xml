@@ -10,16 +10,111 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".LoginActivity">
+        tools:context=".LoginActivity"
+        android:background="@color/white"
+        >
 
+        <TextView
+            android:id="@+id/login_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/dp_55"
+            android:layout_marginStart="@dimen/dp_25"
+            android:textSize="@dimen/sp_28"
+            android:textColor="@color/color_333E63"
+            />
+        <TextView
+            android:id="@+id/tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/login_title"
+            app:layout_constraintStart_toStartOf="@+id/login_title"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="@string/login_tips"
+            android:textColor="@color/color_939393"
+            />
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_50"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tips"
+            android:background="@drawable/edit_text_selector"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_40"
+            android:textSize="@dimen/sp_14"
+            android:hint="@string/email"
+            android:paddingStart="@dimen/dp_30"
+            android:paddingEnd="@dimen/dp_30"
+            />
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_50"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email"
+            android:background="@drawable/edit_text_selector"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_21"
+            android:hint="@string/password"
+            android:textSize="@dimen/sp_14"
+            android:paddingStart="@dimen/dp_30"
+            android:paddingEnd="@dimen/dp_60"
+            android:inputType="textPassword"
+            />
+        
+        <ImageView
+            android:id="@+id/seeImg"
+            android:layout_width="@dimen/dp_18"
+            android:layout_height="@dimen/dp_18"
+            app:layout_constraintEnd_toEndOf="@+id/password"
+            app:layout_constraintTop_toTopOf="@+id/password"
+            app:layout_constraintBottom_toBottomOf="@+id/password"
+            android:layout_marginEnd="@dimen/dp_30"
+            android:src="@drawable/ic_password_not_can_see"
+            />
+        <CheckBox
+            android:id="@+id/remember_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/password"
+            app:layout_constraintStart_toStartOf="@+id/password"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="@string/remember_me"
+            android:theme="@style/CheckBoxStyle"
+            android:textColor="@color/color_583EF2"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/password"
+            app:layout_constraintTop_toTopOf="@+id/remember_me"
+            app:layout_constraintBottom_toBottomOf="@+id/remember_me"
+            android:text="@string/forget_password"
+            android:textColor="@color/color_583EF2"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginEnd="@dimen/dp_20"
+            app:layout_constraintTop_toBottomOf="@+id/password"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/dp_75"
+            android:background="@drawable/btn_shape"
+            android:text="@string/login"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/sp_18"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
