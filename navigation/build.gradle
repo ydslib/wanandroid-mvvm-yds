@@ -36,6 +36,7 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:${Deps.androidTest_espresso_core}"
     implementation "com.github.ydslib:Base:${Deps.baseVersion}"
     implementation project(":core")
+    implementation project(":base")
     implementation project(":resources")
     implementation "q.rorbin:VerticalTabLayout:1.2.5"
     implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"

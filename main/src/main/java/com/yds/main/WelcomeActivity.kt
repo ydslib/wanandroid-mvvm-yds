@@ -36,7 +36,7 @@ class WelcomeActivity : BaseDataBindingActivity<ActivityWelcomeBinding, BaseView
             UserInfoTool.setUserName(userName)
         }
 
-        countDown(5,
+        countDown(3,
             next = {
                 mBinding?.countDown?.text = it.toString()
             }, end = {

@@ -1,4 +1,4 @@
-package com.yds.core
+package com.yds.base.bus
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer

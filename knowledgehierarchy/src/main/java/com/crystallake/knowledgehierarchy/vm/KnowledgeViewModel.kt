@@ -9,8 +9,12 @@ class KnowledgeViewModel : BaseViewModel() {
 
     val knowledgeDataLiveData = MutableLiveData<List<KnowledgeModel>>()
     val refreshLiveData = MutableLiveData<Boolean>()
+    val showLoadingLiveData = MutableLiveData<Boolean>()
 
     fun getKnowledgeData(refresh: Boolean = false) {
+        if (!refresh) {
+            showLoadingLiveData.value = true
+        }
         setRefreshLiveData(refresh, true)
         request(
             block = {
@@ -24,6 +28,7 @@ class KnowledgeViewModel : BaseViewModel() {
             },
             complete = {
                 setRefreshLiveData(refresh, false)
+                showLoadingLiveData.value = false
             }
         )
     }

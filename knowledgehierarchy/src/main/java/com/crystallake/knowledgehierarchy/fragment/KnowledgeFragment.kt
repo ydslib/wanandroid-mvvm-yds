@@ -1,6 +1,7 @@
 package com.crystallake.knowledgehierarchy.fragment
 
 import android.os.Bundle
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.crystallake.base.config.DataBindingConfig
@@ -11,9 +12,10 @@ import com.crystallake.knowledgehierarchy.databinding.FragmentKnowledgeBinding
 import com.crystallake.knowledgehierarchy.item.KnowledgeArticleItem
 import com.crystallake.knowledgehierarchy.vm.KnowledgeViewModel
 import com.crystallake.resources.RouterPath
+import com.yds.base.BaseDataBindingFragment
 
 @Route(path = RouterPath.KNOWLEDGE_FRAGMENT)
-class KnowledgeFragment : DataBindingFragment<FragmentKnowledgeBinding, KnowledgeViewModel>() {
+class KnowledgeFragment : BaseDataBindingFragment<FragmentKnowledgeBinding, KnowledgeViewModel>() {
 
     val adapter by lazy {
         MultiDataBindingAdapter()
@@ -24,6 +26,11 @@ class KnowledgeFragment : DataBindingFragment<FragmentKnowledgeBinding, Knowledg
     }
 
     override fun createObserver() {
+
+        loginStateChangeObserve {
+            lazyLoadData()
+        }
+
         mViewModel.refreshLiveData.observe(this) {
             if (!it) {
                 mBinding?.smartRefreshLayout?.finishRefresh()
@@ -36,6 +43,14 @@ class KnowledgeFragment : DataBindingFragment<FragmentKnowledgeBinding, Knowledg
                 adapter.addItem(KnowledgeArticleItem(model))
             }
             adapter.notifyDataSetChanged()
+        }
+
+        mViewModel.showLoadingLiveData.observe(this) {
+            if (it) {
+                showLoading()
+            } else {
+                hideLoading()
+            }
         }
     }
 
@@ -61,5 +76,16 @@ class KnowledgeFragment : DataBindingFragment<FragmentKnowledgeBinding, Knowledg
 
     override fun initDataBindingConfig(): DataBindingConfig {
         return DataBindingConfig(R.layout.fragment_knowledge)
+    }
+
+    fun showLoading() {
+        mBinding?.loadViewPage?.isVisible = true
+        showLoading(mBinding?.loadingView)
+
+    }
+
+    fun hideLoading() {
+        mBinding?.loadViewPage?.isVisible = false
+        hideLoading(mBinding?.loadingView)
     }
 }

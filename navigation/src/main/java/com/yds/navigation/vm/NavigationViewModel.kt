@@ -8,8 +8,10 @@ import com.yds.navigation.model.NaviModel
 class NavigationViewModel : BaseViewModel() {
 
     val naviData = MutableLiveData<List<NaviModel>>()
+    val showLoadingLiveData = MutableLiveData<Boolean>()
 
     fun getNaviTitleData() {
+        showLoadingLiveData.value = true
         request(
             block = {
                 NavigationRequest.getNaviTreeData()
@@ -21,7 +23,7 @@ class NavigationViewModel : BaseViewModel() {
 
             },
             complete = {
-
+                showLoadingLiveData.value = false
             }
         )
     }

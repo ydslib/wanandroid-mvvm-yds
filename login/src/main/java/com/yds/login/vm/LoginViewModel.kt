@@ -3,8 +3,8 @@ package com.yds.login.vm
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.SPUtils
 import com.crystallake.base.vm.BaseViewModel
-import com.yds.core.Bus
-import com.yds.core.BusChannel
+import com.yds.base.bus.Bus
+import com.yds.base.bus.BusChannel
 import com.yds.core.ILogin
 import com.yds.login.LoginRequest
 import com.yds.login.UserInfo

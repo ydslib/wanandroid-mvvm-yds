@@ -44,6 +44,7 @@ class MainActivity : BaseDataBindingActivity<ActivityMainBinding, BaseViewModel>
         }
 
         drawerHeaderBinding?.login?.setOnClickListener {
+            mBinding?.drawerLayout?.closeDrawers()
             if (UserInfoTool.getLoginState()) {
                 ARouter.getInstance().build(RouterPath.MINE_ACTIVITY).navigation()
             } else {
@@ -51,6 +52,7 @@ class MainActivity : BaseDataBindingActivity<ActivityMainBinding, BaseViewModel>
             }
         }
         drawerHeaderBinding?.header?.setOnClickListener {
+            mBinding?.drawerLayout?.closeDrawers()
             if (UserInfoTool.getLoginState()) {
                 ARouter.getInstance().build(RouterPath.MINE_ACTIVITY).navigation()
             } else {

@@ -1,13 +1,14 @@
 package com.yds.navigation.fragment
 
 import android.os.Bundle
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.fastrecycler.adapter.MultiDataBindingAdapter
-import com.crystallake.base.fragment.DataBindingFragment
 import com.crystallake.resources.RouterPath
+import com.yds.base.BaseDataBindingFragment
 import com.yds.navigation.R
 import com.yds.navigation.databinding.FragmentNavigationBinding
 import com.yds.navigation.item.NaviItem
@@ -19,7 +20,8 @@ import q.rorbin.verticaltablayout.widget.TabView
 
 
 @Route(path = RouterPath.NAVIGATION_FRAGMENT)
-class NavigationFragment : DataBindingFragment<FragmentNavigationBinding, NavigationViewModel>() {
+class NavigationFragment :
+    BaseDataBindingFragment<FragmentNavigationBinding, NavigationViewModel>() {
 
     val adapter by lazy {
         MultiDataBindingAdapter()
@@ -30,41 +32,6 @@ class NavigationFragment : DataBindingFragment<FragmentNavigationBinding, Naviga
 
     private var needScroll = false
     private var index = 0
-
-    override fun createObserver() {
-        mViewModel.naviData.observe(this) {
-            it?.run {
-                mBinding?.tabLayout?.setTabAdapter(object : TabAdapter {
-                    override fun getCount(): Int {
-                        return size
-                    }
-
-                    override fun getBadge(position: Int): ITabView.TabBadge? {
-                        return null
-                    }
-
-                    override fun getIcon(position: Int): ITabView.TabIcon? {
-                        return null
-                    }
-
-                    override fun getTitle(position: Int): ITabView.TabTitle {
-                        return ITabView.TabTitle.Builder()
-                            .setContent(get(position).name)
-                            .build()
-                    }
-
-                    override fun getBackground(position: Int): Int {
-                        return -1
-                    }
-
-                })
-            }
-            it?.forEach { model ->
-                adapter.addItem(NaviItem(model))
-            }
-            adapter.notifyDataSetChanged()
-        }
-    }
 
     private fun smoothScrollToPosition(currentPosition: Int) {
         val firstPosition = layoutManager.findFirstVisibleItemPosition()
@@ -141,5 +108,60 @@ class NavigationFragment : DataBindingFragment<FragmentNavigationBinding, Naviga
 
     override fun initDataBindingConfig(): DataBindingConfig {
         return DataBindingConfig(R.layout.fragment_navigation)
+    }
+
+    fun showLoading() {
+        mBinding?.loadViewPage?.isVisible = true
+        showLoading(mBinding?.loadingView)
+    }
+
+    fun hideLoading() {
+        mBinding?.loadViewPage?.isVisible = false
+        hideLoading(mBinding?.loadingView)
+    }
+
+    override fun createObserver() {
+        loginStateChangeObserve {
+            mViewModel.getNaviTitleData()
+        }
+        mViewModel.naviData.observe(this) {
+            it?.run {
+                mBinding?.tabLayout?.setTabAdapter(object : TabAdapter {
+                    override fun getCount(): Int {
+                        return size
+                    }
+
+                    override fun getBadge(position: Int): ITabView.TabBadge? {
+                        return null
+                    }
+
+                    override fun getIcon(position: Int): ITabView.TabIcon? {
+                        return null
+                    }
+
+                    override fun getTitle(position: Int): ITabView.TabTitle {
+                        return ITabView.TabTitle.Builder()
+                            .setContent(get(position).name)
+                            .build()
+                    }
+
+                    override fun getBackground(position: Int): Int {
+                        return -1
+                    }
+
+                })
+            }
+            it?.forEach { model ->
+                adapter.addItem(NaviItem(model))
+            }
+            adapter.notifyDataSetChanged()
+        }
+        mViewModel.showLoadingLiveData.observe(this) {
+            if (it) {
+                showLoading()
+            } else {
+                hideLoading()
+            }
+        }
     }
 }

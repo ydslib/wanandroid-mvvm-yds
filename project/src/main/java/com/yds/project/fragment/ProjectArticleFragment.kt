@@ -3,12 +3,11 @@ package com.yds.project.fragment
 import android.os.Bundle
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.airbnb.lottie.LottieDrawable
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.fastrecycler.adapter.MultiDataBindingAdapter
-import com.crystallake.base.fragment.DataBindingFragment
 import com.crystallake.resources.RouterPath
+import com.yds.base.BaseDataBindingFragment
 import com.yds.project.R
 import com.yds.project.databinding.FragmentProjectArticleBinding
 import com.yds.project.item.ProjectArticleItem
@@ -17,7 +16,7 @@ import com.yds.project.vm.ProjectArticleFragmentViewModel.Companion.STATE_LOADIN
 
 @Route(path = RouterPath.PROJECT_ARTICLE_FRAGMENT)
 class ProjectArticleFragment :
-    DataBindingFragment<FragmentProjectArticleBinding, ProjectArticleFragmentViewModel>() {
+    BaseDataBindingFragment<FragmentProjectArticleBinding, ProjectArticleFragmentViewModel>() {
 
     private val adapter by lazy {
         MultiDataBindingAdapter()
@@ -29,6 +28,11 @@ class ProjectArticleFragment :
     private var cid: Int? = null
 
     override fun createObserver() {
+        loginStateChangeObserve {
+            cid?.let {
+                mViewModel.getProjectData(1, it, STATE_LOADING)
+            }
+        }
         mViewModel.projectData.observe(this) {
             adapter.clear()
             it.forEach { model ->
@@ -93,17 +97,11 @@ class ProjectArticleFragment :
 
     fun showLoading() {
         mBinding?.loadViewPage?.isVisible = true
-        mBinding?.loadingView?.let {
-            it.setAnimation("loading_bus.json")
-            it.repeatCount = LottieDrawable.INFINITE
-            it.repeatMode = LottieDrawable.REVERSE
-            it.playAnimation()
-        }
-
+        showLoading(mBinding?.loadingView)
     }
 
     fun hideLoading() {
         mBinding?.loadViewPage?.isVisible = false
-        mBinding?.loadingView?.pauseAnimation()
+        hideLoading(mBinding?.loadingView)
     }
 }

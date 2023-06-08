@@ -33,6 +33,4 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation "androidx.test.ext:junit:${Deps.androidTest_junit}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${Deps.androidTest_espresso_core}"
-
-    api 'io.github.jeremyliao:live-event-bus-x:1.8.0'
 }
