@@ -16,11 +16,25 @@ object UserInfoTool {
         return null
     }
 
-    fun getLoginStatus(): Boolean {
+    fun getLoginState(): Boolean {
         val iterator = loader.iterator()
         while (iterator.hasNext()) {
-            return iterator.next().getLoginStatus()
+            return iterator.next().getLoginState()
         }
         return false
+    }
+
+    fun setLoginState(loginState: Boolean) {
+        val iterator = loader.iterator()
+        while (iterator.hasNext()) {
+            return iterator.next().setLoginState(loginState)
+        }
+    }
+
+    fun setUserName(userName: String) {
+        val iterator = loader.iterator()
+        while (iterator.hasNext()) {
+            return iterator.next().setUserName(userName)
+        }
     }
 }

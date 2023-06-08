@@ -2,6 +2,7 @@ package com.yds.home
 
 import android.os.Bundle
 import androidx.core.view.isVisible
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.lottie.LottieDrawable
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -10,6 +11,8 @@ import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.fastrecycler.adapter.MultiDataBindingAdapter
 import com.crystallake.base.fragment.DataBindingFragment
 import com.crystallake.resources.RouterPath
+import com.yds.core.Bus
+import com.yds.core.BusChannel
 import com.yds.core.UserInfoTool
 import com.yds.home.databinding.FragmentHomeBinding
 import com.yds.home.item.BannerItem
@@ -34,7 +37,7 @@ class HomeFragment : DataBindingFragment<FragmentHomeBinding, HomeFragmentViewMo
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        loginState = UserInfoTool.getLoginStatus()
+        loginState = UserInfoTool.getLoginState()
         mBinding?.recyclerView?.let {
             it.layoutManager = linearLayoutManager
             it.adapter = homeAdapter
@@ -75,6 +78,11 @@ class HomeFragment : DataBindingFragment<FragmentHomeBinding, HomeFragmentViewMo
 
     override fun initOtherVM() {
         super.initOtherVM()
+
+        Bus.observeSticky(BusChannel.LOGIN_STATUS_CHANNEL, this, Observer<Boolean> {
+            mViewModel.getHomeArticle(0, HomeFragmentViewModel.LOAD)
+        })
+
         mViewModel.showLoading.observe(this) {
             if (it) {
                 showLoading()
@@ -90,7 +98,7 @@ class HomeFragment : DataBindingFragment<FragmentHomeBinding, HomeFragmentViewMo
             it.articleModel?.let { article ->
                 article.datas?.forEach { baseArticle ->
                     homeAdapter.addItem(HomeCarItem(baseArticle) { position, collect ->
-                        if (!UserInfoTool.getLoginStatus()) {
+                        if (!UserInfoTool.getLoginState()) {
                             ARouter.getInstance().build(RouterPath.LOGIN_ACTIVITY).navigation()
                             return@HomeCarItem
                         }
@@ -120,13 +128,6 @@ class HomeFragment : DataBindingFragment<FragmentHomeBinding, HomeFragmentViewMo
             if (!it) {
                 mBinding?.smartRefreshLayout?.finishLoadMore()
             }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (loginState != UserInfoTool.getLoginStatus()) {
-            mViewModel.getHomeArticle(0, HomeFragmentViewModel.LOAD)
         }
     }
 }

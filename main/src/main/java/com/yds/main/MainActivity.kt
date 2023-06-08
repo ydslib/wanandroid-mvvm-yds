@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.alibaba.android.arouter.launcher.ARouter
+import com.blankj.utilcode.util.SPUtils
 import com.crystallake.base.activity.DataBindingActivity
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.vm.BaseViewModel
@@ -40,20 +41,24 @@ class MainActivity : DataBindingActivity<ActivityMainBinding, BaseViewModel>() {
             applySystemFits(true)
         }
 
+        val loginState = SPUtils.getInstance("UserInfo").getBoolean("loginState")
+        val userName = SPUtils.getInstance("UserInfo").getString("username")
+        UserInfoTool.setLoginState(loginState)
+        UserInfoTool.setUserName(userName)
         val header = mBinding?.navigation?.getHeaderView(0)
         header?.let {
             drawerHeaderBinding = DrawerHeaderBinding.bind(it)
         }
 
         drawerHeaderBinding?.login?.setOnClickListener {
-            if (UserInfoTool.getLoginStatus()) {
+            if (UserInfoTool.getLoginState()) {
                 ARouter.getInstance().build(RouterPath.MINE_ACTIVITY).navigation()
             } else {
                 ARouter.getInstance().build(RouterPath.LOGIN_ACTIVITY).navigation()
             }
         }
         drawerHeaderBinding?.header?.setOnClickListener {
-            if (UserInfoTool.getLoginStatus()) {
+            if (UserInfoTool.getLoginState()) {
                 ARouter.getInstance().build(RouterPath.MINE_ACTIVITY).navigation()
             } else {
                 ARouter.getInstance().build(RouterPath.LOGIN_ACTIVITY).navigation()
@@ -167,7 +172,7 @@ class MainActivity : DataBindingActivity<ActivityMainBinding, BaseViewModel>() {
     }
 
     private fun initDrawerLayout() {
-        if (UserInfoTool.getLoginStatus()) {
+        if (UserInfoTool.getLoginState()) {
             drawerHeaderBinding?.login?.isVisible = false
             drawerHeaderBinding?.group?.isVisible = true
             drawerHeaderBinding?.email?.text = UserInfoTool.getUserName()

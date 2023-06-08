@@ -4,5 +4,9 @@ interface IUserInfo {
 
     fun getUserName(): String?
 
-    fun getLoginStatus(): Boolean
+    fun getLoginState(): Boolean
+
+    fun setLoginState(loginState: Boolean)
+
+    fun setUserName(userName: String?)
 }

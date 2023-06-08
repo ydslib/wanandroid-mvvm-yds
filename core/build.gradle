@@ -47,4 +47,6 @@ dependencies {
     api "com.geyifeng.immersionbar:immersionbar:${Deps.immersionbarVersion}"
     // kotlin扩展（可选）
     api "com.geyifeng.immersionbar:immersionbar-ktx:${Deps.immersionbarVersion}"
+
+    api 'io.github.jeremyliao:live-event-bus-x:1.8.0'
 }

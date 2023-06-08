@@ -1,12 +1,14 @@
 package com.yds.login.vm
 
 import androidx.lifecycle.MutableLiveData
+import com.blankj.utilcode.util.SPUtils
 import com.crystallake.base.vm.BaseViewModel
+import com.yds.core.Bus
+import com.yds.core.BusChannel
 import com.yds.core.ILogin
 import com.yds.login.LoginRequest
 import com.yds.login.UserInfo
 import com.yds.login.model.LoginData
-import kotlinx.coroutines.async
 
 class LoginViewModel : BaseViewModel(), ILogin {
 
@@ -34,6 +36,9 @@ class LoginViewModel : BaseViewModel(), ILogin {
                 registerData.value = it.data
                 UserInfo.mUserName = it.data?.username
                 UserInfo.mLoginState = true
+                SPUtils.getInstance("UserInfo").put("username", UserInfo.mUserName)
+                SPUtils.getInstance("UserInfo").put("loginState", UserInfo.mLoginState)
+                Bus.post(BusChannel.LOGIN_STATUS_CHANNEL, true)
             },
             cancel = {
 
@@ -56,6 +61,9 @@ class LoginViewModel : BaseViewModel(), ILogin {
                 loginData.value = it.data
                 UserInfo.mUserName = it.data?.username
                 UserInfo.mLoginState = true
+                SPUtils.getInstance("UserInfo").put("username", UserInfo.mUserName)
+                SPUtils.getInstance("UserInfo").put("loginState", UserInfo.mLoginState)
+                Bus.post(BusChannel.LOGIN_STATUS_CHANNEL, true)
             },
             cancel = {
 
@@ -73,6 +81,8 @@ class LoginViewModel : BaseViewModel(), ILogin {
             },
             success = {
                 UserInfo.mLoginState = false
+                SPUtils.getInstance("UserInfo").clear()
+                Bus.post(BusChannel.LOGIN_STATUS_CHANNEL, false)
             },
             cancel = {}
         )

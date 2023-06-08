@@ -8,7 +8,15 @@ class UserInfoProxy : IUserInfo {
         return UserInfo.mUserName
     }
 
-    override fun getLoginStatus(): Boolean {
+    override fun getLoginState(): Boolean {
         return UserInfo.mLoginState
+    }
+
+    override fun setLoginState(loginState: Boolean) {
+        UserInfo.mLoginState = loginState
+    }
+
+    override fun setUserName(userName: String?) {
+        UserInfo.mUserName = userName
     }
 }
