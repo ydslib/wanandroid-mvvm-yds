@@ -33,20 +33,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation "androidx.test.ext:junit:${Deps.androidTest_junit}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${Deps.androidTest_espresso_core}"
-    // lifecycle
-    // noinspection GradleDependency
-    api "androidx.lifecycle:lifecycle-process:${Deps.lifecycleVersion}"
-    // noinspection GradleDependency
-    api "androidx.lifecycle:lifecycle-runtime-ktx:${Deps.lifecycleVersion}"
-    // noinspection GradleDependency
-    api "androidx.lifecycle:lifecycle-viewmodel-ktx:${Deps.lifecycleVersion}"
-    // noinspection GradleDependency
-    api "androidx.lifecycle:lifecycle-livedata-ktx:${Deps.lifecycleVersion}"
-
-    // 基础依赖包，必须要依赖
-    api "com.geyifeng.immersionbar:immersionbar:${Deps.immersionbarVersion}"
-    // kotlin扩展（可选）
-    api "com.geyifeng.immersionbar:immersionbar-ktx:${Deps.immersionbarVersion}"
 
     api 'io.github.jeremyliao:live-event-bus-x:1.8.0'
 }

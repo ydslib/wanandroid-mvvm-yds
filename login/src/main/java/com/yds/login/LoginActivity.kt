@@ -15,12 +15,13 @@ import com.bumptech.glide.Glide
 import com.crystallake.base.activity.DataBindingActivity
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.resources.RouterPath
+import com.yds.base.BaseDataBindingActivity
 import com.yds.login.databinding.ActivityLoginBinding
 import com.yds.login.vm.LoginViewModel
 
 
 @Route(path = RouterPath.LOGIN_ACTIVITY)
-class LoginActivity : DataBindingActivity<ActivityLoginBinding, LoginViewModel>() {
+class LoginActivity : BaseDataBindingActivity<ActivityLoginBinding, LoginViewModel>() {
 
     override fun initDataBindingConfig(): DataBindingConfig {
         return DataBindingConfig(R.layout.activity_login)

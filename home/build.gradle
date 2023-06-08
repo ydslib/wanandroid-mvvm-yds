@@ -42,6 +42,7 @@ dependencies {
     implementation  "io.github.scwang90:refresh-header-classics:${Deps.refreshLayoutVersion}"
     implementation project(":core")
     implementation project(":resources")
+    implementation project(":base")
     implementation "com.google.android.material:material:${Deps.materialVersion}"
     implementation "androidx.navigation:navigation-fragment-ktx:${Deps.navigationVersion}"
     implementation "androidx.navigation:navigation-ui-ktx:${Deps.navigationVersion}"

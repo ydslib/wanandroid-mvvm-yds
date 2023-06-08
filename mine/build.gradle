@@ -33,6 +33,7 @@ dependencies {
     implementation "com.google.android.material:material:${Deps.materialVersion}"
     implementation "androidx.constraintlayout:constraintlayout:${Deps.constraintlayout}"
     implementation project(":core")
+    implementation project(":base")
     implementation project(":resources")
     implementation "com.github.ydslib:Base:${Deps.baseVersion}"
     implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"

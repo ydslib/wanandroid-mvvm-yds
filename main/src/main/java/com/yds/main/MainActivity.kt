@@ -8,21 +8,22 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager2.widget.ViewPager2
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.blankj.utilcode.util.SPUtils
-import com.crystallake.base.activity.DataBindingActivity
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.vm.BaseViewModel
 import com.crystallake.resources.RouterPath
 import com.google.android.material.navigation.NavigationBarView
-import com.gyf.immersionbar.ktx.immersionBar
+import com.yds.base.BaseDataBindingActivity
 import com.yds.core.LoginTool
 import com.yds.core.UserInfoTool
 import com.yds.main.adapter.NavigationFragmentStateAdapter
 import com.yds.main.databinding.ActivityMainBinding
 import com.yds.main.databinding.DrawerHeaderBinding
 
-class MainActivity : DataBindingActivity<ActivityMainBinding, BaseViewModel>() {
+
+@Route(path = RouterPath.MAIN_ACTIVITY)
+class MainActivity : BaseDataBindingActivity<ActivityMainBinding, BaseViewModel>() {
 
     private val adapter by lazy {
         NavigationFragmentStateAdapter(this)
@@ -35,16 +36,8 @@ class MainActivity : DataBindingActivity<ActivityMainBinding, BaseViewModel>() {
 
     override fun initData() {
         super.initData()
+        initImmersionBar(R.color.color_333333)
 
-        immersionBar {
-            statusBarColor(R.color.color_333333)
-            applySystemFits(true)
-        }
-
-        val loginState = SPUtils.getInstance("UserInfo").getBoolean("loginState")
-        val userName = SPUtils.getInstance("UserInfo").getString("username")
-        UserInfoTool.setLoginState(loginState)
-        UserInfoTool.setUserName(userName)
         val header = mBinding?.navigation?.getHeaderView(0)
         header?.let {
             drawerHeaderBinding = DrawerHeaderBinding.bind(it)

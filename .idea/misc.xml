@@ -17,6 +17,7 @@
         <entry key="login/src/main/res/layout/activity_register.xml" value="0.1977349853515625" />
         <entry key="main/src/main/res/drawable/ic_wx_article.xml" value="0.1" />
         <entry key="main/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="main/src/main/res/layout/activity_welcome.xml" value="0.21578094733595357" />
         <entry key="main/src/main/res/layout/drawer_header.xml" value="0.1" />
         <entry key="main/src/main/res/menu/bottom_navigation_main.xml" value="0.25" />
         <entry key="main/src/main/res/menu/menu_drawer_left.xml" value="0.12760416666666666" />
@@ -32,6 +33,7 @@
         <entry key="resources/src/main/res/drawable/btn_ffc600_shape.xml" value="0.139" />
         <entry key="resources/src/main/res/drawable/btn_ffffff_shape.xml" value="0.139" />
         <entry key="resources/src/main/res/drawable/btn_shape.xml" value="0.1735" />
+        <entry key="resources/src/main/res/drawable/circle_shape.xml" value="0.127" />
         <entry key="resources/src/main/res/drawable/edit_password_see.xml" value="0.1735" />
         <entry key="resources/src/main/res/drawable/edit_text_focus_shape.xml" value="0.24" />
         <entry key="resources/src/main/res/drawable/edit_text_notfocus_shape.xml" value="0.1735" />

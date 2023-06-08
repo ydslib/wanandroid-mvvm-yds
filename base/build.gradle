@@ -1,0 +1,57 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+
+android {
+    compileSdkVersion Deps.compileSdk
+    buildToolsVersion Deps.buildTools
+
+    defaultConfig {
+        minSdkVersion Deps.minSdk
+        targetSdkVersion Deps.targetSdk
+        versionCode Deps.versionCode
+        versionName Deps.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:${Deps.appcompat}"
+    implementation "androidx.core:core-ktx:${Deps.core_ktx}"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation "androidx.test.ext:junit:${Deps.androidTest_junit}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${Deps.androidTest_espresso_core}"
+    implementation "com.github.ydslib:Base:${Deps.baseVersion}"
+
+    // 基础依赖包，必须要依赖
+    api "com.geyifeng.immersionbar:immersionbar:${Deps.immersionbarVersion}"
+    // kotlin扩展（可选）
+    api "com.geyifeng.immersionbar:immersionbar-ktx:${Deps.immersionbarVersion}"
+    // lifecycle
+    // noinspection GradleDependency
+    api "androidx.lifecycle:lifecycle-process:${Deps.lifecycleVersion}"
+    // noinspection GradleDependency
+    api "androidx.lifecycle:lifecycle-runtime-ktx:${Deps.lifecycleVersion}"
+    // noinspection GradleDependency
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:${Deps.lifecycleVersion}"
+    // noinspection GradleDependency
+    api "androidx.lifecycle:lifecycle-livedata-ktx:${Deps.lifecycleVersion}"
+}

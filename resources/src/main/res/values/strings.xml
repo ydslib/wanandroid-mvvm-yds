@@ -28,4 +28,5 @@
     <string name="rank">排名</string>
     <string name="coin">积分</string>
     <string name="login_first">请先登录</string>
+    <string name="skip">跳过</string>
 </resources>

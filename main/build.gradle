@@ -30,6 +30,7 @@ dependencies {
     implementation "androidx.core:core-ktx:${Deps.core_ktx}"
     implementation "androidx.constraintlayout:constraintlayout:${Deps.constraintlayout}"
     implementation project(":core")
+    implementation project(":base")
     implementation project(":resources")
     implementation  "io.github.scwang90:refresh-layout-kernel:${Deps.refreshLayoutVersion}"
     implementation  "io.github.scwang90:refresh-header-classics:${Deps.refreshLayoutVersion}"

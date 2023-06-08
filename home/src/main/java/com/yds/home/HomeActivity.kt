@@ -4,9 +4,10 @@ import com.crystallake.base.activity.DataBindingActivity
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.vm.BaseViewModel
 import com.gyf.immersionbar.ktx.immersionBar
+import com.yds.base.BaseDataBindingActivity
 import com.yds.home.databinding.ActivityHomeBinding
 
-class HomeActivity : DataBindingActivity<ActivityHomeBinding, BaseViewModel>() {
+class HomeActivity : BaseDataBindingActivity<ActivityHomeBinding, BaseViewModel>() {
 
     override fun initDataBindingConfig(): DataBindingConfig {
         return DataBindingConfig(R.layout.activity_home)
@@ -14,10 +15,7 @@ class HomeActivity : DataBindingActivity<ActivityHomeBinding, BaseViewModel>() {
 
     override fun initData() {
         super.initData()
-        immersionBar {
-            fitsSystemWindows(true)
-            statusBarColor(R.color.color_333333)
-        }
+        initImmersionBar(R.color.color_333333)
         setSupportActionBar(mBinding?.homeToolbar)
 
         mBinding?.homeToolbar?.setNavigationOnClickListener {
