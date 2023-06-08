@@ -1,6 +1,7 @@
 package com.yds.home.item
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 
@@ -10,7 +11,10 @@ import com.yds.home.R
 import com.yds.home.databinding.HomeCarItemBinding
 import com.yds.home.model.BaseArticle
 
-class HomeCarItem(val baseArticle: BaseArticle) : ItemProxy<HomeCarItemBinding>() {
+class HomeCarItem(
+    val baseArticle: BaseArticle,
+    val clickListener: ((position: Int, collect: Boolean) -> Unit)? = null
+) : ItemProxy<HomeCarItemBinding>() {
     override fun generateItemViewBinding(
         inflater: LayoutInflater,
         parent: ViewGroup?
@@ -36,5 +40,9 @@ class HomeCarItem(val baseArticle: BaseArticle) : ItemProxy<HomeCarItemBinding>(
                 .into(binding.like)
         }
         binding.timeTv.text = baseArticle.niceShareDate
+
+        binding.like.setOnClickListener {
+            clickListener?.invoke(position, baseArticle.collect ?: false)
+        }
     }
 }

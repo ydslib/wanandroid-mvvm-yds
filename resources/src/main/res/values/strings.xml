@@ -8,9 +8,24 @@
     <string name="open">开启</string>
     <string name="close">关闭</string>
     <string name="login">登录</string>
+    <string name="register">注册</string>
     <string name="login_tips">登录以获得更好的服务</string>
     <string name="email">邮箱</string>
     <string name="password">密码</string>
     <string name="remember_me">记住我</string>
     <string name="forget_password">忘记密码</string>
+    <string name="register_tips">还没有账号？注册</string>
+    <string name="has_account_tips">已有账号？登录</string>
+    <string name="email_example">example@gmail.com</string>
+    <string name="input_password">输入密码</string>
+    <string name="confirm_input_password">确认密码</string>
+    <string name="input_password_again">再次输入密码</string>
+    <string name="input_password_must_lager">密码必须8位以上字符</string>
+    <string name="password_or_username_not_empty">用户名或密码不能为空</string>
+    <string name="password_not_match">两次输入密码不相等</string>
+    <string name="setting">设置</string>
+    <string name="collect">收藏</string>
+    <string name="rank">排名</string>
+    <string name="coin">积分</string>
+    <string name="login_first">请先登录</string>
 </resources>

@@ -13,12 +13,22 @@
         tools:context=".LoginActivity"
         android:background="@color/white"
         >
+        
+        <ImageView
+            android:layout_width="@dimen/dp_45"
+            android:layout_height="@dimen/dp_45"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_star"
+            android:layout_marginTop="@dimen/dp_30"
+            android:layout_marginEnd="@dimen/dp_40"
+            />
 
         <TextView
-            android:id="@+id/login_title"
+            android:id="@+id/register_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login"
+            android:text="@string/register"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -28,13 +38,14 @@
             android:textColor="@color/color_333E63"
             />
         <TextView
-            android:id="@+id/tips"
+            android:id="@+id/email_tips"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/login_title"
-            app:layout_constraintStart_toStartOf="@+id/login_title"
-            android:layout_marginTop="@dimen/dp_10"
-            android:text="@string/login_tips"
+            app:layout_constraintTop_toBottomOf="@+id/register_title"
+            app:layout_constraintStart_toStartOf="@+id/register_title"
+            android:layout_marginTop="@dimen/dp_38"
+            android:text="@string/email"
+            android:textSize="@dimen/sp_14"
             android:textColor="@color/color_939393"
             />
         <EditText
@@ -43,15 +54,26 @@
             android:layout_height="@dimen/dp_50"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tips"
+            app:layout_constraintTop_toBottomOf="@+id/email_tips"
             android:background="@drawable/edit_text_selector"
             android:layout_marginStart="@dimen/dp_20"
             android:layout_marginEnd="@dimen/dp_20"
-            android:layout_marginTop="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_6"
             android:textSize="@dimen/sp_14"
-            android:hint="@string/email"
+            android:hint="@string/email_example"
             android:paddingStart="@dimen/dp_30"
             android:paddingEnd="@dimen/dp_30"
+            />
+        <TextView
+            android:id="@+id/password_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/email"
+            app:layout_constraintStart_toStartOf="@+id/email"
+            android:layout_marginTop="@dimen/dp_22"
+            android:text="@string/input_password"
+            android:textColor="@color/color_939393"
+            android:textSize="@dimen/sp_14"
             />
         <EditText
             android:id="@+id/password"
@@ -59,18 +81,18 @@
             android:layout_height="@dimen/dp_50"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email"
+            app:layout_constraintTop_toBottomOf="@+id/password_tips"
             android:background="@drawable/edit_text_selector"
             android:layout_marginStart="@dimen/dp_20"
             android:layout_marginEnd="@dimen/dp_20"
-            android:layout_marginTop="@dimen/dp_21"
-            android:hint="@string/password"
+            android:layout_marginTop="@dimen/dp_6"
+            android:hint="@string/input_password_must_lager"
             android:textSize="@dimen/sp_14"
             android:paddingStart="@dimen/dp_30"
             android:paddingEnd="@dimen/dp_60"
             android:inputType="textPassword"
             />
-        
+
         <ImageView
             android:id="@+id/seeImg"
             android:layout_width="@dimen/dp_18"
@@ -81,36 +103,55 @@
             android:layout_marginEnd="@dimen/dp_30"
             android:src="@drawable/ic_password_not_can_see"
             />
-        <CheckBox
-            android:id="@+id/remember_me"
+        <TextView
+            android:id="@+id/password_tips_again"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/password"
             app:layout_constraintStart_toStartOf="@+id/password"
-            android:layout_marginTop="@dimen/dp_10"
-            android:text="@string/remember_me"
-            android:theme="@style/CheckBoxStyle"
-            android:textColor="@color/color_583EF2"
+            android:layout_marginTop="@dimen/dp_22"
+            android:text="@string/confirm_input_password"
+            android:textColor="@color/color_939393"
+            android:textSize="@dimen/sp_14"
             />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/password"
-            app:layout_constraintTop_toTopOf="@+id/remember_me"
-            app:layout_constraintBottom_toBottomOf="@+id/remember_me"
-            android:text="@string/forget_password"
-            android:textColor="@color/color_583EF2"
+        <EditText
+            android:id="@+id/password_again"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_50"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password_tips_again"
+            android:background="@drawable/edit_text_selector"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_6"
+            android:hint="@string/input_password_again"
+            android:textSize="@dimen/sp_14"
+            android:paddingStart="@dimen/dp_30"
+            android:paddingEnd="@dimen/dp_60"
+            android:inputType="textPassword"
+            />
+
+        <ImageView
+            android:id="@+id/see_img_again"
+            android:layout_width="@dimen/dp_18"
+            android:layout_height="@dimen/dp_18"
+            app:layout_constraintEnd_toEndOf="@+id/password_again"
+            app:layout_constraintTop_toTopOf="@+id/password_again"
+            app:layout_constraintBottom_toBottomOf="@+id/password_again"
+            android:layout_marginEnd="@dimen/dp_30"
+            android:src="@drawable/ic_password_not_can_see"
             />
         <Button
-            android:id="@+id/login"
+            android:id="@+id/register_btn"
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_50"
             android:layout_marginStart="@dimen/dp_20"
             android:layout_marginEnd="@dimen/dp_20"
-            app:layout_constraintTop_toBottomOf="@+id/password"
+            app:layout_constraintTop_toBottomOf="@+id/password_again"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="@dimen/dp_75"
+            android:layout_marginTop="@dimen/dp_38"
             android:background="@drawable/btn_shape"
             android:text="@string/login"
             android:textColor="@color/white"
@@ -124,7 +165,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="@string/register_tips"
+            android:text="@string/has_account_tips"
             android:textSize="@dimen/sp_14"
             android:layout_marginBottom="@dimen/dp_16"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

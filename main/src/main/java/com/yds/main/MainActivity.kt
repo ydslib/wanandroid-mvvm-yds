@@ -1,8 +1,12 @@
 package com.yds.main
 
+import android.app.Activity
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.alibaba.android.arouter.launcher.ARouter
 import com.crystallake.base.activity.DataBindingActivity
@@ -11,6 +15,8 @@ import com.crystallake.base.vm.BaseViewModel
 import com.crystallake.resources.RouterPath
 import com.google.android.material.navigation.NavigationBarView
 import com.gyf.immersionbar.ktx.immersionBar
+import com.yds.core.LoginTool
+import com.yds.core.UserInfoTool
 import com.yds.main.adapter.NavigationFragmentStateAdapter
 import com.yds.main.databinding.ActivityMainBinding
 import com.yds.main.databinding.DrawerHeaderBinding
@@ -39,21 +45,31 @@ class MainActivity : DataBindingActivity<ActivityMainBinding, BaseViewModel>() {
             drawerHeaderBinding = DrawerHeaderBinding.bind(it)
         }
 
-        drawerHeaderBinding?.group?.isVisible = false
-        drawerHeaderBinding?.login?.isVisible = true
-
         drawerHeaderBinding?.login?.setOnClickListener {
-            ARouter.getInstance().build(RouterPath.LOGIN_ACTIVITY).navigation()
+            if (UserInfoTool.getLoginStatus()) {
+                ARouter.getInstance().build(RouterPath.MINE_ACTIVITY).navigation()
+            } else {
+                ARouter.getInstance().build(RouterPath.LOGIN_ACTIVITY).navigation()
+            }
+        }
+        drawerHeaderBinding?.header?.setOnClickListener {
+            if (UserInfoTool.getLoginStatus()) {
+                ARouter.getInstance().build(RouterPath.MINE_ACTIVITY).navigation()
+            } else {
+                ARouter.getInstance().build(RouterPath.LOGIN_ACTIVITY).navigation()
+            }
         }
 
 
-        val toggle = ActionBarDrawerToggle(
+        val toggle = MyActionBarDrawerToggle(
             this,
             mBinding?.drawerLayout,
             mBinding?.homeToolbar,
             R.string.open,
             R.string.close
-        )
+        ) {
+            initDrawerLayout()
+        }
 
         toggle.syncState()
         mBinding?.drawerLayout?.addDrawerListener(toggle)
@@ -113,9 +129,56 @@ class MainActivity : DataBindingActivity<ActivityMainBinding, BaseViewModel>() {
             }
         })
         mBinding?.navigation?.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_logout -> {
+                    LoginTool.logout()
+                }
+            }
+            mBinding?.drawerLayout?.closeDrawers()
             Toast.makeText(this, "点击了：${menuItem.title}", Toast.LENGTH_SHORT).show()
             false
         }
 
+    }
+
+    inner class MyActionBarDrawerToggle(
+        activity: Activity,
+        drawerLayout: DrawerLayout?,
+        toolbar: Toolbar?,
+        openDrawerContentDescRes: Int,
+        closeDrawerContentDescRes: Int,
+        private val drawerListener: (Boolean) -> Unit
+    ) : ActionBarDrawerToggle(
+        activity,
+        drawerLayout,
+        toolbar,
+        openDrawerContentDescRes,
+        closeDrawerContentDescRes
+    ) {
+        override fun onDrawerClosed(drawerView: View) {
+            drawerListener.invoke(false)
+            super.onDrawerClosed(drawerView)
+        }
+
+        override fun onDrawerOpened(drawerView: View) {
+            drawerListener.invoke(true)
+            super.onDrawerOpened(drawerView)
+        }
+    }
+
+    private fun initDrawerLayout() {
+        if (UserInfoTool.getLoginStatus()) {
+            drawerHeaderBinding?.login?.isVisible = false
+            drawerHeaderBinding?.group?.isVisible = true
+            drawerHeaderBinding?.email?.text = UserInfoTool.getUserName()
+        } else {
+            drawerHeaderBinding?.group?.isVisible = false
+            drawerHeaderBinding?.login?.isVisible = true
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initDrawerLayout()
     }
 }

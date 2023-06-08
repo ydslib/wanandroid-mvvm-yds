@@ -9,6 +9,11 @@ import kotlinx.coroutines.async
 
 class HomeFragmentViewModel : BaseViewModel() {
 
+    companion object{
+        const val REFRESH = 0
+        const val LOAD = 2
+    }
+
     val homeArticleLiveData = MutableLiveData<HomeModel>()
     val refresh = MutableLiveData<Boolean>()
     val loadMore = MutableLiveData<Boolean>()
@@ -60,10 +65,34 @@ class HomeFragmentViewModel : BaseViewModel() {
     }
 
     private fun setState(requestState: Boolean, state: Int) {
-        if (state == 0) {
+        if (state == REFRESH) {
             refresh.value = requestState
-        } else if(state == 2){
+        } else if (state == LOAD) {
             showLoading.value = requestState
         }
+    }
+
+    fun collectInsideWebArticle(id: Int) {
+        request(
+            block = {
+                HomeRequest.collectInsideWebArticle(id)
+            },
+            success = {
+                println(it.data)
+            },
+            cancel = {}
+        )
+    }
+
+    fun uncollectInsideWebArticle(id: Int){
+        request(
+            block = {
+                HomeRequest.uncollectInsideWebArticle(id)
+            },
+            success = {
+                println(it.data)
+            },
+            cancel = {}
+        )
     }
 }

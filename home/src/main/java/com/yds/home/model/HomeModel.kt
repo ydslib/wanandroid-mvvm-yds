@@ -19,7 +19,7 @@ data class BaseArticle(
     val canEdit: Boolean? = null,
     val chapterId: Int? = null,
     val chapterName: String? = null,
-    val collect: Boolean? = null,
+    var collect: Boolean? = null,
     val courseId: Int? = null,
     val desc: String? = null,
     val descMd: String? = null,
