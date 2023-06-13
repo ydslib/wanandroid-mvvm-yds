@@ -2,9 +2,8 @@ package com.yds.project.vm
 
 import androidx.lifecycle.MutableLiveData
 import com.crystallake.base.vm.BaseViewModel
+import com.yds.home.model.BaseArticle
 import com.yds.project.ProjectRequest
-import com.yds.project.model.ArticleModel
-import com.yds.project.model.BaseArticle
 
 class ProjectArticleFragmentViewModel : BaseViewModel() {
 

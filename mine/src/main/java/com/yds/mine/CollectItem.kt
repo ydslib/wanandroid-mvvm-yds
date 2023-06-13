@@ -1,33 +1,28 @@
-package com.yds.home.item
+package com.yds.mine
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
-
 import com.crystallake.base.fastrecycler.ItemProxy
 import com.crystallake.base.fastrecycler.viewholder.ItemViewHolder
-import com.crystallake.resources.RouterPath
-import com.yds.home.R
-import com.yds.home.databinding.HomeCarItemBinding
 import com.yds.home.model.BaseArticle
+import com.yds.mine.databinding.ItemCollectBinding
 
-class HomeCarItem(
+class CollectItem(
     val baseArticle: BaseArticle,
     val clickListener: ((position: Int, collect: Boolean) -> Unit)? = null
-) : ItemProxy<HomeCarItemBinding>() {
+) : ItemProxy<ItemCollectBinding>() {
     override fun generateItemViewBinding(
         inflater: LayoutInflater,
         parent: ViewGroup?
-    ): HomeCarItemBinding {
-        return HomeCarItemBinding.inflate(inflater, parent, false)
+    ): ItemCollectBinding {
+        return ItemCollectBinding.inflate(inflater, parent, false)
     }
 
     override fun onBindItemViewHolder(
         holder: ItemViewHolder,
         position: Int,
-        binding: HomeCarItemBinding
+        binding: ItemCollectBinding
     ) {
         Glide.with(holder.itemView.context).load(R.drawable.ic_launcher_background)
             .into(binding.homeHeaderImg)
@@ -45,12 +40,6 @@ class HomeCarItem(
 
         binding.like.setOnClickListener {
             clickListener?.invoke(position, baseArticle.collect ?: false)
-        }
-        binding.root.setOnClickListener {
-            ARouter.getInstance().build(RouterPath.BROWSER_ACTIVITY).apply {
-                extras.putString("article_url", baseArticle.link)
-                extras.putString("article_title", baseArticle.title)
-            }.navigation()
         }
     }
 }

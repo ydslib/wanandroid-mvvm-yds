@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="build/api/home-api/src/main/res/layout/home_car_item.xml" value="0.1" />
         <entry key="featured/src/main/res/layout/activity_featured.xml" value="0.25" />
         <entry key="home/src/main/res/drawable/ic_launcher_background.xml" value="0.15" />
+        <entry key="home/src/main/res/layout/activity_browser.xml" value="0.335" />
         <entry key="home/src/main/res/layout/activity_home.xml" value="0.165" />
         <entry key="home/src/main/res/layout/drawer_header.xml" value="0.1" />
         <entry key="home/src/main/res/layout/fragment_home.xml" value="0.25" />
@@ -22,7 +25,9 @@
         <entry key="main/src/main/res/menu/bottom_navigation_main.xml" value="0.25" />
         <entry key="main/src/main/res/menu/menu_drawer_left.xml" value="0.12760416666666666" />
         <entry key="mine/src/main/res/layout/activity_mine.xml" value="0.1" />
+        <entry key="mine/src/main/res/layout/fragment_collect.xml" value="0.1" />
         <entry key="mine/src/main/res/layout/fragment_mine.xml" value="0.25" />
+        <entry key="mine/src/main/res/layout/item_collect.xml" value="0.25" />
         <entry key="navigation/src/main/res/layout/fragment_navigation.xml" value="0.1" />
         <entry key="navigation/src/main/res/layout/navigation_item.xml" value="0.25" />
         <entry key="project/src/main/res/layout/fragment_project.xml" value="0.1" />
@@ -30,6 +35,7 @@
         <entry key="project/src/main/res/layout/project_article_item.xml" value="0.25" />
         <entry key="resources/src/main/res/drawable/bg_radius_16_shape.xml" value="0.139" />
         <entry key="resources/src/main/res/drawable/bg_radius_32_shape.xml" value="0.139" />
+        <entry key="resources/src/main/res/drawable/btn_f5f6f7_shape.xml" value="0.1" />
         <entry key="resources/src/main/res/drawable/btn_ffc600_shape.xml" value="0.139" />
         <entry key="resources/src/main/res/drawable/btn_ffffff_shape.xml" value="0.139" />
         <entry key="resources/src/main/res/drawable/btn_shape.xml" value="0.1735" />

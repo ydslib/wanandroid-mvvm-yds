@@ -11,4 +11,5 @@ object RouterPath {
     const val LOGIN_ACTIVITY = "/login/LoginActivity"
     const val REGISTER_ACTIVITY = "/login/RegisterActivity"
     const val MAIN_ACTIVITY="/main/MainActivity"
+    const val BROWSER_ACTIVITY = "/home/BrowserActivity"
 }

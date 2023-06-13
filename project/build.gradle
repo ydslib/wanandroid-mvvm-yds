@@ -38,6 +38,7 @@ dependencies {
     implementation project(":core")
     implementation project(":base")
     implementation project(":resources")
+    implementation project(":home-api")
     implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
     kapt "com.alibaba:arouter-compiler:${Deps.routerApiVersion}"
     implementation 'io.github.h07000223:flycoTabLayout:3.0.0'

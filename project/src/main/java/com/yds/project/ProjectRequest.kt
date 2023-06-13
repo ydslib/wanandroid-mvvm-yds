@@ -2,8 +2,8 @@ package com.yds.project
 
 import com.crystallake.base.net.RetrofitClient
 import com.yds.core.net.BaseResponse
+import com.yds.home.model.ArticleModel
 import com.yds.project.api.ProjectApi
-import com.yds.project.model.ArticleModel
 import com.yds.project.model.ProjectTitleModel
 
 object ProjectRequest {

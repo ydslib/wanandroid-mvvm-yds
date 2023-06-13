@@ -49,6 +49,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:${Deps.constraintlayout}"
 
     implementation project(":main")
+    implementation project(":resources")
     implementation project(":home")
     implementation project(":mine")
     implementation project(":core")

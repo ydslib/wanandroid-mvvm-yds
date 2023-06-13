@@ -3,6 +3,8 @@
     package="com.yds.home">
     <application
         android:name=".HomeApp"
-        />
+        >
+        <activity android:name=".BrowserActivity"/>
+    </application>
 
 </manifest>

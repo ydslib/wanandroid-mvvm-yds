@@ -4,5 +4,5 @@ data class CoinModel(
     val coinCount:Int?,
     val rank:Int?,
     val userId:Int?,
-    val userName:String?
+    val username:String?
 )

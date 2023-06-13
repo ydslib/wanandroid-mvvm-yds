@@ -43,6 +43,7 @@ dependencies {
     implementation project(":core")
     implementation project(":resources")
     implementation project(":base")
+    implementation project(":home-api")
     implementation "com.google.android.material:material:${Deps.materialVersion}"
     implementation "androidx.navigation:navigation-fragment-ktx:${Deps.navigationVersion}"
     implementation "androidx.navigation:navigation-ui-ktx:${Deps.navigationVersion}"

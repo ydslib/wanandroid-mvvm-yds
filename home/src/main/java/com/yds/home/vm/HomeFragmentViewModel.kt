@@ -3,13 +3,12 @@ package com.yds.home.vm
 import androidx.lifecycle.MutableLiveData
 import com.crystallake.base.vm.BaseViewModel
 import com.yds.home.HomeRequest
-import com.yds.home.model.ArticleModel
 import com.yds.home.model.HomeModel
 import kotlinx.coroutines.async
 
 class HomeFragmentViewModel : BaseViewModel() {
 
-    companion object{
+    companion object {
         const val REFRESH = 0
         const val LOAD = 2
     }
@@ -53,7 +52,7 @@ class HomeFragmentViewModel : BaseViewModel() {
             },
             success = {
                 homeModel.articleModel?.let {
-                    it.datas?.addAll(it.datas)
+                    it.datas?.addAll(it.datas ?: mutableListOf())
                 }
                 homeArticleLiveData.value = homeModel
             },
@@ -84,7 +83,7 @@ class HomeFragmentViewModel : BaseViewModel() {
         )
     }
 
-    fun uncollectInsideWebArticle(id: Int){
+    fun uncollectInsideWebArticle(id: Int) {
         request(
             block = {
                 HomeRequest.uncollectInsideWebArticle(id)

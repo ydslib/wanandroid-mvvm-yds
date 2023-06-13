@@ -56,4 +56,7 @@ dependencies {
     api "androidx.lifecycle:lifecycle-livedata-ktx:${Deps.lifecycleVersion}"
     api "com.airbnb.android:lottie:${Deps.lottieVersion}"
     api 'io.github.jeremyliao:live-event-bus-x:1.8.0'
+    api 'com.github.Justson.AgentWeb:agentweb-core:v5.0.6-androidx' // (必选)
+    api 'com.github.Justson.AgentWeb:agentweb-filechooser:v5.0.6-androidx' // (可选)
+    api 'com.github.Justson:Downloader:v5.0.4-androidx'
 }

@@ -1,0 +1,49 @@
+apply plugin: 'com.android.library'
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-kapt"
+
+android {
+    compileSdkVersion Deps.compileSdk
+    buildToolsVersion Deps.buildTools
+
+    defaultConfig {
+        minSdkVersion Deps.minSdk
+        targetSdkVersion Deps.targetSdk
+        versionCode Deps.versionCode
+        versionName Deps.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        dataBinding = true
+    }
+}
+dependencies {
+    implementation "androidx.core:core-ktx:${Deps.core_ktx}"
+    implementation "androidx.appcompat:appcompat:${Deps.appcompat}"
+    implementation "androidx.constraintlayout:constraintlayout:${Deps.constraintlayout}"
+    implementation "com.github.ydslib:Base:${Deps.baseVersion}"
+    implementation "com.google.android.material:material:${Deps.materialVersion}"
+    implementation project(":resources")
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+}
