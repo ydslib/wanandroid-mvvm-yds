@@ -8,6 +8,8 @@ import com.bumptech.glide.Glide
 
 import com.crystallake.base.fastrecycler.ItemProxy
 import com.crystallake.base.fastrecycler.viewholder.ItemViewHolder
+import com.crystallake.resources.ARTICLE_TITLE
+import com.crystallake.resources.ARTICLE_URL
 import com.crystallake.resources.RouterPath
 import com.yds.home.R
 import com.yds.home.databinding.HomeCarItemBinding
@@ -48,8 +50,8 @@ class HomeCarItem(
         }
         binding.root.setOnClickListener {
             ARouter.getInstance().build(RouterPath.BROWSER_ACTIVITY).apply {
-                extras.putString("article_url", baseArticle.link)
-                extras.putString("article_title", baseArticle.title)
+                extras.putString(ARTICLE_URL, baseArticle.link)
+                extras.putString(ARTICLE_TITLE, baseArticle.title)
             }.navigation()
         }
     }

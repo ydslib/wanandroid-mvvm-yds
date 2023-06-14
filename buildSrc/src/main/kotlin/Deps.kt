@@ -7,7 +7,7 @@ object Deps{
     const val versionName = "1.0"
 
     const val appcompat = "1.2.0"
-    const val core_ktx = "1.3.0"
+    const val core_ktx = "1.6.0"
     const val constraintlayout = "2.0.4"
     const val test_junit = "4.13"
     const val androidTest_junit = "1.1.2"
@@ -17,7 +17,7 @@ object Deps{
 
     const val baseVersion = "1.0.3-alpha"
 
-    const val materialVersion = "1.4.0"
+    const val materialVersion = "1.3.0"
 
     const val routerApiVersion = "1.5.1"
 

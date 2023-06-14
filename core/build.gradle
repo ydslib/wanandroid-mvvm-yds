@@ -27,7 +27,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "androidx.appcompat:appcompat:${Deps.appcompat}"
     implementation "androidx.core:core-ktx:${Deps.core_ktx}"
     testImplementation 'junit:junit:4.12'

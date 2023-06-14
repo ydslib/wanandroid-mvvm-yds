@@ -2,10 +2,15 @@ package com.crystallake.knowledgehierarchy.item
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import co.lujun.androidtagview.TagView
+import com.alibaba.android.arouter.launcher.ARouter
 import com.crystallake.base.fastrecycler.ItemProxy
 import com.crystallake.base.fastrecycler.viewholder.ItemViewHolder
 import com.crystallake.knowledgehierarchy.databinding.ItemKnowledgeArticleBinding
 import com.crystallake.knowledgehierarchy.model.KnowledgeModel
+import com.crystallake.resources.ARTICLE_TITLE
+import com.crystallake.resources.ARTICLE_URL
+import com.crystallake.resources.RouterPath
 import java.lang.StringBuilder
 
 class KnowledgeArticleItem(private val itemData: KnowledgeModel) :
@@ -30,5 +35,23 @@ class KnowledgeArticleItem(private val itemData: KnowledgeModel) :
             }
         }
         binding.subTitle.tags = tags
+        binding.subTitle.setOnTagClickListener(object :TagView.OnTagClickListener{
+            override fun onTagClick(position: Int, text: String?) {
+//                ARouter.getInstance().build(RouterPath.BROWSER_ACTIVITY).apply {
+//                    extras.putString(ARTICLE_URL,tags[position])
+//                    extras.putString(ARTICLE_TITLE,tags)
+//                }.navigation()
+            }
+
+            override fun onTagLongClick(position: Int, text: String?) {
+            }
+
+            override fun onSelectedTagDrag(position: Int, text: String?) {
+            }
+
+            override fun onTagCrossClick(position: Int) {
+            }
+
+        })
     }
 }

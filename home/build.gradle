@@ -27,7 +27,6 @@ android {
 
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.core:core-ktx:${Deps.core_ktx}"
     implementation "androidx.appcompat:appcompat:${Deps.appcompat}"
     implementation "androidx.constraintlayout:constraintlayout:${Deps.constraintlayout}"
@@ -42,7 +41,7 @@ dependencies {
     implementation  "io.github.scwang90:refresh-header-classics:${Deps.refreshLayoutVersion}"
     implementation project(":core")
     implementation project(":resources")
-    implementation project(":base")
+    implementation project(':wan-base')
     implementation project(":home-api")
     implementation "com.google.android.material:material:${Deps.materialVersion}"
     implementation "androidx.navigation:navigation-fragment-ktx:${Deps.navigationVersion}"
@@ -50,5 +49,7 @@ dependencies {
     implementation 'io.github.youth5201314:banner:2.2.2'
     implementation 'com.github.bumptech.glide:glide:4.15.1'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.11'
+//    implementation('com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.11') {
+//        exclude group: "org.jetbrains.kotlin", module: "kotlin-stdlib-jdk8"
+//    }
 }

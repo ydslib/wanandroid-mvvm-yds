@@ -26,7 +26,6 @@ android {
 
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.core:core-ktx:${Deps.core_ktx}"
     implementation "androidx.appcompat:appcompat:${Deps.appcompat}"
     implementation "com.google.android.material:material:${Deps.materialVersion}"
@@ -36,7 +35,7 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:${Deps.androidTest_espresso_core}"
     implementation "com.github.ydslib:Base:${Deps.baseVersion}"
     implementation project(":core")
-    implementation project(":base")
+    implementation project(':wan-base')
     implementation project(":resources")
     implementation "q.rorbin:VerticalTabLayout:1.2.5"
     implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
