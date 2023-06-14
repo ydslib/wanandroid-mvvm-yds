@@ -22,10 +22,19 @@ android {
             }
         }
     }
+    signingConfigs {
+        release {
+            storeFile file("../gradle/wan.jks")
+            storePassword "wan2023"
+            keyAlias "android.keystore"
+            keyPassword "wan2023"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     buildFeatures {
