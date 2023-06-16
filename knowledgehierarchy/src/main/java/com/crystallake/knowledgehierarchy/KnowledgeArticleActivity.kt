@@ -26,7 +26,7 @@ class KnowledgeArticleActivity :
     override fun initData() {
         super.initData()
         initImmersionBar(R.color.color_333333)
-        mViewModel.getKnowledgeData()
+        mViewModel.getKnowledgeData(KnowledgeViewModel.LOAD)
     }
 
     override fun initObser() {

@@ -10,14 +10,20 @@ class KnowledgeViewModel : BaseViewModel() {
 
     val knowledgeDataLiveData = MutableLiveData<List<ProjectTitleModel>>()
     val refreshLiveData = MutableLiveData<Boolean>()
+    val loadingMoreLiveData = MutableLiveData<Boolean>()
     val showLoadingLiveData = MutableLiveData<Boolean>()
     val articleModelLiveData = MutableLiveData<ArticleModel>()
+    val articleLoadMoreLiveData = MutableLiveData<ArticleModel>()
+    var mState = 0
 
-    fun getKnowledgeData(refresh: Boolean = false) {
-        if (!refresh) {
-            showLoadingLiveData.value = true
-        }
-        setRefreshLiveData(refresh, true)
+    companion object {
+        const val REFRESH = 0
+        const val LOAD = 2
+        const val LOAD_MORE = 1
+    }
+
+    fun getKnowledgeData(state: Int) {
+        setData(true, state)
         request(
             block = {
                 KnowledgeRequest.getKnowledgeData()
@@ -29,19 +35,29 @@ class KnowledgeViewModel : BaseViewModel() {
 
             },
             complete = {
-                setRefreshLiveData(refresh, false)
+                setData(false, state)
                 showLoadingLiveData.value = false
             }
         )
     }
 
-    private fun setRefreshLiveData(refresh: Boolean, state: Boolean) {
-        if (refresh) {
-            refreshLiveData.value = state
+    private fun setData(requestState: Boolean, state: Int) {
+        mState = state
+        when (state) {
+            REFRESH -> {
+                refreshLiveData.value = requestState
+            }
+            LOAD -> {
+                showLoadingLiveData.value = requestState
+            }
+            LOAD_MORE -> {
+                loadingMoreLiveData.value = requestState
+            }
         }
     }
 
-    fun getKnowledgeArticle(page: Int, cid: Int) {
+    fun getKnowledgeArticle(page: Int, cid: Int, state: Int) {
+        setData(true, state)
         request(
             block = {
                 KnowledgeRequest.getKnowledgeArticle(page, cid)
@@ -50,7 +66,9 @@ class KnowledgeViewModel : BaseViewModel() {
                 articleModelLiveData.value = it.data
             },
             cancel = {},
-            complete = {}
+            complete = {
+                setData(false, state)
+            }
         )
     }
 }

@@ -62,7 +62,7 @@ class KnowledgeFragment : BaseDataBindingFragment<FragmentKnowledgeBinding, Know
 
         mBinding?.smartRefreshLayout?.let {
             it.setOnRefreshListener {
-                mViewModel.getKnowledgeData(true)
+                mViewModel.getKnowledgeData(KnowledgeViewModel.REFRESH)
             }
             it.setEnableLoadMore(false)
         }
@@ -70,7 +70,7 @@ class KnowledgeFragment : BaseDataBindingFragment<FragmentKnowledgeBinding, Know
     }
 
     override fun lazyLoadData() {
-        mViewModel.getKnowledgeData()
+        mViewModel.getKnowledgeData(KnowledgeViewModel.LOAD)
     }
 
 
