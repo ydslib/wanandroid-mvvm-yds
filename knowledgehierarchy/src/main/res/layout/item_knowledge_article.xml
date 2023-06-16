@@ -8,12 +8,14 @@
     </data>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/knowledge_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/dp_8"
         android:layout_marginTop="@dimen/dp_16"
         android:shadowRadius="5">
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_8"
@@ -27,13 +29,10 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 />
-            <co.lujun.androidtagview.TagContainerLayout
-                android:id="@+id/sub_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constrainedWidth="true"
-                app:container_background_color="#ffffff"
-                app:container_border_color="#ffffff"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tag_recycler"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 app:layout_constraintTop_toBottomOf="@+id/title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/navigation_ic"
@@ -41,7 +40,6 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 android:layout_marginTop="@dimen/dp_8"
                 android:layout_marginEnd="@dimen/dp_8"
-                android:text="测试 测试 测试 测试 测试 测试 测试 测试 测试 测试 测试 测试 测试 测试 测试 测试"
                 />
             <ImageView
                 android:id="@+id/navigation_ic"

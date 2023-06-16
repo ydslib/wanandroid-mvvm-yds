@@ -38,6 +38,7 @@ dependencies {
     implementation project(':wan-base')
     implementation project(":resources")
     implementation project(":home-api")
+    implementation project(":project-api")
     implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
     kapt "com.alibaba:arouter-compiler:${Deps.routerApiVersion}"
     implementation 'io.github.h07000223:flycoTabLayout:3.0.0'

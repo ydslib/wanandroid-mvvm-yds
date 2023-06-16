@@ -12,4 +12,6 @@ object RouterPath {
     const val REGISTER_ACTIVITY = "/login/RegisterActivity"
     const val MAIN_ACTIVITY="/main/MainActivity"
     const val BROWSER_ACTIVITY = "/home/BrowserActivity"
+    const val KNOWLEDGE_ARTICLE_FRAGMENT = "/knowledge/KnowledgeArticleFragment"
+    const val KNOWLEDGE_ARTICLE_ACTIVITY = "/knowledge/KnowledgeArticleActivity"
 }

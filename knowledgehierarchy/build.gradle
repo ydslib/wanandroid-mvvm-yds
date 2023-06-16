@@ -42,5 +42,9 @@ dependencies {
     implementation project(":core")
     implementation project(':wan-base')
     implementation project(":resources")
+    implementation project(":home-api")
+    implementation project(":project-api")
     implementation 'co.lujun:androidtagview:1.1.7'
+    implementation 'io.github.h07000223:flycoTabLayout:3.0.0'
+    implementation 'com.google.android.flexbox:flexbox:3.0.0'
 }

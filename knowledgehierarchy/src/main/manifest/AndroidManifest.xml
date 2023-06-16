@@ -3,6 +3,8 @@
     package="com.crystallake.knowledgehierarchy">
     <application
         android:name="com.crystallake.knowledgehierarchy.KnowledgeApp"
-        />
+        >
+        <activity android:name=".KnowledgeArticleActivity"/>
+    </application>
 
 </manifest>

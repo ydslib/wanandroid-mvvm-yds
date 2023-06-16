@@ -13,9 +13,13 @@
         <entry key="home/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="home/src/main/res/layout/home_banner_item.xml" value="0.13095238095238096" />
         <entry key="home/src/main/res/layout/home_car_item.xml" value="0.25" />
+        <entry key="knowledgehierarchy/src/main/res/layout/activity_knowledge_article.xml" value="0.125" />
+        <entry key="knowledgehierarchy/src/main/res/layout/activity_knowledge_main.xml" value="0.1" />
         <entry key="knowledgehierarchy/src/main/res/layout/activity_main.xml" value="0.13145896656534956" />
         <entry key="knowledgehierarchy/src/main/res/layout/fragment_knowledge.xml" value="0.13095238095238096" />
+        <entry key="knowledgehierarchy/src/main/res/layout/fragment_knowledge_article.xml" value="0.1" />
         <entry key="knowledgehierarchy/src/main/res/layout/item_knowledge_article.xml" value="0.25" />
+        <entry key="knowledgehierarchy/src/main/res/layout/tag_item.xml" value="0.375" />
         <entry key="login/src/main/res/layout/activity_login.xml" value="0.335" />
         <entry key="login/src/main/res/layout/activity_register.xml" value="0.1977349853515625" />
         <entry key="main/src/main/res/drawable/ic_wx_article.xml" value="0.1" />
@@ -34,12 +38,14 @@
         <entry key="project/src/main/res/layout/fragment_project_article.xml" value="0.1" />
         <entry key="project/src/main/res/layout/project_article_item.xml" value="0.25" />
         <entry key="resources/src/main/res/drawable/bg_radius_16_shape.xml" value="0.139" />
+        <entry key="resources/src/main/res/drawable/bg_radius_32_color_c3f3f7_shape.xml" value="0.1465" />
         <entry key="resources/src/main/res/drawable/bg_radius_32_shape.xml" value="0.139" />
         <entry key="resources/src/main/res/drawable/btn_f5f6f7_shape.xml" value="0.1" />
         <entry key="resources/src/main/res/drawable/btn_ffc600_shape.xml" value="0.139" />
         <entry key="resources/src/main/res/drawable/btn_ffffff_shape.xml" value="0.139" />
         <entry key="resources/src/main/res/drawable/btn_shape.xml" value="0.1735" />
         <entry key="resources/src/main/res/drawable/circle_shape.xml" value="0.127" />
+        <entry key="resources/src/main/res/drawable/divider_ffffff.xml" value="0.1" />
         <entry key="resources/src/main/res/drawable/edit_password_see.xml" value="0.1735" />
         <entry key="resources/src/main/res/drawable/edit_text_focus_shape.xml" value="0.24" />
         <entry key="resources/src/main/res/drawable/edit_text_notfocus_shape.xml" value="0.1735" />
@@ -52,6 +58,7 @@
         <entry key="resources/src/main/res/drawable/icon_like_article_not_selected.xml" value="0.1" />
         <entry key="resources/src/main/res/drawable/item_divider.xml" value="0.1" />
         <entry key="resources/src/main/res/drawable/white_bg_16_radius_shape.xml" value="0.1" />
+        <entry key="resources/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="resources/src/main/res/layout/drawer_header.xml" value="0.165" />
         <entry key="resources/src/main/res/layout/loading.xml" value="0.13145896656534956" />
         <entry key="resources/src/main/res/menu/menu_drawer_left.xml" value="0.24" />

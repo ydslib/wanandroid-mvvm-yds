@@ -2,6 +2,7 @@ apply from: "./gradle/api/api-compile.gradle"
 include ':app', ':core', ':main'
 
 includeWithApi(":home","base-api")
+includeWithApi(":project","base-api")
 include ':featured'
 include ':mine'
 include ':navigation'
@@ -9,6 +10,5 @@ include ':scan'
 
 include ':resources'
 include ':knowledgehierarchy'
-include ':project'
 include ':login'
 include ':wan-base'
