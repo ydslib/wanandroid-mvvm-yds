@@ -2,9 +2,13 @@ package com.yds.mine
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 import com.crystallake.base.fastrecycler.ItemProxy
 import com.crystallake.base.fastrecycler.viewholder.ItemViewHolder
+import com.crystallake.resources.ARTICLE_TITLE
+import com.crystallake.resources.ARTICLE_URL
+import com.crystallake.resources.RouterPath
 import com.yds.home.model.BaseArticle
 import com.yds.mine.databinding.ItemCollectBinding
 
@@ -40,6 +44,12 @@ class CollectItem(
 
         binding.like.setOnClickListener {
             clickListener?.invoke(position, baseArticle.collect ?: false)
+        }
+        binding.enter.setOnClickListener {
+            ARouter.getInstance().build(RouterPath.BROWSER_ACTIVITY).apply {
+                extras.putString(ARTICLE_URL, baseArticle.link)
+                extras.putString(ARTICLE_TITLE, baseArticle.title)
+            }.navigation()
         }
     }
 }

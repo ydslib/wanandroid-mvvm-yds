@@ -13,7 +13,6 @@ class KnowledgeViewModel : BaseViewModel() {
     val loadingMoreLiveData = MutableLiveData<Boolean>()
     val showLoadingLiveData = MutableLiveData<Boolean>()
     val articleModelLiveData = MutableLiveData<ArticleModel>()
-    val articleLoadMoreLiveData = MutableLiveData<ArticleModel>()
     var mState = 0
 
     companion object {

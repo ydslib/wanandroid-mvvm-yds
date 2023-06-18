@@ -17,6 +17,7 @@
             android:background="#EDEDED"
             app:indicator_color="#FFFFFF"
             app:indicator_gravity="fill"
+            android:textSize="@dimen/sp_18"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
