@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yds.main">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:name=".MainApp"
         android:allowBackup="true"
@@ -19,6 +21,7 @@
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask" />
+        <activity android:name=".GalleryActivity"/>
     </application>
 
 </manifest>

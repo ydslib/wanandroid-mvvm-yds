@@ -24,9 +24,11 @@
         <entry key="login/src/main/res/layout/activity_login.xml" value="0.335" />
         <entry key="login/src/main/res/layout/activity_register.xml" value="0.1977349853515625" />
         <entry key="main/src/main/res/drawable/ic_wx_article.xml" value="0.1" />
+        <entry key="main/src/main/res/layout/activity_gallery.xml" value="0.165" />
         <entry key="main/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="main/src/main/res/layout/activity_welcome.xml" value="0.21578094733595357" />
         <entry key="main/src/main/res/layout/drawer_header.xml" value="0.1" />
+        <entry key="main/src/main/res/layout/item_gallery.xml" value="0.11503623188405797" />
         <entry key="main/src/main/res/menu/bottom_navigation_main.xml" value="0.25" />
         <entry key="main/src/main/res/menu/menu_drawer_left.xml" value="0.12760416666666666" />
         <entry key="mine/src/main/res/layout/activity_mine.xml" value="0.1" />
