@@ -136,6 +136,9 @@ class MainActivity : BaseDataBindingActivity<ActivityMainBinding, BaseViewModel>
                 R.id.nav_gallery -> {
                     ARouter.getInstance().build(RouterPath.MAIN_GALLERY_ACTIVITY).navigation()
                 }
+                R.id.nav_share ->{
+
+                }
             }
             mBinding?.drawerLayout?.closeDrawers()
             Toast.makeText(this, "点击了：${menuItem.title}", Toast.LENGTH_SHORT).show()

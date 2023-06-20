@@ -1,13 +1,9 @@
 package com.crystallake.knowledgehierarchy.item
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.crystallake.base.fastrecycler.ItemProxy
 import com.crystallake.base.fastrecycler.viewholder.ItemViewHolder

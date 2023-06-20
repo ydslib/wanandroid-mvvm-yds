@@ -28,6 +28,9 @@
         <entry key="main/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="main/src/main/res/layout/activity_welcome.xml" value="0.21578094733595357" />
         <entry key="main/src/main/res/layout/drawer_header.xml" value="0.1" />
+        <entry key="main/src/main/res/layout/fragment_gallery.xml" value="0.1" />
+        <entry key="main/src/main/res/layout/fragment_image.xml" value="0.1" />
+        <entry key="main/src/main/res/layout/fragment_image_pager.xml" value="0.1" />
         <entry key="main/src/main/res/layout/item_gallery.xml" value="0.11503623188405797" />
         <entry key="main/src/main/res/menu/bottom_navigation_main.xml" value="0.25" />
         <entry key="main/src/main/res/menu/menu_drawer_left.xml" value="0.12760416666666666" />
