@@ -1,7 +1,9 @@
 package com.yds.mine.fragment
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.fragment.DataBindingFragment
 import com.crystallake.resources.RouterPath
@@ -30,7 +32,9 @@ class MineFragment : DataBindingFragment<FragmentMineBinding, MineViewModel>() {
     override fun initView(savedInstanceState: Bundle?) {
         initDefaultPage()
         mBinding?.collect?.setOnClickListener {
-            childFragmentManager.beginTransaction().replace(R.id.container, CollectFragment())
+            val collectFragment = ARouter.getInstance().build(RouterPath.MINE_COLLECT_FRAGMENT)
+                .navigation() as Fragment
+            childFragmentManager.beginTransaction().replace(R.id.container, collectFragment)
                 .commit()
         }
 
@@ -40,7 +44,9 @@ class MineFragment : DataBindingFragment<FragmentMineBinding, MineViewModel>() {
     }
 
     fun initDefaultPage() {
-        childFragmentManager.beginTransaction().replace(R.id.container, CollectFragment())
+        val collectFragment = ARouter.getInstance().build(RouterPath.MINE_COLLECT_FRAGMENT)
+            .navigation() as Fragment
+        childFragmentManager.beginTransaction().replace(R.id.container, collectFragment)
             .commit()
     }
 

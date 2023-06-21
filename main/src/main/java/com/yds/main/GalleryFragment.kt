@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.SharedElementCallback
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.fragment.DataBindingFragment
 import com.google.android.flexbox.AlignItems
@@ -41,14 +43,6 @@ class GalleryFragment : DataBindingFragment<FragmentGalleryBinding, GalleryViewM
         })
     }
 
-    private val flexboxLayoutManager by lazy {
-        FlexboxLayoutManager(requireContext()).apply {
-            flexWrap = FlexWrap.WRAP
-            flexDirection = FlexDirection.ROW
-            alignItems = AlignItems.STRETCH
-        }
-    }
-
     override fun createObserver() {
         activityViewModel?.imageUriList?.observe(this) {
             adapter.dataList.clear()
@@ -76,7 +70,14 @@ class GalleryFragment : DataBindingFragment<FragmentGalleryBinding, GalleryViewM
     override fun initView(savedInstanceState: Bundle?) {
         mBinding?.recyclerView?.let {
             it.adapter = adapter
-            it.layoutManager = flexboxLayoutManager
+            if (it.layoutManager is FlexboxLayoutManager) {
+                (it.layoutManager as? FlexboxLayoutManager)?.apply {
+                    flexWrap = FlexWrap.WRAP
+                    flexDirection = FlexDirection.ROW
+                    alignItems = AlignItems.STRETCH
+                }
+            }
+//            it.layoutManager = flexboxLayoutManager
         }
         activityViewModel?.readPic()
 

@@ -3,15 +3,18 @@ package com.yds.mine.fragment
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.fastrecycler.adapter.MultiDataBindingAdapter
 import com.crystallake.base.vm.BaseViewModel
+import com.crystallake.resources.RouterPath
 import com.yds.base.BaseDataBindingFragment
 import com.yds.mine.CollectItem
 import com.yds.mine.R
 import com.yds.mine.databinding.FragmentCollectBinding
 import com.yds.mine.vm.MineViewModel
 
+@Route(path = RouterPath.MINE_COLLECT_FRAGMENT)
 class CollectFragment : BaseDataBindingFragment<FragmentCollectBinding, MineViewModel>() {
 
     val adapter by lazy {
@@ -28,7 +31,7 @@ class CollectFragment : BaseDataBindingFragment<FragmentCollectBinding, MineView
 
     override fun createObserver() {
         mActivityViewModel?.collectLiveData?.observe(this) {
-            it.datas?.forEach { baseArticle->
+            it.datas?.forEach { baseArticle ->
                 baseArticle.collect = true
                 adapter.addItem(CollectItem(baseArticle))
             }

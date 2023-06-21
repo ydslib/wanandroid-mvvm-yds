@@ -6,12 +6,17 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.crystallake.base.fastrecycler.adapter.SingleDataBindingAdapter
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.yds.main.GalleryActivity
-import com.yds.main.MainActivity
 import com.yds.main.databinding.ItemGalleryBinding
+import java.io.BufferedInputStream
+import java.io.File
+import java.io.FileInputStream
+import java.io.IOException
 import java.util.concurrent.atomic.AtomicBoolean
+import kotlin.math.pow
 
 class GalleryAdapter(
     private val callback: () -> Unit,
@@ -40,19 +45,23 @@ class GalleryAdapter(
         option.inJustDecodeBounds = true
         var bitmap = BitmapFactory.decodeFile(dataList[position].path, option)
 
-        val width = option.outWidth
-        option.inSampleSize = initSampleSize(width)
+        initSampleSize(option)
+        println("width:${option.outWidth},height:${option.outHeight}")
         option.inJustDecodeBounds = false
-        option.inPreferredConfig = Bitmap.Config.ARGB_8888
+        option.inPreferredConfig = Bitmap.Config.RGB_565
         option.inMutable = true
         option.inBitmap = bitmap
         bitmap = BitmapFactory.decodeFile(dataList[position].path, option)
 
+        println("大小：${getAllocationByteCountWithM(bitmap)}----${bitmap.allocationByteCount}")
+
+
+        Glide.with(binding.root.context).load(bitmap).into(binding.img)
         binding.img.setImageBitmap(bitmap)
         binding.img.transitionName = dataList[position].path
 
         binding.img.setOnClickListener {
-//            clickListener.invoke(position, it)
+            clickListener.invoke(position, it)
         }
 
         if (GalleryActivity.currentPosition != position) {
@@ -64,14 +73,16 @@ class GalleryAdapter(
         callback.invoke()
     }
 
-    private fun initSampleSize(width: Int): Int {
-        var tempWidth = width
-        var inSampleSize = 1
-        while (tempWidth > 250) {
-            inSampleSize *= 2
-            tempWidth = (tempWidth / inSampleSize)
+    private fun initSampleSize(options: BitmapFactory.Options) {
+        var i = 0
+        while (options.outWidth shr i >= 360 && options.outHeight shr i >= 360) {
+            i++
         }
-        println("width:$tempWidth")
-        return inSampleSize
+        println("${options.outWidth shr i}----$i")
+        options.inSampleSize = 2.0.pow(i.toDouble()).toInt()
+    }
+
+    private fun getAllocationByteCountWithM(bitmap: Bitmap): Double {
+        return (bitmap.allocationByteCount / (1024 * 1024)).toDouble()
     }
 }

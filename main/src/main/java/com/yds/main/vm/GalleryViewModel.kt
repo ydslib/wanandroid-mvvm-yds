@@ -51,6 +51,8 @@ class GalleryViewModel(val app: Application) : AndroidViewModel(app) {
                     for (i in (page * 20) until (page + 1) * 20) {
                         list.add(imageDataList[i])
                     }
+                } else {
+                    list.addAll(imageDataList)
                 }
                 imageUriList.postValue(list)
                 page = 1

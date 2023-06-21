@@ -15,4 +15,6 @@ object RouterPath {
     const val KNOWLEDGE_ARTICLE_FRAGMENT = "/knowledge/KnowledgeArticleFragment"
     const val KNOWLEDGE_ARTICLE_ACTIVITY = "/knowledge/KnowledgeArticleActivity"
     const val MAIN_GALLERY_ACTIVITY = "/main/GalleryActivity"
+    const val MINE_COLLECT_FRAGMENT = "/mine/CollectFragment"
+    const val MAIN_COLLECT_ACTIVITY = "/main/CollectActivity"
 }

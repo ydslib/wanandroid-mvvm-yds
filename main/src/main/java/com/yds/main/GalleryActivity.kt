@@ -82,7 +82,8 @@ class GalleryActivity : BaseDataBindingActivity<ActivityGalleryBinding, GalleryV
     }
 
     fun loadFragment() {
-        supportFragmentManager.beginTransaction().replace(R.id.container, GalleryFragment())
+        supportFragmentManager.beginTransaction()
+            .add(R.id.container, GalleryFragment(), GalleryFragment::class.java.simpleName)
             .commit()
     }
 

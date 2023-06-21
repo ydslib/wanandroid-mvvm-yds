@@ -1,6 +1,7 @@
 package com.yds.main
 
 import android.app.Activity
+import android.content.Intent
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -15,6 +16,7 @@ import com.crystallake.base.vm.BaseViewModel
 import com.crystallake.resources.RouterPath
 import com.google.android.material.navigation.NavigationBarView
 import com.yds.base.BaseDataBindingActivity
+import com.yds.core.IUserInfo
 import com.yds.core.LoginTool
 import com.yds.core.UserInfoTool
 import com.yds.main.adapter.NavigationFragmentStateAdapter
@@ -136,8 +138,16 @@ class MainActivity : BaseDataBindingActivity<ActivityMainBinding, BaseViewModel>
                 R.id.nav_gallery -> {
                     ARouter.getInstance().build(RouterPath.MAIN_GALLERY_ACTIVITY).navigation()
                 }
-                R.id.nav_share ->{
-
+                R.id.nav_share -> {
+                    val intent = Intent(this@MainActivity, TestActivity::class.java)
+                    startActivity(intent)
+                }
+                R.id.nav_collect -> {
+                    if (UserInfoTool.getLoginState()) {
+                        ARouter.getInstance().build(RouterPath.MAIN_COLLECT_ACTIVITY).navigation()
+                    } else {
+                        ARouter.getInstance().build(RouterPath.LOGIN_ACTIVITY).navigation()
+                    }
                 }
             }
             mBinding?.drawerLayout?.closeDrawers()
