@@ -1,7 +1,7 @@
 apply from: "./gradle/api/api-compile.gradle"
 include ':app', ':core', ':main'
 
-includeWithApi(":home","base-api")
+includeWithApi(":home",null)
 includeWithApi(":project","base-api")
 include ':featured'
 include ':mine'

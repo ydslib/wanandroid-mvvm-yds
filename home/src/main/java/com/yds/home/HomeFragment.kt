@@ -14,6 +14,7 @@ import com.yds.base.bus.Bus
 import com.yds.base.bus.BusChannel
 import com.yds.core.UserInfoTool
 import com.yds.home.databinding.FragmentHomeBinding
+import com.yds.home.db.ArticleDatabase
 import com.yds.home.item.BannerItem
 import com.yds.home.item.HomeCarItem
 import com.yds.home.vm.HomeFragmentViewModel
@@ -45,6 +46,9 @@ class HomeFragment : BaseDataBindingFragment<FragmentHomeBinding, HomeFragmentVi
         }
         mViewModel.homeArticleLiveData.observe(this) {
             homeAdapter.clear()
+            if (it != null) {
+                mViewModel.insertAll(requireContext(), it)
+            }
             it.banner?.let { bannerBean ->
                 homeAdapter.addItem(BannerItem(bannerBean, this))
             }
@@ -56,12 +60,12 @@ class HomeFragment : BaseDataBindingFragment<FragmentHomeBinding, HomeFragmentVi
                             return@HomeCarItem
                         }
                         if (baseArticle.collect == false) {
-                            baseArticle.id?.let { id ->
+                            baseArticle.id.let { id ->
                                 mViewModel.collectInsideWebArticle(id)
                                 baseArticle.collect = true
                             }
                         } else {
-                            baseArticle.id?.let { id ->
+                            baseArticle.id.let { id ->
                                 mViewModel.uncollectInsideWebArticle(id)
                                 baseArticle.collect = false
                             }
@@ -101,7 +105,7 @@ class HomeFragment : BaseDataBindingFragment<FragmentHomeBinding, HomeFragmentVi
     }
 
     override fun lazyLoadData() {
-        mViewModel.getHomeArticle(mViewModel.curPage.value ?: 0, HomeFragmentViewModel.LOAD)
+        mViewModel.loadAllData(requireContext(), HomeFragmentViewModel.LOAD)
     }
 
     fun showLoading() {

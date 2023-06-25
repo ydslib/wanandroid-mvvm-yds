@@ -1,8 +1,16 @@
 package com.yds.home.model
 
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.yds.home.convert.BannerItemConvert
+import com.yds.home.convert.BaseArticleTypeConvert
+import com.yds.home.convert.ArticleModelConvert
+
 
 data class ArticleModel(
-    val curPage: Int? = null,
+    val curPage: Int,
     val datas: MutableList<BaseArticle>? = null,
     val offset: Int? = null,
     val over: Boolean? = null,
@@ -26,7 +34,7 @@ data class BaseArticle(
     val envelopePic: String? = null,
     val fresh: Boolean? = null,
     val host: String? = null,
-    val id: Int? = null,
+    val id: Int,
     val isAdminAdd: Boolean? = null,
     val link: String? = null,
     val niceDate: String? = null,
@@ -51,7 +59,7 @@ data class BaseArticle(
 
 data class BannerItem(
     val desc: String? = null,
-    val id: Int? = null,
+    val id: Int,
     val imagePath: String? = null,
     val isVisible: Int? = null,
     val order: Int? = null,
@@ -60,7 +68,11 @@ data class BannerItem(
     val url: String? = null
 )
 
+@Entity(tableName = "homeModel")
+@TypeConverters(value = [BannerItemConvert::class,ArticleModelConvert::class])
 data class HomeModel(
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0,
     var articleModel: ArticleModel? = null,
     var banner: List<BannerItem>? = null
 )
