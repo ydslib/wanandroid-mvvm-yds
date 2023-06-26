@@ -65,8 +65,10 @@ data class BaseArticle(
     constructor() : this(id = 0)
 }
 
+@Entity(tableName = "bannerItem")
 data class BannerItem(
     var desc: String? = null,
+    @PrimaryKey
     var id: Int,
     var imagePath: String? = null,
     var isVisible: Int? = null,
@@ -74,7 +76,9 @@ data class BannerItem(
     var title: String? = null,
     var type: Int? = null,
     var url: String? = null
-)
+){
+    constructor():this(id=0)
+}
 
 @Entity(tableName = "homeModel")
 @TypeConverters(value = [BannerItemConvert::class, ArticleModelConvert::class])

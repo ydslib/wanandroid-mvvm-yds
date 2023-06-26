@@ -30,7 +30,7 @@ class HomeFragment : BaseDataBindingFragment<FragmentHomeBinding, HomeFragmentVi
 
     override fun createObserver() {
         loginStateChangeObserve {
-            mViewModel.getHomeArticle(0, HomeFragmentViewModel.LOAD)
+            mViewModel.getHomeArticle(0, HomeFragmentViewModel.LOAD, requireContext())
         }
 
         mViewModel.showLoading.observe(this) {
@@ -42,11 +42,9 @@ class HomeFragment : BaseDataBindingFragment<FragmentHomeBinding, HomeFragmentVi
         }
         mViewModel.homeArticleLiveData.observe(this) {
             homeAdapter.clear()
-            mViewModel.insertAll(requireContext(), it)
             it.banner?.let { bannerBean ->
                 homeAdapter.addItem(BannerItem(bannerBean, this))
             }
-            mViewModel.insertArticleModel(requireContext(), it.articleModel)
             it.articleModel?.let { article ->
                 article.datas?.forEach { baseArticle ->
                     homeAdapter.addItem(HomeCarItem(baseArticle) { position, collect ->
@@ -91,11 +89,11 @@ class HomeFragment : BaseDataBindingFragment<FragmentHomeBinding, HomeFragmentVi
         }
 
         mBinding?.smartRefreshLayout?.setOnRefreshListener {
-            mViewModel.getHomeArticle(0, HomeFragmentViewModel.REFRESH)
+            mViewModel.getHomeArticle(0, HomeFragmentViewModel.REFRESH, requireContext())
         }
 
         mBinding?.smartRefreshLayout?.setOnLoadMoreListener {
-            mViewModel.getLoadMoreHomeData(mViewModel.curPage.value ?: 0)
+            mViewModel.getLoadMoreHomeData(mViewModel.curPage.value ?: 0, requireContext())
         }
     }
 

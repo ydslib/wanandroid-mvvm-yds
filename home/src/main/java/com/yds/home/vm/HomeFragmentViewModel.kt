@@ -27,7 +27,7 @@ class HomeFragmentViewModel : BaseViewModel() {
     val showLoading = MutableLiveData<Boolean>()
     val homeModel = HomeModel()
 
-    fun getHomeArticle(num: Int, state: Int) {
+    fun getHomeArticle(num: Int, state: Int, context: Context) {
         setState(true, state)
         request(
             block = {
@@ -42,6 +42,7 @@ class HomeFragmentViewModel : BaseViewModel() {
                 homeModel
             },
             success = {
+                insertHomeDataToDatabase(context, it)
                 homeArticleLiveData.value = it
                 curPage.value = it.articleModel?.curPage ?: 0
             },
@@ -52,13 +53,14 @@ class HomeFragmentViewModel : BaseViewModel() {
         )
     }
 
-    fun getLoadMoreHomeData(num: Int) {
+    fun getLoadMoreHomeData(num: Int, context: Context) {
         loadMore.value = true
         request(
             block = {
                 HomeRequest.getHomeArticle(num)
             },
             success = {
+                insertArticle(context, it.data)
                 homeModel.articleModel?.let { articleModel ->
                     articleModel.datas?.addAll(it.data?.datas ?: mutableListOf())
                 } ?: kotlin.run {
@@ -106,23 +108,30 @@ class HomeFragmentViewModel : BaseViewModel() {
         )
     }
 
-    fun insertAll(context: Context, articleModel: HomeModel?) {
+    fun insertHomeDataToDatabase(context: Context, articleModel: HomeModel?) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 if (articleModel != null) {
                     ArticleDatabase.getInstance(context)?.articleDao()?.insertAll(articleModel)
                 }
+                articleModel?.banner?.forEach {
+                    ArticleDatabase.getInstance(context)?.articleDao()?.insertBannerItem(it)
+                }
+                if (articleModel?.articleModel != null) {
+                    ArticleDatabase.getInstance(context)?.articleDao()
+                        ?.insertArticleModel(articleModel.articleModel)
+                }
+                articleModel?.articleModel?.datas?.forEach {
+                    ArticleDatabase.getInstance(context)?.articleDao()?.insertBaseArticle(it)
+                }
             }
         }
     }
 
-    fun insertArticleModel(context: Context, articleModel: ArticleModel?) {
+    fun insertArticle(context: Context, articleModel: ArticleModel?) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                if (articleModel != null) {
-                    ArticleDatabase.getInstance(context)?.articleDao()
-                        ?.insertArticleModel(articleModel)
-                }
+                ArticleDatabase.getInstance(context)?.articleDao()?.insertArticleModel(articleModel)
             }
         }
     }
@@ -134,7 +143,7 @@ class HomeFragmentViewModel : BaseViewModel() {
         }, success = {
             println("loadAllData:$it")
             if (it == null) {
-                getHomeArticle(curPage.value ?: 0, LOAD)
+                getHomeArticle(curPage.value ?: 0, LOAD, context)
             } else {
                 homeArticleLiveData.value = it
                 homeModel.articleModel = it.articleModel
