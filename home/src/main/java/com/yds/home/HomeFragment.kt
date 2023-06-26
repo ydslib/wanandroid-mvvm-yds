@@ -2,7 +2,6 @@ package com.yds.home
 
 import android.os.Bundle
 import androidx.core.view.isVisible
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
@@ -10,11 +9,8 @@ import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.fastrecycler.adapter.MultiDataBindingAdapter
 import com.crystallake.resources.RouterPath
 import com.yds.base.BaseDataBindingFragment
-import com.yds.base.bus.Bus
-import com.yds.base.bus.BusChannel
 import com.yds.core.UserInfoTool
 import com.yds.home.databinding.FragmentHomeBinding
-import com.yds.home.db.ArticleDatabase
 import com.yds.home.item.BannerItem
 import com.yds.home.item.HomeCarItem
 import com.yds.home.vm.HomeFragmentViewModel
