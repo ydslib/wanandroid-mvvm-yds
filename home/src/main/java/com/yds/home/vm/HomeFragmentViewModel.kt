@@ -42,6 +42,7 @@ class HomeFragmentViewModel : BaseViewModel() {
             },
             success = {
                 homeArticleLiveData.value = it
+                curPage.value = it.articleModel?.curPage ?: 0
             },
             cancel = {},
             complete = {
@@ -57,9 +58,12 @@ class HomeFragmentViewModel : BaseViewModel() {
                 HomeRequest.getHomeArticle(num)
             },
             success = {
-                homeModel.articleModel?.let {
-                    it.datas?.addAll(it.datas ?: mutableListOf())
+                homeModel.articleModel?.let { articleModel ->
+                    articleModel.datas?.addAll(it.data?.datas ?: mutableListOf())
+                } ?: kotlin.run {
+                    homeModel.articleModel = it.data
                 }
+                curPage.value = it.data?.curPage ?: 0
                 homeArticleLiveData.value = homeModel
             },
             cancel = {},
@@ -101,7 +105,7 @@ class HomeFragmentViewModel : BaseViewModel() {
         )
     }
 
-    fun insertAll(context: Context, articleModel: HomeModel) {
+    fun insertAll(context: Context, articleModel: HomeModel?) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 ArticleDatabase.getInstance(context)?.articleDao()?.insertAll(articleModel)
@@ -119,6 +123,9 @@ class HomeFragmentViewModel : BaseViewModel() {
                 getHomeArticle(curPage.value ?: 0, LOAD)
             } else {
                 homeArticleLiveData.value = it
+                homeModel.articleModel = it.articleModel
+                homeModel.banner = it.banner
+                curPage.value = it.articleModel?.curPage ?: 0
             }
         }, cancel = {}, complete = {
             setState(false, state)

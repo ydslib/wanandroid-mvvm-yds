@@ -13,5 +13,5 @@ interface BaseArticleDao {
     suspend fun loadAllData(): HomeModel
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(articles: HomeModel)
+    fun insertAll(articles: HomeModel?)
 }

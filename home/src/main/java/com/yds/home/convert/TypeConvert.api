@@ -10,12 +10,12 @@ import com.yds.home.model.BaseArticle
 
 class BaseArticleTypeConvert {
     @TypeConverter
-    fun baseArticleConvertString(datas: MutableList<BaseArticle>?): String {
+    fun baseArticleConvertString(datas: MutableList<BaseArticle>?): String? {
         return GsonUtil.gson.toJson(datas)
     }
 
     @TypeConverter
-    fun stringToBaseArticle(json: String): MutableList<BaseArticle> {
+    fun stringToBaseArticle(json: String?): MutableList<BaseArticle>? {
         val type = object : TypeToken<MutableList<BaseArticle>>() {}.type
         return GsonUtil.gson.fromJson(json, type)
     }
@@ -24,12 +24,12 @@ class BaseArticleTypeConvert {
 class BannerItemConvert {
 
     @TypeConverter
-    fun bannerItemConvertString(banner: List<BannerItem>?): String {
+    fun bannerItemConvertString(banner: List<BannerItem>?): String? {
         return GsonUtil.gson.toJson(banner)
     }
 
     @TypeConverter
-    fun stringToBannerItem(json: String): List<BannerItem>? {
+    fun stringToBannerItem(json: String?): List<BannerItem>? {
         val type = object : TypeToken<List<BannerItem>>() {}.type
         return GsonUtil.gson.fromJson(json, type)
     }
@@ -38,12 +38,12 @@ class BannerItemConvert {
 class ArticleModelConvert {
 
     @TypeConverter
-    fun articleModelConvertString(article: ArticleModel): String {
+    fun articleModelConvertString(article: ArticleModel?): String? {
         return GsonUtil.gson.toJson(article)
     }
 
     @TypeConverter
-    fun stringToArticleModel(json: String): ArticleModel? {
+    fun stringToArticleModel(json: String?): ArticleModel? {
         val type = object : TypeToken<ArticleModel>() {}.type
         return GsonUtil.gson.fromJson(json, type)
     }
