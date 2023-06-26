@@ -12,7 +12,7 @@ import com.yds.home.model.BaseArticle
 import com.yds.home.model.HomeModel
 
 @Database(
-    entities = [HomeModel::class],
+    entities = [HomeModel::class, ArticleModel::class, BaseArticle::class],
     version = 1
 )
 abstract class ArticleDatabase : RoomDatabase() {

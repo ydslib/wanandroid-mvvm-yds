@@ -1,75 +1,83 @@
 package com.yds.home.model
 
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
+import androidx.room.*
 import com.yds.home.convert.BannerItemConvert
 import com.yds.home.convert.BaseArticleTypeConvert
 import com.yds.home.convert.ArticleModelConvert
 
 
+@Entity(tableName = "articleModel")
+@TypeConverters(value = [BaseArticleTypeConvert::class])
 data class ArticleModel(
-    val curPage: Int,
-    val datas: MutableList<BaseArticle>? = null,
-    val offset: Int? = null,
-    val over: Boolean? = null,
-    val pageCount: Int? = null,
-    val size: Int? = null,
-    val total: Int? = null
-)
+    @PrimaryKey
+    var curPage: Int,
+    var datas: MutableList<BaseArticle>? = null,
+    var offset: Int? = null,
+    var over: Boolean? = null,
+    var pageCount: Int? = null,
+    var size: Int? = null,
+    var total: Int? = null
+) {
+    constructor() : this(curPage = 0)
+}
 
+@Entity(tableName = "baseArticle")
 data class BaseArticle(
+    @Ignore
     val adminAdd: Boolean? = null,
-    val apkLink: String? = null,
-    val audit: Int? = null,
-    val author: String? = null,
-    val canEdit: Boolean? = null,
-    val chapterId: Int? = null,
-    val chapterName: String? = null,
+    var apkLink: String? = null,
+    var audit: Int? = null,
+    var author: String? = null,
+    var canEdit: Boolean? = null,
+    var chapterId: Int? = null,
+    var chapterName: String? = null,
     var collect: Boolean? = null,
-    val courseId: Int? = null,
-    val desc: String? = null,
-    val descMd: String? = null,
-    val envelopePic: String? = null,
-    val fresh: Boolean? = null,
-    val host: String? = null,
-    val id: Int,
-    val isAdminAdd: Boolean? = null,
-    val link: String? = null,
-    val niceDate: String? = null,
-    val niceShareDate: String? = null,
-    val origin: String? = null,
-    val prefix: String? = null,
-    val projectLink: String? = null,
-    val publishTime: Long? = null,
-    val realSuperChapterId: Int? = null,
-    val route: Boolean? = null,
-    val selfVisible: Int? = null,
-    val shareDate: Long? = null,
-    val shareUser: String? = null,
-    val superChapterId: Int? = null,
-    val superChapterName: String? = null,
-    val title: String? = null,
-    val type: Int? = null,
-    val userId: Int? = null,
-    val visible: Int? = null,
-    val zan: Int? = null,
-)
+    var courseId: Int? = null,
+    var desc: String? = null,
+    var descMd: String? = null,
+    var envelopePic: String? = null,
+    var fresh: Boolean? = null,
+    var host: String? = null,
+    @PrimaryKey
+    var id: Int,
+    @Ignore
+    var isAdminAdd: Boolean? = null,
+    var link: String? = null,
+    var niceDate: String? = null,
+    var niceShareDate: String? = null,
+    var origin: String? = null,
+    var prefix: String? = null,
+    var projectLink: String? = null,
+    var publishTime: Long? = null,
+    var realSuperChapterId: Int? = null,
+    var route: Boolean? = null,
+    var selfVisible: Int? = null,
+    var shareDate: Long? = null,
+    var shareUser: String? = null,
+    var superChapterId: Int? = null,
+    var superChapterName: String? = null,
+    var title: String? = null,
+    var type: Int? = null,
+    var userId: Int? = null,
+    var visible: Int? = null,
+    var zan: Int? = null,
+) {
+    constructor() : this(id = 0)
+}
 
 data class BannerItem(
-    val desc: String? = null,
-    val id: Int,
-    val imagePath: String? = null,
-    val isVisible: Int? = null,
-    val order: Int? = null,
-    val title: String? = null,
-    val type: Int? = null,
-    val url: String? = null
+    var desc: String? = null,
+    var id: Int,
+    var imagePath: String? = null,
+    var isVisible: Int? = null,
+    var order: Int? = null,
+    var title: String? = null,
+    var type: Int? = null,
+    var url: String? = null
 )
 
 @Entity(tableName = "homeModel")
-@TypeConverters(value = [BannerItemConvert::class,ArticleModelConvert::class])
+@TypeConverters(value = [BannerItemConvert::class, ArticleModelConvert::class])
 data class HomeModel(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,

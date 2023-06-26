@@ -42,12 +42,11 @@ class HomeFragment : BaseDataBindingFragment<FragmentHomeBinding, HomeFragmentVi
         }
         mViewModel.homeArticleLiveData.observe(this) {
             homeAdapter.clear()
-            if (it != null) {
-                mViewModel.insertAll(requireContext(), it)
-            }
+            mViewModel.insertAll(requireContext(), it)
             it.banner?.let { bannerBean ->
                 homeAdapter.addItem(BannerItem(bannerBean, this))
             }
+            mViewModel.insertArticleModel(requireContext(), it.articleModel)
             it.articleModel?.let { article ->
                 article.datas?.forEach { baseArticle ->
                     homeAdapter.addItem(HomeCarItem(baseArticle) { position, collect ->

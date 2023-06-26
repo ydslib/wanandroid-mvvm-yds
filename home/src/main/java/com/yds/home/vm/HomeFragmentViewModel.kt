@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.crystallake.base.vm.BaseViewModel
 import com.yds.home.HomeRequest
 import com.yds.home.db.ArticleDatabase
+import com.yds.home.model.ArticleModel
 import com.yds.home.model.HomeModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -108,7 +109,20 @@ class HomeFragmentViewModel : BaseViewModel() {
     fun insertAll(context: Context, articleModel: HomeModel?) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                ArticleDatabase.getInstance(context)?.articleDao()?.insertAll(articleModel)
+                if (articleModel != null) {
+                    ArticleDatabase.getInstance(context)?.articleDao()?.insertAll(articleModel)
+                }
+            }
+        }
+    }
+
+    fun insertArticleModel(context: Context, articleModel: ArticleModel?) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                if (articleModel != null) {
+                    ArticleDatabase.getInstance(context)?.articleDao()
+                        ?.insertArticleModel(articleModel)
+                }
             }
         }
     }
