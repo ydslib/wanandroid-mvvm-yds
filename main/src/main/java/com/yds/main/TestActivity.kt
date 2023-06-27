@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
+import androidx.lifecycle.MutableLiveData
 import com.crystallake.base.activity.DataBindingActivity
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.vm.BaseViewModel
@@ -13,6 +14,8 @@ import com.yds.main.databinding.ActivityTestBinding
 class TestActivity : DataBindingActivity<ActivityTestBinding, BaseViewModel>() {
 
     var count = 0
+
+    val test = MutableLiveData<Int>()
 
     override fun initDataBindingConfig(): DataBindingConfig {
         return DataBindingConfig(R.layout.activity_test)
@@ -38,6 +41,7 @@ class TestActivity : DataBindingActivity<ActivityTestBinding, BaseViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         println("singleTop-onCreate")
+        test.value = 20
         if (savedInstanceState != null) {
             mBinding?.count?.text = savedInstanceState.getString("count")
         }
@@ -50,6 +54,9 @@ class TestActivity : DataBindingActivity<ActivityTestBinding, BaseViewModel>() {
 
     override fun onResume() {
         super.onResume()
+        test.observe(this) {
+            println("livedata:$it")
+        }
         println("singleTop-onResume")
     }
 

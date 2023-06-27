@@ -1,9 +1,15 @@
 package com.yds.project.vm
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.crystallake.base.vm.BaseViewModel
 import com.yds.home.model.BaseArticle
 import com.yds.project.ProjectRequest
+import com.yds.project.db.ProjectDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ProjectArticleFragmentViewModel : BaseViewModel() {
 
@@ -19,7 +25,7 @@ class ProjectArticleFragmentViewModel : BaseViewModel() {
     val curPageLiveData = MutableLiveData<Int>()
     val loadingLiveData = MutableLiveData<Boolean>()
 
-    fun getProjectData(page: Int, cid: Int, state: Int) {
+    fun getProjectData(context: Context, page: Int, cid: Int, state: Int) {
         setState(state, true)
         request(
             block = {
@@ -28,6 +34,9 @@ class ProjectArticleFragmentViewModel : BaseViewModel() {
             success = {
                 projectData.value = it.data?.datas
                 curPageLiveData.value = it.data?.curPage
+                it.data?.datas?.forEach { article ->
+                    insertBaseArticleData(context, article)
+                }
             },
             cancel = {
 
@@ -38,7 +47,7 @@ class ProjectArticleFragmentViewModel : BaseViewModel() {
         )
     }
 
-    fun getLoadMoreProjectData(page: Int, cid: Int) {
+    fun getLoadMoreProjectData(context: Context, page: Int, cid: Int) {
         setState(STATE_LOAD_MORE, true)
         request(
             block = {
@@ -51,6 +60,9 @@ class ProjectArticleFragmentViewModel : BaseViewModel() {
                 }
                 it.data?.datas?.let {
                     oldData.addAll(it)
+                }
+                it.data?.datas?.forEach { article ->
+                    insertBaseArticleData(context, article)
                 }
                 projectData.value = oldData
                 curPageLiveData.value = it.data?.curPage
@@ -74,6 +86,18 @@ class ProjectArticleFragmentViewModel : BaseViewModel() {
             }
             STATE_LOADING -> {
                 loadingLiveData.value = enable
+            }
+        }
+    }
+
+    private suspend fun insertBaseArticle(context: Context, baseArticle: BaseArticle) {
+        ProjectDatabase.getInstance(context)?.getProjectDao()?.insertBaseArticle(baseArticle)
+    }
+
+    private fun insertBaseArticleData(context: Context, baseArticle: BaseArticle) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                insertBaseArticle(context, baseArticle)
             }
         }
     }

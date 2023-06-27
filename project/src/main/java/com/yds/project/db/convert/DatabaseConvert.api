@@ -1,0 +1,20 @@
+package com.yds.project.db.convert
+
+import androidx.room.TypeConverter
+import com.google.gson.reflect.TypeToken
+import com.yds.base.GsonUtil
+import com.yds.project.model.ProjectTitleModel
+
+class ProjectTitleModelConvert {
+
+    @TypeConverter
+    fun projectTitleModelConvertToString(titleData: List<ProjectTitleModel>): String {
+        return GsonUtil.gson.toJson(titleData)
+    }
+
+    @TypeConverter
+    fun stringConvertToProjectTitleModel(json: String): List<ProjectTitleModel> {
+        val type = object : TypeToken<List<ProjectTitleModel>>() {}.type
+        return GsonUtil.gson.fromJson(json, type)
+    }
+}

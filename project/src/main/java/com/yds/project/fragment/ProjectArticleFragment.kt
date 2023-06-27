@@ -30,7 +30,7 @@ class ProjectArticleFragment :
     override fun createObserver() {
         loginStateChangeObserve {
             cid?.let {
-                mViewModel.getProjectData(1, it, STATE_LOADING)
+                mViewModel.getProjectData(requireContext(),1, it, STATE_LOADING)
             }
         }
         mViewModel.projectData.observe(this) {
@@ -64,14 +64,14 @@ class ProjectArticleFragment :
     override fun initView(savedInstanceState: Bundle?) {
         mBinding?.smartRefreshLayout?.setOnRefreshListener {
             cid?.let {
-                mViewModel.getProjectData(1, it, ProjectArticleFragmentViewModel.STATE_REFRESH)
+                mViewModel.getProjectData(requireContext(),1, it, ProjectArticleFragmentViewModel.STATE_REFRESH)
             }
         }
 
         mBinding?.smartRefreshLayout?.setOnLoadMoreListener {
             if (cid != null && mViewModel.curPageLiveData.value != null) {
                 val page = mViewModel.curPageLiveData.value ?: 1
-                mViewModel.getLoadMoreProjectData(
+                mViewModel.getLoadMoreProjectData(requireContext(),
                     page + 1,
                     cid!!
                 )
@@ -87,7 +87,7 @@ class ProjectArticleFragment :
     override fun lazyLoadData() {
         cid = arguments?.getInt("cid")
         cid?.let {
-            mViewModel.getProjectData(1, it, STATE_LOADING)
+            mViewModel.getProjectData(requireContext(),1, it, STATE_LOADING)
         }
     }
 

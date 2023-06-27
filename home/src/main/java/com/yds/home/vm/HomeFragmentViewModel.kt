@@ -25,7 +25,7 @@ class HomeFragmentViewModel : BaseViewModel() {
     val loadMore = MutableLiveData<Boolean>()
     val curPage = MutableLiveData(0)
     val showLoading = MutableLiveData<Boolean>()
-    val homeModel = HomeModel()
+    private val homeModel = HomeModel()
 
     fun getHomeArticle(num: Int, state: Int, context: Context) {
         setState(true, state)
@@ -108,7 +108,7 @@ class HomeFragmentViewModel : BaseViewModel() {
         )
     }
 
-    fun insertHomeDataToDatabase(context: Context, articleModel: HomeModel?) {
+    private fun insertHomeDataToDatabase(context: Context, articleModel: HomeModel?) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 if (articleModel != null) {
@@ -128,7 +128,7 @@ class HomeFragmentViewModel : BaseViewModel() {
         }
     }
 
-    fun insertArticle(context: Context, articleModel: ArticleModel?) {
+    private fun insertArticle(context: Context, articleModel: ArticleModel?) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 ArticleDatabase.getInstance(context)?.articleDao()?.insertArticleModel(articleModel)

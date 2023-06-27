@@ -1,13 +1,21 @@
 package com.yds.project.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.yds.project.db.convert.ProjectTitleModelConvert
+
+@Entity(tableName = "projectTitleModel")
+@TypeConverters(value = [ProjectTitleModelConvert::class])
 data class ProjectTitleModel(
-    val children: List<ProjectTitleModel>? = null,
-    val courseId: Int? = null,
-    val id: Int? = null,
-    val name: String? = null,
-    val order: Int? = null,
-    val parentChapterId: Int? = null,
-    val type: Int? = null,
-    val userControlSetTop: Boolean? = null,
-    val visible: Int? = null
+    var children: List<ProjectTitleModel>? = null,
+    var courseId: Int? = null,
+    @PrimaryKey
+    var id: Int,
+    var name: String? = null,
+    var order: Int? = null,
+    var parentChapterId: Int? = null,
+    var type: Int? = null,
+    var userControlSetTop: Boolean? = null,
+    var visible: Int? = null
 )

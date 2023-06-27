@@ -27,7 +27,7 @@ class ProjectFragment : DataBindingFragment<FragmentProjectBinding, ProjectFragm
     }
 
     override fun lazyLoadData() {
-        mViewModel.getProjectTitle()
+        mViewModel.getProjectTitle(requireContext())
     }
 
     override fun initDataBindingConfig(): DataBindingConfig {
