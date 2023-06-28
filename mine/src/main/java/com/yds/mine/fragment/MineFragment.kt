@@ -41,6 +41,9 @@ class MineFragment : DataBindingFragment<FragmentMineBinding, MineViewModel>() {
         mBinding?.back?.setOnClickListener {
             requireActivity().finish()
         }
+        mBinding?.scan?.setOnClickListener {
+            ARouter.getInstance().build(RouterPath.SCAN_OCR_ACTIVITY).navigation()
+        }
     }
 
     fun initDefaultPage() {

@@ -31,6 +31,8 @@ dependencies {
     implementation "androidx.appcompat:appcompat:${Deps.appcompat}"
     implementation "androidx.constraintlayout:constraintlayout:${Deps.constraintlayout}"
     implementation project(":core")
+    implementation project(":wan-base")
+    implementation 'com.google.android.material:material:1.4.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation "androidx.test.ext:junit:${Deps.androidTest_junit}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${Deps.androidTest_espresso_core}"
@@ -39,4 +41,9 @@ dependencies {
     implementation "com.github.ydslib:Base:${Deps.baseVersion}"
     implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
     kapt "com.alibaba:arouter-compiler:${Deps.routerApiVersion}"
+    implementation 'com.google.mlkit:text-recognition:16.0.0-beta1'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.google.guava:guava:27.1-android'
+    implementation 'com.google.mlkit:camera:16.0.0-beta3'
+    implementation project(":resources")
 }

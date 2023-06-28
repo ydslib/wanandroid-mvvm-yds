@@ -65,6 +65,7 @@ dependencies {
     implementation project(":navigation")
     implementation project(":project")
     implementation project(":login")
+    implementation project(":scan")
 
     implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
     kapt "com.alibaba:arouter-compiler:${Deps.routerApiVersion}"

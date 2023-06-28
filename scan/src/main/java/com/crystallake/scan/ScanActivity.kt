@@ -4,12 +4,12 @@ import android.content.Intent
 import com.crystallake.base.activity.DataBindingActivity
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.vm.BaseViewModel
-import com.crystallake.scan.databinding.ActivityMainBinding
+import com.crystallake.scan.databinding.ActivityScanBinding
 import com.crystallake.scan.manager.IManager
 import com.crystallake.scan.manager.OnActivityResult
 import com.crystallake.scan.manager.ScanManagerFactory
 
-class MainActivity : DataBindingActivity<ActivityMainBinding, BaseViewModel>() {
+class ScanActivity : DataBindingActivity<ActivityScanBinding, BaseViewModel>() {
 
     private val scanManagerFactory by lazy {
         ScanManagerFactory()
@@ -19,7 +19,7 @@ class MainActivity : DataBindingActivity<ActivityMainBinding, BaseViewModel>() {
     }
 
     override fun initDataBindingConfig(): DataBindingConfig {
-        return DataBindingConfig(R.layout.activity_main)
+        return DataBindingConfig(R.layout.activity_scan)
     }
 
     override fun initData() {

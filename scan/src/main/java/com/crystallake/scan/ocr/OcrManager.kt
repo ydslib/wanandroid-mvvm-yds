@@ -11,10 +11,10 @@ import androidx.lifecycle.LifecycleOwner
 import com.crystallake.scan.manager.IManager
 import com.crystallake.scan.manager.OnActivityResult
 import com.crystallake.scan.ocr.crop.CropImageActivity
+import com.crystallake.scan.ocr.live.VisionImageProcessor
 import com.crystallake.scan.ocr.process.RecognizeResult
 import com.crystallake.scan.ocr.process.TextRecognitionProcessor
 import com.crystallake.scan.ocr.process.TextRecognizeListener
-import com.crystallake.scan.ocr.process.VisionImageProcessor
 import com.crystallake.scan.utils.MediaUtils
 import com.google.mlkit.vision.text.Text
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
@@ -68,7 +68,7 @@ class OcrManager : IManager<String>, DefaultLifecycleObserver {
         if (imageBitmap == null) {
             return
         }
-        imageProcessor?.processBitmap(imageBitmap, context)
+//        imageProcessor?.processBitmap(imageBitmap, context)
     }
 
     override fun takePhoto(context: Context) {

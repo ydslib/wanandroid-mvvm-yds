@@ -35,6 +35,7 @@ dependencies {
     implementation project(':wan-base')
     implementation project(":home-api")
     implementation project(":resources")
+    implementation project(":scan")
     implementation "com.github.ydslib:Base:${Deps.baseVersion}"
     implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
     kapt "com.alibaba:arouter-compiler:${Deps.routerApiVersion}"

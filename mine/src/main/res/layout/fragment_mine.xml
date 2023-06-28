@@ -20,6 +20,16 @@
             android:layout_marginTop="@dimen/dp_30"
             android:src="@drawable/ic_back_black"
             />
+        <ImageView
+            android:id="@+id/scan"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_30"
+            android:src="@drawable/ic_scan"
+            />
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/header_img"
             android:layout_width="@dimen/dp_80"

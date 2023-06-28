@@ -1,6 +1,7 @@
 package com.crystallake.scan.ocr.process
 
 import android.content.Context
+import com.crystallake.scan.ocr.live.GraphicOverlay
 import com.google.android.gms.tasks.Task
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
@@ -28,8 +29,10 @@ class TextRecognitionProcessor(
     }
 
 
-    override fun onSuccess(results: Text) {
-        listener?.onResult(RecognizeResult.Success(results))
+    override fun onSuccess(results: Text?,graphicOverlay: GraphicOverlay?) {
+        results?.let {
+            listener?.onResult(RecognizeResult.Success(it))
+        }
     }
 
     override fun onFailure(e: Exception) {
