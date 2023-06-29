@@ -73,7 +73,7 @@ class OcrActivity : BaseDataBindingActivity<ActivityOcrBinding, BaseViewModel>()
         try {
             when (model) {
                 TEXT_RECOGNITION_LATIN -> {
-                    cameraSource!!.setMachineLearningFrameProcessor(
+                    cameraSource?.setMachineLearningFrameProcessor(
                         TextRecognitionProcessor(this, TextRecognizerOptions.Builder().build()) {
                             val list = it.textBlocks.filter {
                                 isContainDigit(it.text)
