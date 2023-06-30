@@ -167,4 +167,166 @@ class SingleLiveData<T> : MutableLiveData<T>() {
 }
 ```
 
+## ViewModel的生命周期
+![https://img-blog.csdnimg.cn/df603d58ab8b4dc2a74d94e5399570eb.png](img.png)
+ViewModel的生命周期比Activity和Fragment的生命周期要长
+
+## 当屏幕旋转Activity重建时，ViewModel如何保证页面数据不会重置
+一般创建ViewModel对象时，是通过ViewModelProvider(this).get(ViewModel::class.java)
+创建。ViewModelProvider的构造函数里会通过owner.getViewModelStore方法来获取ViewModelStore。
+在ActivityThread调用performDestroyActivity时，会调用Activity的retainNonConfigurationInstances
+方法，该方法会创建一个NonConfigurationInstances对象，并且将Activity的viewModelStore保存在
+NonConfigurationInstances对象中，然后将该对象赋值给ActivityThread的NonConfigurationInstances
+变量中，这样，ViewModelStore就会保存在系统进程那边。而创建ViewModel时调用getViewModelStore方法会先去
+ActivityThread的NonConfigurationInstances中获取ViewModelStore，所以Activity重建时，会拿ViewModel
+中保存的数据恢复页面数据。
+
+ActivityThread的performDestroyActivity方法
+```java
+    ActivityClientRecord performDestroyActivity(IBinder token, boolean finishing,
+            int configChanges, boolean getNonConfigInstance, String reason) {
+        ......
+            if (getNonConfigInstance) {
+                try {
+                    r.lastNonConfigurationInstances
+                            = r.activity.retainNonConfigurationInstances();
+                } catch (Exception e) {
+        ......
+                }
+            }
+        ......
+        }
+        ......
+    }
+```
+Activity的retainNonConfigurationInstances方法
+```java
+    NonConfigurationInstances retainNonConfigurationInstances() {
+        Object activity = onRetainNonConfigurationInstance();
+        ......
+
+        NonConfigurationInstances nci = new NonConfigurationInstances();
+        nci.activity = activity;
+        ......
+        return nci;
+    }
+```
+ComponentActivity的onRetainNonConfigurationInstance方法
+```java
+    public final Object onRetainNonConfigurationInstance() {
+        Object custom = onRetainCustomNonConfigurationInstance();
+
+        ViewModelStore viewModelStore = mViewModelStore;
+        if (viewModelStore == null) {
+            // No one called getViewModelStore(), so see if there was an existing
+            // ViewModelStore from our last NonConfigurationInstance
+            NonConfigurationInstances nc =
+                    (NonConfigurationInstances) getLastNonConfigurationInstance();
+            if (nc != null) {
+                viewModelStore = nc.viewModelStore;
+            }
+        }
+
+        if (viewModelStore == null && custom == null) {
+            return null;
+        }
+
+        NonConfigurationInstances nci = new NonConfigurationInstances();
+        nci.custom = custom;
+        nci.viewModelStore = viewModelStore;
+        return nci;
+    }
+```
+所以，Activity调用onDestroy方法时，会将Activity的viewModelStore保存在ActivityThread
+中。
+
+ViewModelProvider的构造方法
+```java
+    public ViewModelProvider(@NonNull ViewModelStoreOwner owner) {
+        this(owner.getViewModelStore(), owner instanceof HasDefaultViewModelProviderFactory
+                ? ((HasDefaultViewModelProviderFactory) owner).getDefaultViewModelProviderFactory()
+                : NewInstanceFactory.getInstance());
+    }
+```
+ComponentActivity的getViewModelStore方法
+```java
+    public ViewModelStore getViewModelStore() {
+        if (getApplication() == null) {
+            throw new IllegalStateException("Your activity is not yet attached to the "
+                    + "Application instance. You can't request ViewModel before onCreate call.");
+        }
+        ensureViewModelStore();
+        return mViewModelStore;
+    }
+```
+ComponentActivity的ensureViewModelStore方法
+```java
+    void ensureViewModelStore() {
+        if (mViewModelStore == null) {
+            NonConfigurationInstances nc =
+                    (NonConfigurationInstances) getLastNonConfigurationInstance();
+            if (nc != null) {
+                // Restore the ViewModelStore from NonConfigurationInstances
+                mViewModelStore = nc.viewModelStore;
+            }
+            if (mViewModelStore == null) {
+                mViewModelStore = new ViewModelStore();
+            }
+        }
+    }
+```
+getLastNonConfigurationInstance方法
+```java
+    public Object getLastNonConfigurationInstance() {
+        return mLastNonConfigurationInstances != null
+                ? mLastNonConfigurationInstances.activity : null;
+    }
+```
+mLastNonConfigurationInstances来自哪里呢？看看赋值的地方，如下所示Activity的attach方法：
+```java
+    final void attach(Context context, ActivityThread aThread,
+            Instrumentation instr, IBinder token, int ident,
+            Application application, Intent intent, ActivityInfo info,
+            CharSequence title, Activity parent, String id,
+            NonConfigurationInstances lastNonConfigurationInstances,
+            Configuration config, String referrer, IVoiceInteractor voiceInteractor,
+            Window window, ActivityConfigCallback activityConfigCallback, IBinder assistToken,
+            IBinder shareableActivityToken) {
+        ......
+        mLastNonConfigurationInstances = lastNonConfigurationInstances;
+        ......
+    }
+```
+当ActivityThread调用performLaunchActivity时会调用Activity的attach方法，如下所示
+```java
+    private Activity performLaunchActivity(ActivityClientRecord r, Intent customIntent) {
+        ......
+                activity.attach(appContext, this, getInstrumentation(), r.token,
+                        r.ident, app, r.intent, r.activityInfo, title, r.parent,
+                        r.embeddedID, r.lastNonConfigurationInstances, config,
+                        r.referrer, r.voiceInteractor, window, r.configCallback,
+                        r.assistToken);
+
+        ......
+    }
+```
+所以lastNonConfigurationInstances来自ActivityClientRecord。
+
+
+## startActivity看android启动流程
+Activity.startActivity->Activity.startActivityForResult
+->Instrumentation.execStartActivity->ActivityTaskManagerService.startActivity
+->ActivityTaskManagerService.startActivityAsUser->ActivityStarter.execute
+->ActivityStarter.executeRequest->ActivityStarter.startActivityUnchecked
+->ActivityStarter.startActivityInner->RootWindowContainer.resumeFocusedStacksTopActivities
+->ActivityStack.resumeTopActivityUncheckedLocked->ActivityStack.resumeTopActivityInnerLocked
+->ActivityStackSupervisor.startSpecificActivity->ActivityStackSupervisor.realStartActivityLocked
+->ClientLifecycleManager.scheduleTransaction->ClientTransaction.schedule->ApplicationThread.scheduleTransaction
+->ApplicationThread.scheduleTransaction->ClientTransactionHandler.scheduleTransaction
+->ActivityThread.H(EXECUTE_TRANSACTION)->TransactionExecutor.execute
+->TransactionExecutor.executeCallbacks->LaunchActivityItem.execute
+->ActivityThread.handleLaunchActivity->ActivityThread.performLaunchActivity
+（分支一）->Instrumentation.callActivityOnCreate->Activity.performCreate
+（分支二）->Instrumentation.newActivity
+
 

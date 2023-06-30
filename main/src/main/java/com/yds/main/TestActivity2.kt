@@ -2,6 +2,8 @@ package com.yds.main
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.crystallake.base.activity.DataBindingActivity
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.vm.BaseViewModel
@@ -41,6 +43,7 @@ class TestActivity2 : DataBindingActivity<ActivityTest2Binding, BaseViewModel>()
 
     override fun onPause() {
         super.onPause()
+        ViewModelProvider(this).get(ViewModel::class.java)
         println("TestActivity2-onPause")
     }
 
