@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.crystallake.base.fastrecycler.adapter.SingleDataBindingAdapter
 import com.google.android.flexbox.FlexboxLayoutManager
+import com.yds.main.BuildConfig
 import com.yds.main.GalleryActivity
 import com.yds.main.databinding.ItemGalleryBinding
 import java.io.BufferedInputStream
@@ -23,6 +24,12 @@ class GalleryAdapter(
     private val clickListener: (position: Int, view: View) -> Unit
 ) :
     SingleDataBindingAdapter<Uri, ItemGalleryBinding>() {
+
+    init {
+        if (BuildConfig.DEBUG){
+            openDebug()
+        }
+    }
 
     private val enterTransitionStarted by lazy {
         AtomicBoolean()

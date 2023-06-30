@@ -21,7 +21,11 @@ class HomeFragment : BaseDataBindingFragment<FragmentHomeBinding, HomeFragmentVi
     private var loginState = false
 
     private val homeAdapter by lazy {
-        MultiDataBindingAdapter()
+        MultiDataBindingAdapter().apply {
+            if (BuildConfig.DEBUG){
+                openDebug()
+            }
+        }
     }
 
     private val linearLayoutManager by lazy {
