@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.crystallake.base.config.DataBindingConfig
-import com.crystallake.base.fastrecycler.adapter.MultiDataBindingAdapter
 import com.crystallake.resources.RouterPath
 import com.yds.base.BaseDataBindingFragment
+import com.yds.base.fastrecycler.adapter.MultiDataBindingAdapter
 import com.yds.core.UserInfoTool
 import com.yds.home.databinding.FragmentHomeBinding
 import com.yds.home.item.BannerItem

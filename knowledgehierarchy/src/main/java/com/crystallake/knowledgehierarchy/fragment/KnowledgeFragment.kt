@@ -8,6 +8,7 @@ import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.fastrecycler.adapter.MultiDataBindingAdapter
 import com.crystallake.base.fragment.DataBindingFragment
 import com.crystallake.knowledgehierarchy.R
+import com.crystallake.knowledgehierarchy.adapter.KnowledgeAdapter
 import com.crystallake.knowledgehierarchy.databinding.FragmentKnowledgeBinding
 import com.crystallake.knowledgehierarchy.item.KnowledgeArticleItem
 import com.crystallake.knowledgehierarchy.vm.KnowledgeViewModel
@@ -17,11 +18,11 @@ import com.yds.base.BaseDataBindingFragment
 @Route(path = RouterPath.KNOWLEDGE_FRAGMENT)
 class KnowledgeFragment : BaseDataBindingFragment<FragmentKnowledgeBinding, KnowledgeViewModel>() {
 
-    val adapter by lazy {
-        MultiDataBindingAdapter()
+    private val adapter by lazy {
+        KnowledgeAdapter(mutableListOf())
     }
 
-    val layoutManager by lazy {
+    private val layoutManager by lazy {
         LinearLayoutManager(requireContext())
     }
 
@@ -39,9 +40,7 @@ class KnowledgeFragment : BaseDataBindingFragment<FragmentKnowledgeBinding, Know
 
         mViewModel.knowledgeDataLiveData.observe(this) {
             adapter.clear()
-            it?.forEach { model ->
-                adapter.addItem(KnowledgeArticleItem(model))
-            }
+            adapter.dataList.addAll(it)
             adapter.notifyDataSetChanged()
         }
 

@@ -44,7 +44,12 @@ class GalleryFragment : DataBindingFragment<FragmentGalleryBinding, GalleryViewM
     }
 
     override fun createObserver() {
-        activityViewModel?.imageUriList?.observe(this) {
+//        activityViewModel?.imageUriList?.observe(this) {
+//            adapter.dataList.clear()
+//            adapter.dataList.addAll(it)
+//            adapter.notifyDataSetChanged()
+//        }
+        activityViewModel?.imageBitmapList?.observe(this){
             adapter.dataList.clear()
             adapter.dataList.addAll(it)
             adapter.notifyDataSetChanged()
@@ -82,12 +87,12 @@ class GalleryFragment : DataBindingFragment<FragmentGalleryBinding, GalleryViewM
         activityViewModel?.readPic()
 
         mBinding?.smartRefreshLayout?.setOnRefreshListener {
-            activityViewModel?.getPicData(0)
+            activityViewModel?.getPicData(GalleryViewModel.REFRESH)
             it.finishRefresh()
         }
 
         mBinding?.smartRefreshLayout?.setOnLoadMoreListener {
-            activityViewModel?.getPicData((activityViewModel?.page ?: 0))
+            activityViewModel?.getPicData(GalleryViewModel.LOADMORE)
             activityViewModel?.page = (activityViewModel?.page ?: 0) + 1
             it.finishLoadMore()
         }

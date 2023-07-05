@@ -1,6 +1,7 @@
 package com.crystallake.knowledgehierarchy.item
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -31,6 +32,7 @@ class KnowledgeArticleItem(private val itemData: ProjectTitleModel) :
         position: Int,
         binding: ItemKnowledgeArticleBinding
     ) {
+        val startTime = System.nanoTime()
         binding.title.text = itemData.name
         val tags = mutableListOf<String>()
         itemData.children?.forEach {
@@ -63,5 +65,6 @@ class KnowledgeArticleItem(private val itemData: ProjectTitleModel) :
         }
         //解决嵌套的recyclerview拦截了container点击事件
         binding.tagRecycler.setOnTouchListener { _, event -> binding.container.onTouchEvent(event) }
+        Log.i("onBindViewHolder", "${System.nanoTime() - startTime}")
     }
 }

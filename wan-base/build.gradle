@@ -58,4 +58,5 @@ dependencies {
     api 'com.github.Justson.AgentWeb:agentweb-core:v5.0.6-androidx' // (必选)
     api 'com.github.Justson.AgentWeb:agentweb-filechooser:v5.0.6-androidx' // (可选)
     api 'com.github.Justson:Downloader:v5.0.4-androidx'
+    implementation "com.google.android.material:material:${Deps.materialVersion}"
 }

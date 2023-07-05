@@ -3,6 +3,7 @@ package com.yds.main.adapter
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,10 +24,10 @@ class GalleryAdapter(
     private val callback: () -> Unit,
     private val clickListener: (position: Int, view: View) -> Unit
 ) :
-    SingleDataBindingAdapter<Uri, ItemGalleryBinding>() {
+    SingleDataBindingAdapter<Bitmap, ItemGalleryBinding>() {
 
     init {
-        if (BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             openDebug()
         }
     }
@@ -43,29 +44,30 @@ class GalleryAdapter(
     }
 
     override fun onBindViewHolder(binding: ItemGalleryBinding, position: Int) {
+        val startTime = System.nanoTime()
         val lp = binding.img.layoutParams
         if (lp is FlexboxLayoutManager.LayoutParams) {
             lp.flexGrow = 1f
         }
-
-        val option = BitmapFactory.Options()
-        option.inJustDecodeBounds = true
-        var bitmap = BitmapFactory.decodeFile(dataList[position].path, option)
-
-        initSampleSize(option)
-        println("width:${option.outWidth},height:${option.outHeight}")
-        option.inJustDecodeBounds = false
-        option.inPreferredConfig = Bitmap.Config.RGB_565
-        option.inMutable = true
-        option.inBitmap = bitmap
-        bitmap = BitmapFactory.decodeFile(dataList[position].path, option)
-
-        println("大小：${getAllocationByteCountWithM(bitmap)}----${bitmap.allocationByteCount}")
-
-
-        Glide.with(binding.root.context).load(bitmap).into(binding.img)
-        binding.img.setImageBitmap(bitmap)
-        binding.img.transitionName = dataList[position].path
+//
+//        val option = BitmapFactory.Options()
+//        option.inJustDecodeBounds = true
+//        var bitmap = BitmapFactory.decodeFile(dataList[position].path, option)
+//
+//        initSampleSize(option)
+//        println("width:${option.outWidth},height:${option.outHeight}")
+//        option.inJustDecodeBounds = false
+//        option.inPreferredConfig = Bitmap.Config.RGB_565
+//        option.inMutable = true
+//        option.inBitmap = bitmap
+//        bitmap = BitmapFactory.decodeFile(dataList[position].path, option)
+//
+//        println("大小：${getAllocationByteCountWithM(bitmap)}----${bitmap.allocationByteCount}")
+//
+//        binding.img.setImageBitmap(bitmap)
+//        Glide.with(binding.img.context).load(dataList[position]).into(binding.img)
+        binding.img.setImageBitmap(dataList[position])
+        binding.img.transitionName = dataList[position].toString()
 
         binding.img.setOnClickListener {
             clickListener.invoke(position, it)
@@ -78,6 +80,7 @@ class GalleryAdapter(
             return
         }
         callback.invoke()
+        Log.i("onBindViewHolder", "${System.nanoTime() - startTime}")
     }
 
     private fun initSampleSize(options: BitmapFactory.Options) {

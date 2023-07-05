@@ -1,5 +1,6 @@
 package com.crystallake.knowledgehierarchy.item
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.alibaba.android.arouter.launcher.ARouter
@@ -29,6 +30,7 @@ class KnowledgeCardItem(
         position: Int,
         binding: ItemKnowledgeCardBinding
     ) {
+        val startTime = System.nanoTime()
         Glide.with(holder.itemView.context).load(R.drawable.ic_launcher_background)
             .into(binding.homeHeaderImg)
         binding.author.text =
@@ -52,5 +54,6 @@ class KnowledgeCardItem(
                 extras.putString(ARTICLE_TITLE, baseArticle.title)
             }.navigation()
         }
+        Log.i("onBindViewHolder", "${System.nanoTime() - startTime}")
     }
 }

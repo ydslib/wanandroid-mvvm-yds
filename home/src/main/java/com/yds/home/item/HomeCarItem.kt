@@ -1,16 +1,14 @@
 package com.yds.home.item
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
-
-import com.crystallake.base.fastrecycler.ItemProxy
-import com.crystallake.base.fastrecycler.viewholder.ItemViewHolder
 import com.crystallake.resources.ARTICLE_TITLE
 import com.crystallake.resources.ARTICLE_URL
 import com.crystallake.resources.RouterPath
+import com.yds.base.fastrecycler.ItemProxy
+import com.yds.base.fastrecycler.viewholder.ItemViewHolder
 import com.yds.home.R
 import com.yds.home.databinding.HomeCarItemBinding
 import com.yds.home.model.BaseArticle
@@ -24,6 +22,13 @@ class HomeCarItem(
         parent: ViewGroup?
     ): HomeCarItemBinding {
         return HomeCarItemBinding.inflate(inflater, parent, false)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup): ItemViewHolder {
+        val binding = generateItemViewBinding(LayoutInflater.from(parent.context), parent)
+        val holder = HomeCarViewHolder(binding)
+        holder.initView()
+        return holder
     }
 
     override fun onBindItemViewHolder(
@@ -44,15 +49,21 @@ class HomeCarItem(
                 .into(binding.like)
         }
         binding.timeTv.text = baseArticle.niceShareDate
+    }
 
-        binding.like.setOnClickListener {
-            clickListener?.invoke(position, baseArticle.collect ?: false)
-        }
-        binding.root.setOnClickListener {
-            ARouter.getInstance().build(RouterPath.BROWSER_ACTIVITY).apply {
-                extras.putString(ARTICLE_URL, baseArticle.link)
-                extras.putString(ARTICLE_TITLE, baseArticle.title)
-            }.navigation()
+    inner class HomeCarViewHolder(val homeCarItemBinding: HomeCarItemBinding) : ItemViewHolder(homeCarItemBinding) {
+
+        override fun initView() {
+            super.initView()
+            homeCarItemBinding.like.setOnClickListener {
+                clickListener?.invoke(position, baseArticle.collect ?: false)
+            }
+            homeCarItemBinding.root.setOnClickListener {
+                ARouter.getInstance().build(RouterPath.BROWSER_ACTIVITY).apply {
+                    extras.putString(ARTICLE_URL, baseArticle.link)
+                    extras.putString(ARTICLE_TITLE, baseArticle.title)
+                }.navigation()
+            }
         }
     }
 }

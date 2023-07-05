@@ -9,6 +9,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.fastrecycler.adapter.MultiDataBindingAdapter
 import com.crystallake.knowledgehierarchy.R
+import com.crystallake.knowledgehierarchy.adapter.KnowledgeArticleAdapter
 import com.crystallake.knowledgehierarchy.databinding.FragmentKnowledgeArticleBinding
 import com.crystallake.knowledgehierarchy.item.KnowledgeCardItem
 import com.crystallake.knowledgehierarchy.vm.KnowledgeViewModel
@@ -25,7 +26,7 @@ class KnowledgeArticleFragment :
     }
 
     private val adapter by lazy {
-        MultiDataBindingAdapter()
+        KnowledgeArticleAdapter(mutableListOf())
     }
 
     override fun createObserver() {
@@ -34,9 +35,10 @@ class KnowledgeArticleFragment :
             if (mViewModel.mState == KnowledgeViewModel.REFRESH) {
                 adapter.clear()
             }
-            it.datas?.forEach { article ->
-                adapter.addItem(KnowledgeCardItem(article))
+            it.datas?.let {
+                adapter.dataList.addAll(it)
             }
+
             adapter.notifyDataSetChanged()
         }
 
