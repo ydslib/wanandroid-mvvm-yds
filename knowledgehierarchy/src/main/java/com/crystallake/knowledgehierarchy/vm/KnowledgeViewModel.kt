@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.crystallake.base.vm.BaseViewModel
 import com.crystallake.knowledgehierarchy.KnowledgeRequest
 import com.yds.home.model.ArticleModel
+import com.yds.home.model.BaseArticle
 import com.yds.project.model.ProjectTitleModel
 
 class KnowledgeViewModel : BaseViewModel() {
@@ -62,12 +63,32 @@ class KnowledgeViewModel : BaseViewModel() {
                 KnowledgeRequest.getKnowledgeArticle(page, cid)
             },
             success = {
-                articleModelLiveData.value = it.data
+                setDataWithState(state, it.data)
             },
             cancel = {},
             complete = {
                 setData(false, state)
             }
         )
+    }
+
+    fun setDataWithState(state: Int, articleModel: ArticleModel?) {
+        val dataList = mutableListOf<BaseArticle>()
+        when (state) {
+            LOAD_MORE -> {
+                articleModelLiveData.value?.datas?.let {
+                    dataList.addAll(it)
+                }
+            }
+            LOAD, REFRESH -> {
+
+            }
+        }
+        articleModel?.datas?.let {
+            dataList.addAll(it)
+        }
+        articleModel?.datas?.clear()
+        articleModel?.datas?.addAll(dataList)
+        articleModelLiveData.value = articleModel
     }
 }

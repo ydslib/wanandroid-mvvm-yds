@@ -1,13 +1,13 @@
-package com.yds.home.diff
+package com.crystallake.knowledgehierarchy.diff
 
 import androidx.recyclerview.widget.DiffUtil
 import com.yds.home.model.BaseArticle
 
-class DiffCallBack : DiffUtil.Callback() {
-
-    private var newDataList: MutableList<BaseArticle>? = null
-    private var oldDataList: MutableList<BaseArticle>? = null
-
+class DiffCallBack(
+    private val newDataList: MutableList<BaseArticle>?,
+    private val oldDataList: MutableList<BaseArticle>?
+) :
+    DiffUtil.Callback() {
 
     override fun getOldListSize(): Int {
         return oldDataList?.size ?: 0
@@ -31,6 +31,9 @@ class DiffCallBack : DiffUtil.Callback() {
         val oldData = oldDataList!![oldItemPosition]
         val newData = newDataList!![newItemPosition]
         if (oldData.author != newData.author) {
+            return false
+        }
+        if (oldData.shareUser != newData.shareUser) {
             return false
         }
         if (oldData.superChapterName != newData.superChapterName) {

@@ -1,17 +1,13 @@
 package com.crystallake.knowledgehierarchy.fragment
 
 import android.os.Bundle
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.crystallake.base.config.DataBindingConfig
-import com.crystallake.base.fastrecycler.adapter.MultiDataBindingAdapter
 import com.crystallake.knowledgehierarchy.R
 import com.crystallake.knowledgehierarchy.adapter.KnowledgeArticleAdapter
 import com.crystallake.knowledgehierarchy.databinding.FragmentKnowledgeArticleBinding
-import com.crystallake.knowledgehierarchy.item.KnowledgeCardItem
 import com.crystallake.knowledgehierarchy.vm.KnowledgeViewModel
 import com.crystallake.resources.RouterPath
 import com.yds.base.BaseDataBindingFragment
@@ -32,21 +28,16 @@ class KnowledgeArticleFragment :
     override fun createObserver() {
         mViewModel.articleModelLiveData.observe(this) {
             page = it?.curPage ?: 0
-            if (mViewModel.mState == KnowledgeViewModel.REFRESH) {
-                adapter.clear()
-            }
             it.datas?.let {
-                adapter.dataList.addAll(it)
+                adapter.update(it)
             }
 
-            adapter.notifyDataSetChanged()
-        }
-
-        mViewModel.refreshLiveData.observe(this) {
-            mBinding?.smartRefreshLayout?.finishRefresh()
-        }
-        mViewModel.loadingMoreLiveData.observe(this) {
-            mBinding?.smartRefreshLayout?.finishLoadMore()
+            mViewModel.refreshLiveData.observe(this) {
+                mBinding?.smartRefreshLayout?.finishRefresh()
+            }
+            mViewModel.loadingMoreLiveData.observe(this) {
+                mBinding?.smartRefreshLayout?.finishLoadMore()
+            }
         }
     }
 

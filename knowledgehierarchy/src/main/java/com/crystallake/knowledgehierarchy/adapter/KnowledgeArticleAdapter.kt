@@ -3,11 +3,13 @@ package com.crystallake.knowledgehierarchy.adapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 import com.crystallake.knowledgehierarchy.R
 import com.crystallake.knowledgehierarchy.databinding.ItemKnowledgeCardBinding
+import com.crystallake.knowledgehierarchy.diff.DiffCallBack
 import com.crystallake.resources.ARTICLE_TITLE
 import com.crystallake.resources.ARTICLE_URL
 import com.crystallake.resources.RouterPath
@@ -67,5 +69,12 @@ class KnowledgeArticleAdapter(
 
     override fun getItemCount(): Int {
         return dataList.size
+    }
+
+    fun update(list: MutableList<BaseArticle>) {
+        val diffResult = DiffUtil.calculateDiff(DiffCallBack(list, dataList))
+        dataList.clear()
+        dataList.addAll(list)
+        diffResult.dispatchUpdatesTo(this)
     }
 }
