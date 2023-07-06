@@ -36,17 +36,18 @@ class HomeCarItem(
         position: Int,
         binding: HomeCarItemBinding
     ) {
-        Glide.with(holder.itemView.context).load(R.drawable.ic_launcher_background)
+        Glide.with(holder.itemView.context)
+            .load("https://p0.ssl.qhimgs1.com/sdr/400__/t017afc338f54c4a166.jpg")
+            .thumbnail(0.2f)
             .into(binding.homeHeaderImg)
         binding.author.text =
             if (baseArticle.author.isNullOrEmpty()) baseArticle.shareUser else baseArticle.author
         binding.superChapterName.text = "${baseArticle.superChapterName}/${baseArticle.chapterName}"
         binding.title.text = baseArticle.title
         if (baseArticle.collect == true) {
-            Glide.with(holder.itemView.context).load(R.drawable.icon_like).into(binding.like)
+            binding.like.setImageResource(R.drawable.icon_like)
         } else {
-            Glide.with(holder.itemView.context).load(R.drawable.icon_like_article_not_selected)
-                .into(binding.like)
+            binding.like.setImageResource(R.drawable.icon_like_article_not_selected)
         }
         binding.timeTv.text = baseArticle.niceShareDate
     }

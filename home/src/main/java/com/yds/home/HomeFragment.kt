@@ -3,8 +3,10 @@ package com.yds.home
 import android.os.Bundle
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.bumptech.glide.Glide
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.resources.RouterPath
 import com.yds.base.BaseDataBindingFragment
@@ -22,7 +24,7 @@ class HomeFragment : BaseDataBindingFragment<FragmentHomeBinding, HomeFragmentVi
 
     private val homeAdapter by lazy {
         MultiDataBindingAdapter().apply {
-            if (BuildConfig.DEBUG){
+            if (BuildConfig.DEBUG) {
                 openDebug()
             }
         }
@@ -90,6 +92,16 @@ class HomeFragment : BaseDataBindingFragment<FragmentHomeBinding, HomeFragmentVi
         mBinding?.recyclerView?.let {
             it.layoutManager = linearLayoutManager
             it.adapter = homeAdapter
+            it.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        Glide.with(requireContext()).resumeRequests()
+                    } else {
+                        Glide.with(requireContext()).pauseRequests()
+                    }
+                }
+            })
         }
 
         mBinding?.smartRefreshLayout?.setOnRefreshListener {

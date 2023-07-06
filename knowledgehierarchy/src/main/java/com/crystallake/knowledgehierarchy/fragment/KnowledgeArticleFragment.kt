@@ -1,9 +1,14 @@
 package com.crystallake.knowledgehierarchy.fragment
 
 import android.os.Bundle
+import android.util.Log
+import androidx.metrics.performance.JankStats
+import androidx.metrics.performance.PerformanceMetricsState
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.bumptech.glide.Glide
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.knowledgehierarchy.R
 import com.crystallake.knowledgehierarchy.adapter.KnowledgeArticleAdapter
@@ -11,6 +16,9 @@ import com.crystallake.knowledgehierarchy.databinding.FragmentKnowledgeArticleBi
 import com.crystallake.knowledgehierarchy.vm.KnowledgeViewModel
 import com.crystallake.resources.RouterPath
 import com.yds.base.BaseDataBindingFragment
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.asExecutor
+import java.util.concurrent.Executors
 
 @Route(path = RouterPath.KNOWLEDGE_ARTICLE_FRAGMENT)
 class KnowledgeArticleFragment :
@@ -19,6 +27,37 @@ class KnowledgeArticleFragment :
     private var page: Int = 0
     private val layoutManager by lazy {
         LinearLayoutManager(requireContext(), VERTICAL, false)
+    }
+    private var jankStats: JankStats? = null
+
+    private val jankFrameListener = JankStats.OnFrameListener {
+        Log.i("JankStatsSample", "${it.toString()}")
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        var metricsStateHolder: PerformanceMetricsState.MetricsStateHolder? = null
+        mBinding?.root?.let {
+            metricsStateHolder = PerformanceMetricsState.getForHierarchy(it)
+
+        }
+        jankStats =
+            JankStats.createAndTrack(requireActivity().window, Dispatchers.Default.asExecutor(), jankFrameListener).apply {
+                this.jankHeuristicMultiplier = 3f
+            }
+        metricsStateHolder?.state?.addState("Activity", javaClass.simpleName)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //启用跟踪功能
+        jankStats?.isTrackingEnabled = true
+    }
+
+    override fun onPause() {
+        super.onPause()
+        //关闭跟踪功能
+        jankStats?.isTrackingEnabled = false
     }
 
     private val adapter by lazy {
@@ -45,6 +84,7 @@ class KnowledgeArticleFragment :
         cid = arguments?.getInt("cid") ?: 0
         mBinding?.recycler?.layoutManager = layoutManager
         mBinding?.recycler?.adapter = adapter
+        mBinding?.recycler?.setHasFixedSize(true)
 
         mBinding?.smartRefreshLayout?.setOnRefreshListener {
             mViewModel.getKnowledgeArticle(0, cid, KnowledgeViewModel.REFRESH)
@@ -53,6 +93,17 @@ class KnowledgeArticleFragment :
         mBinding?.smartRefreshLayout?.setOnLoadMoreListener {
             mViewModel.getKnowledgeArticle(page, cid, KnowledgeViewModel.LOAD_MORE)
         }
+
+        mBinding?.recycler?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    Glide.with(requireContext()).resumeRequests()
+                } else {
+                    Glide.with(requireContext()).pauseRequests()
+                }
+            }
+        })
     }
 
     override fun lazyLoadData() {

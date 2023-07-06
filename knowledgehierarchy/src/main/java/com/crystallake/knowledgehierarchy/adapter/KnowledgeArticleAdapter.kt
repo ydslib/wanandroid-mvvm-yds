@@ -3,6 +3,7 @@ package com.crystallake.knowledgehierarchy.adapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.launcher.ARouter
@@ -29,6 +30,8 @@ class KnowledgeArticleAdapter(
         var currentPosition = 0
 
         init {
+            Glide.with(binding.root.context).load(R.drawable.ic_launcher_background)
+                .into(binding.homeHeaderImg)
             binding.like.setOnClickListener {
                 clickListener?.invoke(position, dataList[currentPosition].collect ?: false)
             }
@@ -51,18 +54,17 @@ class KnowledgeArticleAdapter(
         val binding = holder.binding
         val baseArticle = dataList[position]
         holder.currentPosition = position
-        Glide.with(holder.itemView.context).load(R.drawable.ic_launcher_background)
-            .into(binding.homeHeaderImg)
         binding.author.text =
             if (baseArticle.author.isNullOrEmpty()) baseArticle.shareUser else baseArticle.author
         binding.superChapterName.text = "${baseArticle.superChapterName}/${baseArticle.chapterName}"
         binding.title.text = baseArticle.title
+        val glideTime = System.nanoTime()
         if (baseArticle.collect == true) {
-            Glide.with(holder.itemView.context).load(R.drawable.icon_like).into(binding.like)
+            binding.like.setImageResource(R.drawable.icon_like)
         } else {
-            Glide.with(holder.itemView.context).load(R.drawable.icon_like_article_not_selected)
-                .into(binding.like)
+            binding.like.setImageResource(R.drawable.icon_like_article_not_selected)
         }
+        Log.i("onBindViewHolder", ">>${System.nanoTime() - glideTime}")
         binding.timeTv.text = baseArticle.niceShareDate
         Log.i("onBindViewHolder", "${System.nanoTime() - startTime}")
     }
