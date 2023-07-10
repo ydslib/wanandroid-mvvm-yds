@@ -66,6 +66,7 @@ dependencies {
     implementation project(":project")
     implementation project(":login")
     implementation project(":scan")
+    implementation project(":wan-base")
 
     implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
     kapt "com.alibaba:arouter-compiler:${Deps.routerApiVersion}"
@@ -74,4 +75,5 @@ dependencies {
     testImplementation "junit:junit:${Deps.test_junit}"
     androidTestImplementation "androidx.test.ext:junit:${Deps.androidTest_junit}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${Deps.androidTest_espresso_core}"
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.12'
 }

@@ -95,10 +95,12 @@ class HomeFragment : BaseDataBindingFragment<FragmentHomeBinding, HomeFragmentVi
             it.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                     super.onScrollStateChanged(recyclerView, newState)
-                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                        Glide.with(requireContext()).resumeRequests()
-                    } else {
-                        Glide.with(requireContext()).pauseRequests()
+                    if (!requireActivity().isDestroyed && !requireActivity().isFinishing) {
+                        if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                            Glide.with(requireContext()).resumeRequests()
+                        } else {
+                            Glide.with(requireContext()).pauseRequests()
+                        }
                     }
                 }
             })
