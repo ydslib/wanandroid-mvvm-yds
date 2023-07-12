@@ -67,6 +67,7 @@ dependencies {
     implementation project(":login")
     implementation project(":scan")
     implementation project(":wan-base")
+    implementation "androidx.startup:startup-runtime:1.1.0"
 
     implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
     kapt "com.alibaba:arouter-compiler:${Deps.routerApiVersion}"

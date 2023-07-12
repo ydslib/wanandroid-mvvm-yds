@@ -8,12 +8,4 @@ import com.yds.core.AppInit
 import com.yds.core.AppInitTool
 
 class App : Application(){
-
-    override fun onCreate() {
-        super.onCreate()
-        RetrofitClient.setup("https://www.wanandroid.com", arrayListOf())
-        ARouter.init(this)
-        AppInitTool.initAllModuleSdk()
-        JankManager.init(this)
-    }
 }
