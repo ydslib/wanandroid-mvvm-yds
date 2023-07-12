@@ -32,6 +32,7 @@ class CollectFragment : BaseDataBindingFragment<FragmentCollectBinding, MineView
     override fun createObserver() {
         mActivityViewModel?.collectLiveData?.observe(this) {
             it.datas?.forEach { baseArticle ->
+                adapter.clear()
                 baseArticle.collect = true
                 adapter.addItem(CollectItem(baseArticle))
             }
