@@ -2,11 +2,11 @@ package com.yds.main
 
 import android.os.Bundle
 import com.alibaba.android.arouter.launcher.ARouter
-import com.blankj.utilcode.util.SPUtils
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.net.RetrofitClient
 import com.crystallake.base.vm.BaseViewModel
 import com.crystallake.resources.RouterPath
+import com.tencent.mmkv.MMKV
 import com.yds.base.BaseDataBindingActivity
 import com.yds.base.countDown
 import com.yds.core.UserInfoTool
@@ -19,7 +19,7 @@ class WelcomeActivity : BaseDataBindingActivity<ActivityWelcomeBinding, BaseView
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val isFirstEnter = SPUtils.getInstance("CommonParams").getBoolean("isFirstEnter", true)
+        val isFirstEnter = MMKV.defaultMMKV().decodeBool("isFirstEnter", true)
         if (!isFirstEnter) {
             jumpToMain()
         }
@@ -30,8 +30,8 @@ class WelcomeActivity : BaseDataBindingActivity<ActivityWelcomeBinding, BaseView
         super.initData()
         initImmersionBar(R.color.transparent)
         if (RetrofitClient.hasCookie()) {
-            val loginState = SPUtils.getInstance("UserInfo").getBoolean("loginState")
-            val userName = SPUtils.getInstance("UserInfo").getString("username")
+            val loginState = MMKV.defaultMMKV().decodeBool("loginState", false)
+            val userName = MMKV.defaultMMKV().decodeString("username", "") ?: ""
             UserInfoTool.setLoginState(loginState)
             UserInfoTool.setUserName(userName)
         }
@@ -40,7 +40,7 @@ class WelcomeActivity : BaseDataBindingActivity<ActivityWelcomeBinding, BaseView
             next = {
                 mBinding?.countDown?.text = it.toString()
             }, end = {
-                SPUtils.getInstance("CommonParams").put("isFirstEnter", false)
+                MMKV.defaultMMKV().encode("isFirstEnter", false)
                 jumpToMain()
             })
 

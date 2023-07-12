@@ -1,8 +1,8 @@
 package com.yds.login.vm
 
 import androidx.lifecycle.MutableLiveData
-import com.blankj.utilcode.util.SPUtils
 import com.crystallake.base.vm.BaseViewModel
+import com.tencent.mmkv.MMKV
 import com.yds.base.bus.Bus
 import com.yds.base.bus.BusChannel
 import com.yds.core.ILogin
@@ -36,8 +36,8 @@ class LoginViewModel : BaseViewModel(), ILogin {
                 registerData.value = it.data
                 UserInfo.mUserName = it.data?.username
                 UserInfo.mLoginState = true
-                SPUtils.getInstance("UserInfo").put("username", UserInfo.mUserName)
-                SPUtils.getInstance("UserInfo").put("loginState", UserInfo.mLoginState)
+                MMKV.defaultMMKV().encode("username", UserInfo.mUserName)
+                MMKV.defaultMMKV().encode("loginState", UserInfo.mLoginState)
                 Bus.post(BusChannel.LOGIN_STATUS_CHANNEL, true)
             },
             cancel = {
@@ -61,8 +61,8 @@ class LoginViewModel : BaseViewModel(), ILogin {
                 loginData.value = it.data
                 UserInfo.mUserName = it.data?.username
                 UserInfo.mLoginState = true
-                SPUtils.getInstance("UserInfo").put("username", UserInfo.mUserName)
-                SPUtils.getInstance("UserInfo").put("loginState", UserInfo.mLoginState)
+                MMKV.defaultMMKV().encode("username", UserInfo.mUserName)
+                MMKV.defaultMMKV().encode("loginState", UserInfo.mLoginState)
                 Bus.post(BusChannel.LOGIN_STATUS_CHANNEL, true)
             },
             cancel = {
@@ -81,7 +81,8 @@ class LoginViewModel : BaseViewModel(), ILogin {
             },
             success = {
                 UserInfo.mLoginState = false
-                SPUtils.getInstance("UserInfo").clear()
+                MMKV.defaultMMKV().remove("username")
+                MMKV.defaultMMKV().remove("loginState")
                 Bus.post(BusChannel.LOGIN_STATUS_CHANNEL, false)
             },
             cancel = {}

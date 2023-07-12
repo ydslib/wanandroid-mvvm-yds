@@ -60,4 +60,5 @@ dependencies {
     api 'com.github.Justson:Downloader:v5.0.4-androidx'
     implementation "com.google.android.material:material:${Deps.materialVersion}"
     api "androidx.metrics:metrics-performance:1.0.0-alpha03"
+    api "com.tencent:mmkv:1.2.16"
 }
