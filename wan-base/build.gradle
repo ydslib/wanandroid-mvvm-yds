@@ -61,4 +61,6 @@ dependencies {
     implementation "com.google.android.material:material:${Deps.materialVersion}"
     api "androidx.metrics:metrics-performance:1.0.0-alpha03"
     api "com.tencent:mmkv:1.2.16"
+    debugApi "io.github.didi.dokit:dokitx:3.7.0.1"
+    releaseApi "io.github.didi.dokit:dokitx-no-op:3.7.0.1"
 }
