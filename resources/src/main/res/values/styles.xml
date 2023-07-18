@@ -10,4 +10,9 @@
         <item name="colorControlNormal">@color/color_583EF2</item>
         <item name="colorControlActivated">@color/color_87AADC</item>
     </style>
+
+    <style name="RoundCornerStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/dp_5</item>
+    </style>
 </resources>

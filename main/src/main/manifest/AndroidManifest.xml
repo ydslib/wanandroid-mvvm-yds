@@ -9,6 +9,9 @@
         android:name=".MainApp"
         android:theme="@style/WanTheme">
         <activity
+            android:name=".RealMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".CollectActivity"
             android:exported="false" />
         <activity
@@ -29,7 +32,8 @@
             android:name=".TestActivity"
             android:exported="false"
             android:launchMode="singleTask" />
-        <activity android:name=".WelcomeActivity"
+        <activity
+            android:name=".WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

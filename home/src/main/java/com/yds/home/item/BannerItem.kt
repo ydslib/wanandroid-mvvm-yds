@@ -3,12 +3,14 @@ package com.yds.home.item
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
+import com.blankj.utilcode.util.ScreenUtils
 import com.yds.home.databinding.HomeBannerItemBinding
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 import com.bumptech.glide.Glide
 import com.yds.base.fastrecycler.ItemProxy
 import com.yds.base.fastrecycler.viewholder.ItemViewHolder
+import com.yds.home.R
 import com.yds.home.model.BannerItem
 import com.youth.banner.indicator.CircleIndicator
 
@@ -52,6 +54,7 @@ class BannerItem(val bannerItem: List<BannerItem>, private val lifecycleOwner: L
                 Glide.with(it.imageView.context)
                     .load(data?.imagePath)
                     .centerCrop()
+                    .override(ScreenUtils.getScreenWidth(), it.imageView.context.resources.getDimensionPixelSize(R.dimen.dp_200))
                     .into(it.imageView)
             }
         }

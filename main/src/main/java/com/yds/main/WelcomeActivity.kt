@@ -47,7 +47,7 @@ class WelcomeActivity : BaseDataBindingActivity<ActivityWelcomeBinding, BaseView
     }
 
     fun jumpToMain() {
-        ARouter.getInstance().build(RouterPath.MAIN_ACTIVITY).navigation()
+        ARouter.getInstance().build(RouterPath.MAIN_REAL_MAIN_ACTIVITY).navigation()
         finish()
     }
 }

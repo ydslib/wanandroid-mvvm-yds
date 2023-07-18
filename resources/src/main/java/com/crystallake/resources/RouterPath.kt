@@ -17,6 +17,7 @@ object RouterPath {
     const val MAIN_GALLERY_ACTIVITY = "/main/GalleryActivity"
     const val MINE_COLLECT_FRAGMENT = "/mine/CollectFragment"
     const val MAIN_COLLECT_ACTIVITY = "/main/CollectActivity"
+    const val MAIN_REAL_MAIN_ACTIVITY = "/main/RealMainActivity"
     const val SCAN_OCR_ACTIVITY = "/scan/OcrActivity"
     const val SCAN_RESULT_LIST_ACTIVITY = "/scan/ResultListActivity"
 }
