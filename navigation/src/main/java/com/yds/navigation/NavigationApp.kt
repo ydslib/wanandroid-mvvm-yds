@@ -1,10 +1,10 @@
 package com.yds.navigation
 
-import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
+import com.crystallake.base.app.BaseApplication
 import com.yds.core.AppInit
 
-class NavigationApp : Application(), AppInit {
+class NavigationApp : BaseApplication(), AppInit {
 
 
     override fun onCreate() {

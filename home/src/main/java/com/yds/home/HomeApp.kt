@@ -1,11 +1,11 @@
 package com.yds.home
 
-import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
+import com.crystallake.base.app.BaseApplication
 import com.crystallake.base.net.RetrofitClient
 import com.yds.core.AppInit
 
-class HomeApp : Application(), AppInit {
+class HomeApp : BaseApplication(), AppInit {
 
     override fun onCreate() {
         super.onCreate()

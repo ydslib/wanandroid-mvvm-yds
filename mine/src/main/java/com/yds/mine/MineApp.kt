@@ -1,10 +1,10 @@
 package com.yds.mine
 
-import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
+import com.crystallake.base.app.BaseApplication
 import com.yds.core.AppInit
 
-class MineApp : Application(), AppInit {
+class MineApp : BaseApplication(), AppInit {
 
     override fun onCreate() {
         super.onCreate()

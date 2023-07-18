@@ -1,10 +1,10 @@
 package com.yds.login
 
-import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
+import com.crystallake.base.app.BaseApplication
 import com.yds.core.AppInit
 
-class LoginApp : Application(), AppInit {
+class LoginApp : BaseApplication(), AppInit {
 
     override fun onCreate() {
         super.onCreate()

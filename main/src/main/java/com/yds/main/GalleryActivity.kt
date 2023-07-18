@@ -21,25 +21,24 @@ class GalleryActivity : BaseDataBindingActivity<ActivityGalleryBinding, GalleryV
 
     companion object {
         val MANIFEST = arrayOf(WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE)
-        var currentPosition = 0
         const val KEY_CURRENT_POSITION = "com.yds.main.GalleryActivity.currentPosition"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (savedInstanceState != null) {
-            currentPosition = savedInstanceState.getInt(KEY_CURRENT_POSITION, 0)
-        }
+//        if (savedInstanceState != null) {
+//            GalleryViewModel.currentPosition = savedInstanceState.getInt(KEY_CURRENT_POSITION, 0)
+//        }
     }
 
     override fun initDataBindingConfig(): DataBindingConfig {
         return DataBindingConfig(R.layout.activity_gallery)
     }
 
-    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
-        super.onSaveInstanceState(outState, outPersistentState)
-        outState.putInt(KEY_CURRENT_POSITION, currentPosition)
-    }
+//    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+//        super.onSaveInstanceState(outState, outPersistentState)
+//        outState.putInt(KEY_CURRENT_POSITION, GalleryViewModel.currentPosition)
+//    }
 
 
     override fun initData() {

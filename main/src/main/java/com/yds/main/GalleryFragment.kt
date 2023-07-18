@@ -1,15 +1,11 @@
 package com.yds.main
 
 import android.os.Bundle
-import android.transition.TransitionInflater
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.core.app.SharedElementCallback
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import androidx.core.app.ActivityOptionsCompat
+import com.alibaba.android.arouter.launcher.ARouter
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.fragment.DataBindingFragment
+import com.crystallake.resources.RouterPath
 import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
@@ -20,56 +16,30 @@ import com.yds.main.vm.GalleryViewModel
 
 class GalleryFragment : DataBindingFragment<FragmentGalleryBinding, GalleryViewModel>() {
 
-    private val activityViewModel by lazy {
-        getActivityScopeViewModel(GalleryViewModel::class.java)
+    private val appViewModel by lazy {
+        getApplicationScopeViewModel(GalleryViewModel::class.java)
     }
 
     private val adapter by lazy {
-        GalleryAdapter({
-            startPostponedEnterTransition()
-        }, { position, view ->
-            GalleryActivity.currentPosition = position
-//            (exitTransition as TransitionSet).excludeTarget(view,true)
-            fragmentManager?.beginTransaction()
-                ?.setReorderingAllowed(true)
-                ?.addSharedElement(view, view.transitionName)
-                ?.replace(
-                    R.id.container,
-                    ImagePagerFragment(),
-                    ImagePagerFragment::class.java.simpleName
-                )?.addToBackStack(null)
-                ?.commit()
-
-        })
-    }
-
-    override fun createObserver() {
-//        activityViewModel?.imageUriList?.observe(this) {
-//            adapter.dataList.clear()
-//            adapter.dataList.addAll(it)
-//            adapter.notifyDataSetChanged()
-//        }
-        activityViewModel?.imageBitmapList?.observe(this){
-            adapter.dataList.clear()
-            adapter.dataList.addAll(it)
-            adapter.notifyDataSetChanged()
+        GalleryAdapter { v, position ->
+            ARouter.getInstance().build(RouterPath.MAIN_PREVIEW_IMAGE_ACTIVITY).apply {
+//                withOptionsCompat(
+//                    ActivityOptionsCompat.makeSceneTransitionAnimation(
+//                        requireActivity(),
+//                        v,
+//                        GalleryViewModel.SHARED_ELEMENT_NAME
+//                    )
+//                )
+            }.withInt("position", position)
+                .navigation()
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = super.onCreateView(inflater, container, savedInstanceState)
-        prepareTransitions()
-        postponeEnterTransition()
-        return view
-    }
-
-    override fun loadDataAfterCreate() {
-        super.loadDataAfterCreate()
-        scrollToPosition()
+    override fun createObserver() {
+        appViewModel?.imageBitmapList?.observe(this) {
+            adapter.setList(it)
+            adapter.notifyDataSetChanged()
+        }
     }
 
     override fun initView(savedInstanceState: Bundle?) {
@@ -84,16 +54,16 @@ class GalleryFragment : DataBindingFragment<FragmentGalleryBinding, GalleryViewM
             }
 //            it.layoutManager = flexboxLayoutManager
         }
-        activityViewModel?.readPic()
+        appViewModel?.readPic()
 
         mBinding?.smartRefreshLayout?.setOnRefreshListener {
-            activityViewModel?.getPicData(GalleryViewModel.REFRESH)
+            appViewModel?.getPicData(GalleryViewModel.REFRESH)
             it.finishRefresh()
         }
 
         mBinding?.smartRefreshLayout?.setOnLoadMoreListener {
-            activityViewModel?.getPicData(GalleryViewModel.LOADMORE)
-            activityViewModel?.page = (activityViewModel?.page ?: 0) + 1
+            appViewModel?.getPicData(GalleryViewModel.LOADMORE)
+            appViewModel?.page = (appViewModel?.page ?: 0) + 1
             it.finishLoadMore()
         }
 
@@ -107,56 +77,5 @@ class GalleryFragment : DataBindingFragment<FragmentGalleryBinding, GalleryViewM
 
     override fun initDataBindingConfig(): DataBindingConfig {
         return DataBindingConfig(R.layout.fragment_gallery)
-    }
-
-    private fun scrollToPosition() {
-        mBinding?.recyclerView?.addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
-            override fun onLayoutChange(
-                v: View?,
-                left: Int,
-                top: Int,
-                right: Int,
-                bottom: Int,
-                oldLeft: Int,
-                oldTop: Int,
-                oldRight: Int,
-                oldBottom: Int
-            ) {
-                mBinding?.recyclerView?.removeOnLayoutChangeListener(this)
-                val layoutManager = mBinding?.recyclerView?.layoutManager
-                val viewAtPosition =
-                    layoutManager?.findViewByPosition(GalleryActivity.currentPosition)
-                if (viewAtPosition == null || layoutManager.isViewPartiallyVisible(
-                        viewAtPosition,
-                        false,
-                        true
-                    )
-                ) {
-                    mBinding?.recyclerView?.post {
-                        layoutManager?.scrollToPosition(GalleryActivity.currentPosition)
-                    }
-                }
-            }
-
-        })
-    }
-
-    private fun prepareTransitions() {
-        exitTransition = TransitionInflater.from(requireContext())
-            .inflateTransition(R.transition.grid_exit_transition)
-        setExitSharedElementCallback(object : SharedElementCallback() {
-            override fun onMapSharedElements(
-                names: MutableList<String>?,
-                sharedElements: MutableMap<String, View>?
-            ) {
-                val selectedViewHolder =
-                    mBinding?.recyclerView?.findViewHolderForAdapterPosition(GalleryActivity.currentPosition)
-                        ?: return
-                sharedElements?.put(
-                    names?.get(0) ?: "",
-                    selectedViewHolder.itemView.findViewById(R.id.img)
-                )
-            }
-        })
     }
 }

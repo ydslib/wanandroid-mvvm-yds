@@ -23,6 +23,7 @@
             android:name=".MainActivity"
             android:launchMode="singleTask" />
         <activity android:name=".GalleryActivity"/>
+        <activity android:name=".PreviewImageActivity"/>
     </application>
 
 </manifest>

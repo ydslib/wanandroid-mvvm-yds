@@ -24,6 +24,7 @@ class GalleryViewModel(val app: Application) : AndroidViewModel(app) {
     companion object {
         const val REFRESH = 0
         const val LOADMORE = 1
+        const val SHARED_ELEMENT_NAME = "share_image"
     }
 
     fun readPic() {
@@ -58,6 +59,7 @@ class GalleryViewModel(val app: Application) : AndroidViewModel(app) {
                 imageDataList.addAll(uriList)
                 val list = getOnePageData()
                 imageUriList.postValue(list)
+                //转化为bitmap
                 val bitmapList = setImageBitmapList(list)
                 imageBitmapList.postValue(bitmapList)
                 page = 1
@@ -120,7 +122,6 @@ class GalleryViewModel(val app: Application) : AndroidViewModel(app) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val list = getOnePageData()
-                imageUriList.postValue(list)
                 val bitmapList = setDataWithState(state, list)
                 imageBitmapList.postValue(bitmapList)
             }
@@ -136,6 +137,12 @@ class GalleryViewModel(val app: Application) : AndroidViewModel(app) {
                 imageBitmapList?.value?.let {
                     bitmapList.addAll(it)
                 }
+                val tmpList = mutableListOf<Uri>()
+                imageUriList.value?.let {
+                    tmpList.addAll(it)
+                }
+                tmpList.addAll(list)
+                imageUriList.postValue(tmpList)
             }
         }
         bitmapList.addAll(setImageBitmapList(list))
