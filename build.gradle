@@ -8,6 +8,7 @@ buildscript {
 //        google()
 //        jcenter()
         maven { url 'https://www.jitpack.io' }
+        maven { url 'file:///Users/yds/AndroidWorkspace/maven/' }
 
     }
     dependencies {
@@ -27,7 +28,7 @@ allprojects {
 //        google()
 //        jcenter()
         maven { url 'https://www.jitpack.io' }
-
+        maven { url 'file:///Users/yds/AndroidWorkspace/maven/' }
     }
 }
 

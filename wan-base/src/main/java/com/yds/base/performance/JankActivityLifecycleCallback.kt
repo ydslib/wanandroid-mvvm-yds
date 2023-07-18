@@ -93,9 +93,13 @@ class JankActivityLifecycleCallback : Application.ActivityLifecycleCallbacks {
     }
 
     override fun onActivityPaused(activity: Activity) {
-        jankAggregatorMap[activity.javaClass.simpleName]?.let {
-            it.issueJankReport("Activity paused")
-            it.jankStats.isTrackingEnabled = false
+        try {
+            jankAggregatorMap[activity.javaClass.simpleName]?.let {
+                it.issueJankReport("Activity paused")
+                it.jankStats.isTrackingEnabled = false
+            }
+        } catch (e: Exception) {
+
         }
     }
 

@@ -1,7 +1,5 @@
 package com.yds.main.adapter
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
