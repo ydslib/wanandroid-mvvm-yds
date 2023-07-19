@@ -1,13 +1,13 @@
-package com.yds.home.vm
+package com.yds.home.fjs.vm
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.crystallake.base.vm.BaseViewModel
-import com.yds.home.HomeRequest
-import com.yds.home.db.ArticleDatabase
-import com.yds.home.model.ArticleModel
-import com.yds.home.model.HomeModel
+import com.yds.home.fjs.HomeRequest
+import com.yds.home.fjs.db.ArticleDatabase
+import com.yds.home.fjs.model.ArticleModel
+import com.yds.home.fjs.model.HomeModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch

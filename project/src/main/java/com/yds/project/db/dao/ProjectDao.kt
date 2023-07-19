@@ -3,7 +3,7 @@ package com.yds.project.db.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
-import com.yds.home.model.BaseArticle
+import com.yds.home.fjs.model.BaseArticle
 import com.yds.project.model.ProjectTitleModel
 
 @Dao

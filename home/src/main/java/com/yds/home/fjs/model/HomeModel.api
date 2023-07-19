@@ -1,9 +1,9 @@
-package com.yds.home.model
+package com.yds.home.fjs.model
 
 import androidx.room.*
-import com.yds.home.convert.BannerItemConvert
-import com.yds.home.convert.BaseArticleTypeConvert
-import com.yds.home.convert.ArticleModelConvert
+import com.yds.home.fjs.convert.ArticleModelConvert
+import com.yds.home.fjs.convert.BannerItemConvert
+import com.yds.home.fjs.convert.BaseArticleTypeConvert
 
 
 @Entity(tableName = "articleModel")
@@ -66,7 +66,7 @@ data class BaseArticle(
 }
 
 @Entity(tableName = "bannerItem")
-data class BannerItem(
+data class BannerItemData(
     var desc: String? = null,
     @PrimaryKey
     var id: Int,
@@ -86,5 +86,5 @@ data class HomeModel(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
     var articleModel: ArticleModel? = null,
-    var banner: List<BannerItem>? = null
+    var banner: List<BannerItemData>? = null
 )

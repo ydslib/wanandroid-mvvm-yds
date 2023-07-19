@@ -2,7 +2,7 @@ package com.yds.mine
 
 import com.crystallake.base.net.RetrofitClient
 import com.yds.core.net.BaseResponse
-import com.yds.home.model.ArticleModel
+import com.yds.home.fjs.model.ArticleModel
 import com.yds.mine.api.MineApi
 import com.yds.mine.model.CoinModel
 

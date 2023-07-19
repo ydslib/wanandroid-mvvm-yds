@@ -3,7 +3,7 @@ package com.crystallake.knowledgehierarchy
 import com.crystallake.base.net.RetrofitClient
 import com.crystallake.knowledgehierarchy.api.KnowledgeApi
 import com.yds.core.net.BaseResponse
-import com.yds.home.model.ArticleModel
+import com.yds.home.fjs.model.ArticleModel
 import com.yds.project.model.ProjectTitleModel
 
 object KnowledgeRequest {

@@ -1,4 +1,4 @@
-package com.yds.home.item
+package com.yds.home.fjs.item
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,10 +11,10 @@ import com.bumptech.glide.Glide
 import com.yds.base.fastrecycler.ItemProxy
 import com.yds.base.fastrecycler.viewholder.ItemViewHolder
 import com.yds.home.R
-import com.yds.home.model.BannerItem
+import com.yds.home.fjs.model.BannerItemData
 import com.youth.banner.indicator.CircleIndicator
 
-class BannerItem(val bannerItem: List<BannerItem>, private val lifecycleOwner: LifecycleOwner) :
+class BannerItem(val bannerItem: List<BannerItemData>, private val lifecycleOwner: LifecycleOwner) :
     ItemProxy<HomeBannerItemBinding>() {
     override fun generateItemViewBinding(
         inflater: LayoutInflater,
@@ -48,8 +48,8 @@ class BannerItem(val bannerItem: List<BannerItem>, private val lifecycleOwner: L
         }
     }
 
-    inner class MyBannerImageAdapter(val bannerItem: List<BannerItem>) : BannerImageAdapter<BannerItem>(bannerItem) {
-        override fun onBindView(holder: BannerImageHolder?, data: BannerItem?, position: Int, size: Int) {
+    inner class MyBannerImageAdapter(val bannerItem: List<BannerItemData>) : BannerImageAdapter<BannerItemData>(bannerItem) {
+        override fun onBindView(holder: BannerImageHolder?, data: BannerItemData?, position: Int, size: Int) {
             holder?.let {
                 Glide.with(it.imageView.context)
                     .load(data?.imagePath)

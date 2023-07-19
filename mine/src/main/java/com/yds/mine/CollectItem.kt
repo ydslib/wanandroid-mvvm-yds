@@ -9,7 +9,7 @@ import com.crystallake.base.fastrecycler.viewholder.ItemViewHolder
 import com.crystallake.resources.ARTICLE_TITLE
 import com.crystallake.resources.ARTICLE_URL
 import com.crystallake.resources.RouterPath
-import com.yds.home.model.BaseArticle
+import com.yds.home.fjs.model.BaseArticle
 import com.yds.mine.databinding.ItemCollectBinding
 
 class CollectItem(

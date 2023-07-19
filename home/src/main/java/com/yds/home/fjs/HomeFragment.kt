@@ -1,4 +1,4 @@
-package com.yds.home
+package com.yds.home.fjs
 
 import android.os.Bundle
 import androidx.core.view.isVisible
@@ -12,10 +12,12 @@ import com.crystallake.resources.RouterPath
 import com.yds.base.BaseDataBindingFragment
 import com.yds.base.fastrecycler.adapter.MultiDataBindingAdapter
 import com.yds.core.UserInfoTool
+import com.yds.home.BuildConfig
+import com.yds.home.R
 import com.yds.home.databinding.FragmentHomeBinding
-import com.yds.home.item.BannerItem
-import com.yds.home.item.HomeCarItem
-import com.yds.home.vm.HomeFragmentViewModel
+import com.yds.home.fjs.item.BannerItem
+import com.yds.home.fjs.item.HomeCarItem
+import com.yds.home.fjs.vm.HomeFragmentViewModel
 
 @Route(path = RouterPath.HOME_FRAGMENT)
 class HomeFragment : BaseDataBindingFragment<FragmentHomeBinding, HomeFragmentViewModel>() {

@@ -1,17 +1,17 @@
-package com.yds.home.db
+package com.yds.home.fjs.db
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.yds.home.model.ArticleModel
-import com.yds.home.model.BannerItem
-import com.yds.home.model.BaseArticle
-import com.yds.home.model.HomeModel
+import com.yds.home.fjs.model.ArticleModel
+import com.yds.home.fjs.model.BannerItemData
+import com.yds.home.fjs.model.BaseArticle
+import com.yds.home.fjs.model.HomeModel
 
 @Database(
-    entities = [HomeModel::class, ArticleModel::class, BaseArticle::class, BannerItem::class],
+    entities = [HomeModel::class, ArticleModel::class, BaseArticle::class, BannerItemData::class],
     version = 1
 )
 abstract class ArticleDatabase : RoomDatabase() {

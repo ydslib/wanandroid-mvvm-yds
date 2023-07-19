@@ -1,11 +1,11 @@
-package com.yds.home.convert
+package com.yds.home.fjs.convert
 
 import androidx.room.TypeConverter
 import com.google.gson.reflect.TypeToken
 import com.yds.base.GsonUtil
-import com.yds.home.model.ArticleModel
-import com.yds.home.model.BannerItem
-import com.yds.home.model.BaseArticle
+import com.yds.home.fjs.model.ArticleModel
+import com.yds.home.fjs.model.BannerItemData
+import com.yds.home.fjs.model.BaseArticle
 
 
 class BaseArticleTypeConvert {
@@ -24,13 +24,13 @@ class BaseArticleTypeConvert {
 class BannerItemConvert {
 
     @TypeConverter
-    fun bannerItemConvertString(banner: List<BannerItem>?): String? {
+    fun bannerItemConvertString(banner: List<BannerItemData>?): String? {
         return GsonUtil.gson.toJson(banner)
     }
 
     @TypeConverter
-    fun stringToBannerItem(json: String?): List<BannerItem>? {
-        val type = object : TypeToken<List<BannerItem>>() {}.type
+    fun stringToBannerItem(json: String?): List<BannerItemData>? {
+        val type = object : TypeToken<List<BannerItemData>>() {}.type
         return GsonUtil.gson.fromJson(json, type)
     }
 }

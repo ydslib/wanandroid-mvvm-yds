@@ -1,13 +1,10 @@
-package com.yds.home.db
+package com.yds.home.fjs.db
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.yds.home.model.ArticleModel
-import com.yds.home.model.BannerItem
-import com.yds.home.model.BaseArticle
-import com.yds.home.model.HomeModel
+import com.yds.home.fjs.model.*
 
 @Dao
 interface BaseArticleDao {
@@ -25,5 +22,5 @@ interface BaseArticleDao {
     suspend fun insertBaseArticle(baseArticle: BaseArticle?)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertBannerItem(bannerItem: BannerItem?)
+    suspend fun insertBannerItem(bannerItem: BannerItemData?)
 }

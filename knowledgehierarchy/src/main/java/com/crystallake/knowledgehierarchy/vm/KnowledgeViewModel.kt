@@ -3,8 +3,8 @@ package com.crystallake.knowledgehierarchy.vm
 import androidx.lifecycle.MutableLiveData
 import com.crystallake.base.vm.BaseViewModel
 import com.crystallake.knowledgehierarchy.KnowledgeRequest
-import com.yds.home.model.ArticleModel
-import com.yds.home.model.BaseArticle
+import com.yds.home.fjs.model.ArticleModel
+import com.yds.home.fjs.model.BaseArticle
 import com.yds.project.model.ProjectTitleModel
 
 class KnowledgeViewModel : BaseViewModel() {

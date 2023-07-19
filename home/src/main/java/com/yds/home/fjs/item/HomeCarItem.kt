@@ -1,4 +1,4 @@
-package com.yds.home.item
+package com.yds.home.fjs.item
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,7 +11,7 @@ import com.yds.base.fastrecycler.ItemProxy
 import com.yds.base.fastrecycler.viewholder.ItemViewHolder
 import com.yds.home.R
 import com.yds.home.databinding.HomeCarItemBinding
-import com.yds.home.model.BaseArticle
+import com.yds.home.fjs.model.BaseArticle
 
 class HomeCarItem(
     val baseArticle: BaseArticle,

@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.crystallake.resources.ARTICLE_TITLE
 import com.crystallake.resources.ARTICLE_URL
 import com.crystallake.resources.RouterPath
-import com.yds.home.model.BaseArticle
+import com.yds.home.fjs.model.BaseArticle
 import com.yds.project.databinding.ProjectArticleItemBinding
 
 class ProjectArticleAdapter(val dataList: MutableList<BaseArticle>?) :

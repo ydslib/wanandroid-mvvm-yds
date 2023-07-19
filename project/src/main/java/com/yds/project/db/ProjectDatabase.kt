@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.yds.home.model.BaseArticle
+import com.yds.home.fjs.model.BaseArticle
 import com.yds.project.db.dao.ProjectDao
 import com.yds.project.model.ProjectTitleModel
 

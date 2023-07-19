@@ -12,7 +12,7 @@ import com.crystallake.knowledgehierarchy.databinding.ItemKnowledgeCardBinding
 import com.crystallake.resources.ARTICLE_TITLE
 import com.crystallake.resources.ARTICLE_URL
 import com.crystallake.resources.RouterPath
-import com.yds.home.model.BaseArticle
+import com.yds.home.fjs.model.BaseArticle
 
 class KnowledgeCardItem(
     val baseArticle: BaseArticle,

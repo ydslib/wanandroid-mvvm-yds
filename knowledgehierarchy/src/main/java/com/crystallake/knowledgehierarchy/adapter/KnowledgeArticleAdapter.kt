@@ -3,7 +3,6 @@ package com.crystallake.knowledgehierarchy.adapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.launcher.ARouter
@@ -14,7 +13,7 @@ import com.crystallake.knowledgehierarchy.diff.DiffCallBack
 import com.crystallake.resources.ARTICLE_TITLE
 import com.crystallake.resources.ARTICLE_URL
 import com.crystallake.resources.RouterPath
-import com.yds.home.model.BaseArticle
+import com.yds.home.fjs.model.BaseArticle
 
 class KnowledgeArticleAdapter(
     val dataList: MutableList<BaseArticle>,

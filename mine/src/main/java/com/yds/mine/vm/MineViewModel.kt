@@ -2,7 +2,7 @@ package com.yds.mine.vm
 
 import androidx.lifecycle.MutableLiveData
 import com.crystallake.base.vm.BaseViewModel
-import com.yds.home.model.ArticleModel
+import com.yds.home.fjs.model.ArticleModel
 import com.yds.mine.MineRequest
 import com.yds.mine.model.CoinModel
 

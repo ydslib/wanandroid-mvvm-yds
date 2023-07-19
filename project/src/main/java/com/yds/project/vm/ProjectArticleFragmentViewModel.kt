@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.crystallake.base.vm.BaseViewModel
-import com.yds.home.model.BaseArticle
+import com.yds.home.fjs.model.BaseArticle
 import com.yds.project.ProjectRequest
 import com.yds.project.db.ProjectDatabase
 import kotlinx.coroutines.Dispatchers

@@ -1,7 +1,7 @@
 package com.crystallake.knowledgehierarchy.api
 
 import com.yds.core.net.BaseResponse
-import com.yds.home.model.ArticleModel
+import com.yds.home.fjs.model.ArticleModel
 import com.yds.project.model.ProjectTitleModel
 import retrofit2.http.GET
 import retrofit2.http.Path

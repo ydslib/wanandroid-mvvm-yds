@@ -1,11 +1,10 @@
 package com.yds.home
 
-import com.crystallake.base.activity.DataBindingActivity
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.vm.BaseViewModel
-import com.gyf.immersionbar.ktx.immersionBar
 import com.yds.base.BaseDataBindingActivity
 import com.yds.home.databinding.ActivityHomeBinding
+import com.yds.home.fjs.HomeFragment
 
 class HomeActivity : BaseDataBindingActivity<ActivityHomeBinding, BaseViewModel>() {
 

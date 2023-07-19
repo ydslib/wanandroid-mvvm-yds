@@ -1,9 +1,9 @@
-package com.yds.home
+package com.yds.home.fjs
 
 import com.crystallake.base.net.RetrofitClient
 import com.yds.core.net.BaseResponse
-import com.yds.home.model.ArticleModel
-import com.yds.home.model.BannerItem
+import com.yds.home.fjs.model.ArticleModel
+import com.yds.home.fjs.model.BannerItemData
 
 object HomeRequest {
 
@@ -11,7 +11,7 @@ object HomeRequest {
         return RetrofitClient.create(HomeApi::class.java).getHomeArticle(num)
     }
 
-    suspend fun getBanner(): BaseResponse<List<BannerItem>> {
+    suspend fun getBanner(): BaseResponse<List<BannerItemData>> {
         return RetrofitClient.create(HomeApi::class.java).getBanner()
     }
 

@@ -1,7 +1,7 @@
 package com.crystallake.knowledgehierarchy.diff
 
 import androidx.recyclerview.widget.DiffUtil
-import com.yds.home.model.BaseArticle
+import com.yds.home.fjs.model.BaseArticle
 
 class DiffCallBack(
     private val newDataList: MutableList<BaseArticle>?,
