@@ -7,11 +7,12 @@ if (!isLibrary.toBoolean()) {
 apply from: "../config.gradle"
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
+
 android {
 
     defaultConfig {
-        if (!isLibrary.toBoolean()) {
-            applicationId "com.yds.mine"
+        if (!isLibrary.toBoolean()){
+            applicationId "com.yds.eyepetizer"
         }
 
         javaCompileOptions {
@@ -20,6 +21,7 @@ android {
             }
         }
     }
+
     buildFeatures {
         dataBinding = true
     }
@@ -31,17 +33,16 @@ dependencies {
     implementation "androidx.appcompat:appcompat:${Deps.appcompat}"
     implementation "com.google.android.material:material:${Deps.materialVersion}"
     implementation "androidx.constraintlayout:constraintlayout:${Deps.constraintlayout}"
-    implementation project(":core")
-    implementation project(':wan-base')
-    implementation project(":home-api")
-    implementation project(":resources")
-    implementation project(":scan")
-    implementation "com.github.ydslib:Base:${Deps.baseVersion}"
-    implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
-    kapt "com.alibaba:arouter-compiler:${Deps.routerApiVersion}"
-    testImplementation 'junit:junit:4.+'
+    testImplementation "junit:junit:${Deps.test_junit}"
     androidTestImplementation "androidx.test.ext:junit:${Deps.androidTest_junit}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${Deps.androidTest_espresso_core}"
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation "com.github.bumptech.glide:glide:${Deps.glideVersion}"
+
+    implementation project(":core")
+    implementation project(':wan-base')
+    implementation project(":resources")
+    implementation "com.github.ydslib:Base:${Deps.baseVersion}"
+
+    implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
+    kapt "com.alibaba:arouter-compiler:${Deps.routerApiVersion}"
+    implementation "io.github.cymchad:BaseRecyclerViewAdapterHelper:${Deps.BaseRecyclerViewAdapterHelper}"
 }

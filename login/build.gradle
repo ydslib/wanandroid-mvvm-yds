@@ -39,5 +39,5 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:${Deps.androidTest_junit}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${Deps.androidTest_espresso_core}"
     implementation "com.google.android.material:material:${Deps.materialVersion}"
-    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    implementation "com.github.bumptech.glide:glide:${Deps.glideVersion}"
 }

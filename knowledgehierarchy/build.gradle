@@ -48,6 +48,6 @@ dependencies {
     implementation 'io.github.h07000223:flycoTabLayout:3.0.0'
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    implementation "com.github.bumptech.glide:glide:${Deps.glideVersion}"
     implementation "androidx.metrics:metrics-performance:1.0.0-alpha01"
 }
