@@ -22,7 +22,7 @@ class AppEntryAdapter : BaseQuickAdapter<FuncItem, BaseViewHolder>(R.layout.item
             binding?.title?.text = item.title
         }
         holder.itemView.setOnClickListener {
-            ARouter.getInstance().build(RouterPath.MAIN_ACTIVITY).navigation()
+            ARouter.getInstance().build(item.router).navigation()
         }
     }
 }

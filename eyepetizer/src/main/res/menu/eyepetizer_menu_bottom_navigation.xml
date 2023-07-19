@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/item_home"
+        android:icon="@drawable/home_bottom_selector"
+        android:title="@string/eye_dairy"
+        />
+    <item android:id="@+id/item_discovery"
+        android:icon="@drawable/discovery_bottom_selector"
+        android:title="@string/eye_discovery"
+        />
+    <item android:id="@+id/item_hot"
+        android:icon="@drawable/eye_hot_bottom_selector"
+        android:title="@string/eye_hot"
+        />
+    <item android:id="@+id/item_mine"
+        android:icon="@drawable/eye_mine_bottom_selector"
+        android:title="@string/eye_mine"
+        />
+</menu>
