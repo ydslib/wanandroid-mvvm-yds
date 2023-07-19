@@ -50,21 +50,16 @@ class HomeCarItem(
             binding.like.setImageResource(R.drawable.icon_like_article_not_selected)
         }
         binding.timeTv.text = baseArticle.niceShareDate
-    }
-
-    inner class HomeCarViewHolder(val homeCarItemBinding: HomeCarItemBinding) : ItemViewHolder(homeCarItemBinding) {
-
-        override fun initView() {
-            super.initView()
-            homeCarItemBinding.like.setOnClickListener {
-                clickListener?.invoke(position, baseArticle.collect ?: false)
-            }
-            homeCarItemBinding.root.setOnClickListener {
-                ARouter.getInstance().build(RouterPath.BROWSER_ACTIVITY).apply {
-                    extras.putString(ARTICLE_URL, baseArticle.link)
-                    extras.putString(ARTICLE_TITLE, baseArticle.title)
-                }.navigation()
-            }
+        binding.like.setOnClickListener {
+            clickListener?.invoke(position, baseArticle.collect ?: false)
+        }
+        binding.root.setOnClickListener {
+            ARouter.getInstance().build(RouterPath.BROWSER_ACTIVITY).apply {
+                extras.putString(ARTICLE_URL, baseArticle.link)
+                extras.putString(ARTICLE_TITLE, baseArticle.title)
+            }.navigation()
         }
     }
+
+    inner class HomeCarViewHolder(val homeCarItemBinding: HomeCarItemBinding) : ItemViewHolder(homeCarItemBinding)
 }
