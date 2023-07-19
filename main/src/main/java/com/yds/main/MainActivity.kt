@@ -82,24 +82,20 @@ class MainActivity : BaseDataBindingActivity<ActivityMainBinding, BaseViewModel>
                 R.id.tab_main_pager -> {
                     println("首页")
                     mBinding?.viewPager?.currentItem = 0
-                    mBinding?.homeToolbar?.isVisible = true
                     return@setOnItemSelectedListener true
                 }
                 R.id.tab_knowledge_hierarchy -> {
                     println("知识体系")
-                    mBinding?.homeToolbar?.isVisible = false
                     mBinding?.viewPager?.currentItem = 1
                     return@setOnItemSelectedListener true
                 }
                 R.id.tab_navigation -> {
                     println("导航")
-                    mBinding?.homeToolbar?.isVisible = false
                     mBinding?.viewPager?.currentItem = 2
                     return@setOnItemSelectedListener true
                 }
                 R.id.tab_project -> {
                     println("项目")
-                    mBinding?.homeToolbar?.isVisible = false
                     mBinding?.viewPager?.currentItem = 3
                     return@setOnItemSelectedListener true
                 }
@@ -113,19 +109,19 @@ class MainActivity : BaseDataBindingActivity<ActivityMainBinding, BaseViewModel>
                 when (position) {
                     0 -> {
                         mBinding?.bottomNavigation?.selectedItemId = R.id.tab_main_pager
-                        mBinding?.homeToolbar?.isVisible = true
+                        mBinding?.title?.text = getString(R.string.home_pager)
                     }
                     1 -> {
                         mBinding?.bottomNavigation?.selectedItemId = R.id.tab_knowledge_hierarchy
-                        mBinding?.homeToolbar?.isVisible = false
+                        mBinding?.title?.text = getString(R.string.knowledge_hierarchy)
                     }
                     2 -> {
                         mBinding?.bottomNavigation?.selectedItemId = R.id.tab_navigation
-                        mBinding?.homeToolbar?.isVisible = false
+                        mBinding?.title?.text = getString(R.string.navigation)
                     }
                     3 -> {
                         mBinding?.bottomNavigation?.selectedItemId = R.id.tab_project
-                        mBinding?.homeToolbar?.isVisible = false
+                        mBinding?.title?.text = getString(R.string.project)
                     }
                 }
             }
