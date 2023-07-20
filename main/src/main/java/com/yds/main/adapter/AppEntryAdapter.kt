@@ -4,6 +4,7 @@ import androidx.databinding.DataBindingUtil
 import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.crystallake.base.net.RetrofitClient
 import com.crystallake.resources.RouterPath
 import com.yds.main.R
 import com.yds.main.data.FuncItem
@@ -22,6 +23,9 @@ class AppEntryAdapter : BaseQuickAdapter<FuncItem, BaseViewHolder>(R.layout.item
             binding?.title?.text = item.title
         }
         holder.itemView.setOnClickListener {
+            item?.baseUrl?.let {
+                RetrofitClient.setup(it, arrayListOf())
+            }
             ARouter.getInstance().build(item.router).navigation()
         }
     }

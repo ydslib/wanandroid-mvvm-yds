@@ -15,7 +15,7 @@ object Deps{
     //lifecycle
     const val lifecycleVersion = "2.2.0"
 
-    const val baseVersion = "1.0.3-20230719141744"
+    const val baseVersion = "1.0.3-20230720110604"
 
     const val materialVersion = "1.3.0"
 

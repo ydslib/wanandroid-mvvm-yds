@@ -14,20 +14,27 @@ class RealMainViewModel : BaseViewModel() {
 
     val realHomeLiveData = MutableLiveData<MutableList<RealHomeData>>()
 
+    companion object{
+        const val WANANDROID = "https://www.wanandroid.com"
+        const val KAIYAN = "http://baobab.kaiyanapp.com/api/"
+    }
+
     fun getAppEntryData(context: Context) {
         val appEntryData = mutableListOf<FuncItem>()
         appEntryData.add(
             FuncItem(
                 localIcon = R.drawable.ic_fju,
                 title = context.getString(R.string.fju),
-                router = RouterPath.MAIN_ACTIVITY
+                router = RouterPath.MAIN_ACTIVITY,
+                baseUrl = WANANDROID
             )
         )
         appEntryData.add(
             FuncItem(
                 localIcon = R.drawable.ic_eyepetizer,
                 title = context.getString(R.string.eyepetizer),
-                router = RouterPath.EYEPETIZER_ACTIVITY
+                router = RouterPath.EYEPETIZER_ACTIVITY,
+                baseUrl = KAIYAN
             )
         )
 

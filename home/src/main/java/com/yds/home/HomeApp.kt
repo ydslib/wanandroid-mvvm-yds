@@ -10,7 +10,6 @@ class HomeApp : BaseApplication(), AppInit {
     override fun onCreate() {
         super.onCreate()
         ARouter.init(this)
-        RetrofitClient.setup("https://www.wanandroid.com", arrayListOf())
     }
 
     override fun initAllModuleSdk() {

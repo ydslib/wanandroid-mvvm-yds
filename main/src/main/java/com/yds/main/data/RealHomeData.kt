@@ -4,7 +4,8 @@ data class FuncItem(
     val icon: String? = null,
     val localIcon: Int? = null,
     val title: String? = null,
-    val router: String? = null
+    val router: String? = null,
+    val baseUrl: String? = null
 )
 
 data class FuncItemData(
