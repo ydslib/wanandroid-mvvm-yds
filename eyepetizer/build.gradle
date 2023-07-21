@@ -41,6 +41,8 @@ dependencies {
     implementation project(':wan-base')
     implementation project(":resources")
     implementation "com.github.ydslib:Base:${Deps.baseVersion}"
+    implementation "io.github.youth5201314:banner:${Deps.bannerVersion}"
+    implementation "com.github.bumptech.glide:glide:${Deps.glideVersion}"
 
     implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
     kapt "com.alibaba:arouter-compiler:${Deps.routerApiVersion}"

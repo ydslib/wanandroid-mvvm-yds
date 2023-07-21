@@ -30,4 +30,5 @@ object Deps{
     const val lottieVersion = "6.0.0"
     const val BaseRecyclerViewAdapterHelper = "3.0.10"
     const val glideVersion = "4.15.1"
+    const val bannerVersion = "2.2.2"
 }
