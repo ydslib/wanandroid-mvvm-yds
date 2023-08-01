@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.vm.RequestMethod
+import com.crystallake.base.vm.State
 import com.crystallake.resources.RouterPath
 import com.gyf.immersionbar.ktx.immersionBar
 import com.yds.base.BaseDataBindingFragment
@@ -24,6 +25,11 @@ class HomeFragment : BaseDataBindingFragment<EyeFragmentHomeBinding, HomeFragmen
         mViewModel.homeBannerLiveData.observe(this) {
             homeAdapter.setList(mutableListOf())
             homeAdapter.addData(it)
+        }
+        mViewModel.homeDailyLiveData.observe(this) {
+            if (mViewModel.mStateLiveData.value == State.RefreshState) {
+
+            }
         }
     }
 

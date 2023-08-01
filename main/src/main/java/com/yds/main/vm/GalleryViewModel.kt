@@ -16,9 +16,10 @@ import kotlin.math.pow
 
 class GalleryViewModel(val app: Application) : AndroidViewModel(app) {
 
+    //本地图片所有数据
     val imageDataList = mutableListOf<Uri>()
+    //需加载的数据
     val imageUriList = MutableLiveData<MutableList<Uri>>()
-    val imageBitmapList = MutableLiveData<MutableList<Bitmap>>()
     var page = 0
 
     companion object {
@@ -59,9 +60,6 @@ class GalleryViewModel(val app: Application) : AndroidViewModel(app) {
                 imageDataList.addAll(uriList)
                 val list = getOnePageData()
                 imageUriList.postValue(list)
-                //转化为bitmap
-                val bitmapList = setImageBitmapList(list)
-                imageBitmapList.postValue(bitmapList)
                 page = 1
             }
         }
@@ -122,31 +120,25 @@ class GalleryViewModel(val app: Application) : AndroidViewModel(app) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val list = getOnePageData()
-                val bitmapList = setDataWithState(state, list)
-                imageBitmapList.postValue(bitmapList)
+                val tmpList = setDataWithState(state, list)
+                imageUriList.postValue(tmpList)
             }
         }
     }
 
-    fun setDataWithState(state: Int, list: MutableList<Uri>): MutableList<Bitmap> {
-        val bitmapList = mutableListOf<Bitmap>()
+    fun setDataWithState(state: Int, list: MutableList<Uri>): MutableList<Uri> {
+        val tmpList = mutableListOf<Uri>()
         when (state) {
             REFRESH -> {
             }
             LOADMORE -> {
-                imageBitmapList?.value?.let {
-                    bitmapList.addAll(it)
-                }
-                val tmpList = mutableListOf<Uri>()
                 imageUriList.value?.let {
                     tmpList.addAll(it)
                 }
-                tmpList.addAll(list)
-                imageUriList.postValue(tmpList)
             }
         }
-        bitmapList.addAll(setImageBitmapList(list))
-        return bitmapList
+        tmpList.addAll(list)
+        return tmpList
     }
 
     fun setPageWithState(state: Int) {

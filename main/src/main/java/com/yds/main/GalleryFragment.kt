@@ -36,7 +36,7 @@ class GalleryFragment : DataBindingFragment<FragmentGalleryBinding, GalleryViewM
     }
 
     override fun createObserver() {
-        appViewModel?.imageBitmapList?.observe(this) {
+        appViewModel?.imageUriList?.observe(this) {
             adapter.setList(it)
             adapter.notifyDataSetChanged()
         }

@@ -12,6 +12,26 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+//        val a: Int = 100
+//        val boxedA: Int? = a
+//        val anotherBoxedA: Int? = a
+//
+//        val b: Int = 10000
+//        val boxedB: Int? = b
+//        val anotherBoxedB: Int? = b
+//
+//        val d: Int = 10000
+//        val boxedD: Int? = d
+//        val anotherBoxedD: Int? = d
+
+        val c:Int? = 10000
+        val anotherC:Int? = c
+//
+//
+//
+//        println(boxedD === anotherBoxedD)
+//        println(boxedA === anotherBoxedA) // true
+//        println(boxedB === anotherBoxedB) // false
+        println(c === anotherC)
     }
 }
