@@ -4,6 +4,12 @@
  */
 package com.yds.featured;
 
+import com.yds.featured.bridge.Apple;
+import com.yds.featured.bridge.Cake;
+import com.yds.featured.bridge.Food;
+import com.yds.featured.bridge.Fruit;
+import com.yds.featured.bridge.Orange;
+import com.yds.featured.bridge.Rice;
 import com.yds.featured.decorator.BallDecorator;
 import com.yds.featured.decorator.ChristmasTree;
 import com.yds.featured.decorator.ChristmasTreeDecorator;
@@ -33,7 +39,7 @@ public class DesignPatternsTest {
 
     @Test
     public void testDesignPatterns() {
-        testDynamicProxy();
+        testBridge();
     }
 
     /**
@@ -44,6 +50,21 @@ public class DesignPatternsTest {
         MyInvocationHandler invocationHandler = new MyInvocationHandler(houseOwner);
         Rent rent = (Rent) invocationHandler.getProxy();
         rent.rent();
+    }
+
+    /**
+     * 桥接模式
+     */
+    public void testBridge() {
+        Fruit apple = new Apple();
+        Food rice = new Rice();
+        rice.setFruit(apple);
+        rice.add();
+
+        Fruit orange = new Orange();
+        Food cake = new Cake();
+        cake.setFruit(orange);
+        cake.add();
     }
 
     /**

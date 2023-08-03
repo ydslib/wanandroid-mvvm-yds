@@ -20,8 +20,8 @@ android {
             }
             annotationProcessorOptions {
                 arguments += [
-                        "room.schemaLocation":"$projectDir/schemas".toString(),
-                        "room.incremental":"true"
+                        "room.schemaLocation": "$projectDir/schemas".toString(),
+                        "room.incremental"   : "true"
                 ]
             }
         }
@@ -43,8 +43,8 @@ dependencies {
     implementation "com.github.ydslib:Base:${Deps.baseVersion}"
     implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
     kapt "com.alibaba:arouter-compiler:${Deps.routerApiVersion}"
-    implementation  "io.github.scwang90:refresh-layout-kernel:${Deps.refreshLayoutVersion}"
-    implementation  "io.github.scwang90:refresh-header-classics:${Deps.refreshLayoutVersion}"
+    implementation "io.github.scwang90:refresh-layout-kernel:${Deps.refreshLayoutVersion}"
+    implementation "io.github.scwang90:refresh-header-classics:${Deps.refreshLayoutVersion}"
     implementation project(":core")
     implementation project(":resources")
     implementation project(':wan-base')
@@ -58,6 +58,7 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.4.3'
     kapt "androidx.room:room-compiler:2.4.3"
     implementation "androidx.room:room-ktx:2.4.3"
+    implementation project(":sdk-log")
 
 //    implementation('com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.11') {
 //        exclude group: "org.jetbrains.kotlin", module: "kotlin-stdlib-jdk8"
