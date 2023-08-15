@@ -10,6 +10,16 @@ import com.yds.featured.bridge.Food;
 import com.yds.featured.bridge.Fruit;
 import com.yds.featured.bridge.Orange;
 import com.yds.featured.bridge.Rice;
+import com.yds.featured.chain.Chain;
+import com.yds.featured.chain.Interceptor;
+import com.yds.featured.chain.OneInterceptor;
+import com.yds.featured.chain.RealChain;
+import com.yds.featured.chain.ThreeInterceptor;
+import com.yds.featured.chain.TwoInterceptor;
+import com.yds.featured.chain.chain2.AbstractLogger;
+import com.yds.featured.chain.chain2.DebugLogger;
+import com.yds.featured.chain.chain2.ErrorLogger;
+import com.yds.featured.chain.chain2.InfoLogger;
 import com.yds.featured.decorator.BallDecorator;
 import com.yds.featured.decorator.ChristmasTree;
 import com.yds.featured.decorator.ChristmasTreeDecorator;
@@ -35,11 +45,45 @@ import com.yds.featured.strategy.NetworkStrategy;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DesignPatternsTest {
 
     @Test
     public void testDesignPatterns() {
-        testBridge();
+        testChain2();
+    }
+
+    /**
+     * 责任链模式
+     */
+    public void testChain2(){
+        AbstractLogger logger = getLoggerChain();
+        logger.printLogger(AbstractLogger.ERROR,"this is error msg");
+        logger.printLogger(AbstractLogger.DEBUG,"this is debug msg");
+        logger.printLogger(AbstractLogger.INFO,"this is info msg");
+    }
+
+    /**
+     * 责任链模式
+     */
+    public void testChain() {
+        List<Interceptor> list = new ArrayList<>();
+        list.add(new OneInterceptor());
+        list.add(new TwoInterceptor());
+        list.add(new ThreeInterceptor());
+        Chain realChain = new RealChain(0, list);
+        realChain.process("start");
+    }
+
+    private AbstractLogger getLoggerChain(){
+        AbstractLogger errorLogger = new ErrorLogger();
+        AbstractLogger debugLogger = new DebugLogger();
+        AbstractLogger infoLogger = new InfoLogger();
+        errorLogger.setNextLogger(debugLogger);
+        debugLogger.setNextLogger(infoLogger);
+        return errorLogger;
     }
 
     /**

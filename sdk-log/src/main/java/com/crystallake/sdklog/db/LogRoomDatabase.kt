@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.crystallake.sdklog.util.FileUtil
+import java.io.File
 
 @Database(entities = [LogDataModel::class], version = 1)
 abstract class LogRoomDatabase : RoomDatabase() {
@@ -26,7 +28,12 @@ abstract class LogRoomDatabase : RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context): LogRoomDatabase {
-            return Room.databaseBuilder(context, LogRoomDatabase::class.java, DATABASE_NAME).build()
+            val logsDir: File = FileUtil.getStorageDirect(context, "databases")
+            if (!logsDir.exists()) {
+                logsDir.mkdirs();
+            }
+            val file = File(logsDir, DATABASE_NAME)
+            return Room.databaseBuilder(context, LogRoomDatabase::class.java, file.absolutePath).build()
         }
     }
 

@@ -1,5 +1,6 @@
 package com.yds.main
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.view.View
@@ -16,7 +17,6 @@ import com.crystallake.base.vm.BaseViewModel
 import com.crystallake.resources.RouterPath
 import com.google.android.material.navigation.NavigationBarView
 import com.yds.base.BaseDataBindingActivity
-import com.yds.core.IUserInfo
 import com.yds.core.LoginTool
 import com.yds.core.UserInfoTool
 import com.yds.main.adapter.NavigationFragmentStateAdapter
@@ -36,6 +36,7 @@ class MainActivity : BaseDataBindingActivity<ActivityMainBinding, BaseViewModel>
         return DataBindingConfig(R.layout.activity_main)
     }
 
+    @SuppressLint("MissingPermission")
     override fun initData() {
         super.initData()
         initImmersionBar(R.color.color_333333)
