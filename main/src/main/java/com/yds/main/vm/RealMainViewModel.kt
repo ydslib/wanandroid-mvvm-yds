@@ -14,7 +14,7 @@ class RealMainViewModel : BaseViewModel() {
 
     val realHomeLiveData = MutableLiveData<MutableList<RealHomeData>>()
 
-    companion object{
+    companion object {
         const val WANANDROID = "https://www.wanandroid.com"
         const val KAIYAN = "http://baobab.kaiyanapp.com/api/"
     }
@@ -38,11 +38,22 @@ class RealMainViewModel : BaseViewModel() {
             )
         )
 
+        //App
         val realHomeData = RealHomeData()
         realHomeData.funcItemData = FuncItemData(itemType = RealHomeAdapter.APP_ENTRY, appEntryData)
 
+        //APP标题
+        val titleItemData = RealHomeData()
+        titleItemData.titleItemData = FuncItemData(itemType = RealHomeAdapter.TITLE, title = "APP")
+
+        //工具标题
+        val toolTitleItemData = RealHomeData()
+        toolTitleItemData.titleItemData = FuncItemData(itemType = RealHomeAdapter.TITLE, title = "工具")
+
         val realHomeDataList = mutableListOf<RealHomeData>()
+        realHomeDataList.add(titleItemData)
         realHomeDataList.add(realHomeData)
+        realHomeDataList.add(toolTitleItemData)
 
         realHomeLiveData.value = realHomeDataList
     }
