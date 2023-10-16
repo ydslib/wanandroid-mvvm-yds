@@ -99,7 +99,7 @@ class OcrActivity : BaseDataBindingActivity<ActivityOcrBinding, BaseViewModel>()
                                 } else {
                                     textStr
                                 }
-                                if (!res.isNullOrEmpty()) {
+                                if (!res.isNullOrEmpty() && !res.contains(Regex("[^0-9]"))) {
                                     println("QcrActivity:$res")
                                     scanResultSet.add(res.trim())
                                 }

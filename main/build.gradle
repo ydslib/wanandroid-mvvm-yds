@@ -31,8 +31,8 @@ dependencies {
     implementation project(":core")
     implementation project(':wan-base')
     implementation project(":resources")
-    implementation  "io.github.scwang90:refresh-layout-kernel:${Deps.refreshLayoutVersion}"
-    implementation  "io.github.scwang90:refresh-header-classics:${Deps.refreshLayoutVersion}"
+    implementation "io.github.scwang90:refresh-layout-kernel:${Deps.refreshLayoutVersion}"
+    implementation "io.github.scwang90:refresh-header-classics:${Deps.refreshLayoutVersion}"
     implementation "com.github.ydslib:Base:${Deps.baseVersion}"
     implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
     kapt "com.alibaba:arouter-compiler:${Deps.routerApiVersion}"

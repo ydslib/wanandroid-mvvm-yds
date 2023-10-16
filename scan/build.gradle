@@ -36,7 +36,6 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation "androidx.test.ext:junit:${Deps.androidTest_junit}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${Deps.androidTest_espresso_core}"
-    implementation "com.google.mlkit:text-recognition:${Deps.textRecognitionVersion}"
     implementation "androidx.lifecycle:lifecycle-common-java8:${Deps.lifecycleVersion}"
     implementation "com.github.ydslib:Base:${Deps.baseVersion}"
     implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
@@ -44,6 +43,6 @@ dependencies {
     implementation 'com.google.mlkit:text-recognition:16.0.0-beta1'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.google.guava:guava:27.1-android'
-    implementation 'com.google.mlkit:camera:16.0.0-beta3'
+    implementation 'com.google.mlkit:camera:16.0.0-beta1'
     implementation project(":resources")
 }

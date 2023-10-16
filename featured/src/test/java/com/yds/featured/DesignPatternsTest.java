@@ -52,7 +52,9 @@ public class DesignPatternsTest {
 
     @Test
     public void testDesignPatterns() {
-        testChain2();
+//        testChain2();
+        String res = "20230512";
+        System.out.println(res.matches(""));;
     }
 
     /**

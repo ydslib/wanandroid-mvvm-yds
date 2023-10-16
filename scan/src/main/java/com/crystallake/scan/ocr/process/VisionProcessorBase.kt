@@ -90,7 +90,7 @@ abstract class VisionProcessorBase<T>(private val context: Context) : VisionImag
             mlImage.close()
             return
         }
-        requestDetectInImage(InputImage.fromBitmap(bitmap, 0), graphicOverlay, null, false, frameStartMs)
+        requestDetectInImage(InputImage.fromBitmap(bitmap, 0), graphicOverlay, bitmap, false, frameStartMs)
     }
 
     private fun requestDetectInImage(

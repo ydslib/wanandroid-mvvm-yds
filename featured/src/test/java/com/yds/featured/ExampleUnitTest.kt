@@ -12,6 +12,8 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
+        val res  = "20211202"
+        println(res.contains(Regex("[^a-z]"))||res.contains(Regex("[^0-9]")))
 //        val a: Int = 100
 //        val boxedA: Int? = a
 //        val anotherBoxedA: Int? = a
@@ -24,14 +26,14 @@ class ExampleUnitTest {
 //        val boxedD: Int? = d
 //        val anotherBoxedD: Int? = d
 
-        val c:Int? = 10000
-        val anotherC:Int? = c
-//
+//        val c:Int? = 10000
+//        val anotherC:Int? = c
+////
 //
 //
 //        println(boxedD === anotherBoxedD)
 //        println(boxedA === anotherBoxedA) // true
 //        println(boxedB === anotherBoxedB) // false
-        println(c === anotherC)
+//        println(c === anotherC)
     }
 }
