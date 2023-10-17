@@ -44,5 +44,7 @@ dependencies {
     implementation project(":resources")
     implementation project(":wan-base")
     implementation project(":apkPatchLib")
+    implementation "com.alibaba:arouter-api:${Deps.routerApiVersion}"
+    kapt "com.alibaba:arouter-compiler:${Deps.routerApiVersion}"
     implementation "com.github.ydslib:Base:${Deps.baseVersion}"
 }

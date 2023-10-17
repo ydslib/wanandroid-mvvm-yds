@@ -52,31 +52,32 @@ class RealMainViewModel : BaseViewModel() {
 
         //测试标题
         val testTitleItemData = RealHomeData()
-        toolTitleItemData.titleItemData = FuncItemData(itemType = RealHomeAdapter.TITLE, title = "测试")
+        testTitleItemData.titleItemData = FuncItemData(itemType = RealHomeAdapter.TITLE, title = "测试")
 
         //测试数据
-
-        val testHomeData = RealHomeData()
-        realHomeData.funcItemData = FuncItemData(itemType = RealHomeAdapter.APP_ENTRY, appEntryData)
 
         val realHomeDataList = mutableListOf<RealHomeData>()
         realHomeDataList.add(titleItemData)
         realHomeDataList.add(realHomeData)
         realHomeDataList.add(toolTitleItemData)
         realHomeDataList.add(testTitleItemData)
+        realHomeDataList.add(initTestEntryData())
 
         realHomeLiveData.value = realHomeDataList
     }
 
-    private fun initTestEntryData(){
+    private fun initTestEntryData(): RealHomeData {
         val appEntryData = mutableListOf<FuncItem>()
         appEntryData.add(
             FuncItem(
                 localIcon = R.drawable.ic_fju,
                 title = "增量更新",
-                router = RouterPath.MAIN_ACTIVITY,
+                router = RouterPath.TEST_INCREMENTAL_UPDATE_ACTIVITY,
                 baseUrl = WANANDROID
             )
         )
+        val testHomeData = RealHomeData()
+        testHomeData.funcItemData = FuncItemData(itemType = RealHomeAdapter.APP_ENTRY, appEntryData)
+        return testHomeData
     }
 }

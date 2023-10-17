@@ -48,5 +48,5 @@ object RouterPath {
     const val EYEPETIZER_DISCOVERY_FRAGMENT = "/eyepetizer/DiscoveryFragment"
 
     //------------------
-    const val TOOL_INCREMENTAL_UPDATE_ACTIVITY = ""
+    const val TEST_INCREMENTAL_UPDATE_ACTIVITY = "/appfunctiontest/AppFuncTest"
 }
