@@ -78,13 +78,11 @@ constructor(
                     Log.d(TAG, "Line text is: " + line.text)
                     Log.d(TAG, "Line boundingbox is: " + line.boundingBox)
                     Log.d(TAG, "Line cornerpoint is: " + Arrays.toString(line.cornerPoints))
-                    Log.d(TAG, "Line confidence is: " + line.confidence)
-                    Log.d(TAG, "Line angle is: " + line.angle)
                     // Draws the bounding box around the TextBlock.
                     val rect = RectF(line.boundingBox)
                     if (textBlock.text.contains("Date")) {
                         drawText(
-                            getFormattedText(line.text, line.recognizedLanguage, line.confidence),
+                            getFormattedText(line.text, line.recognizedLanguage, 1.0f),
                             rect,
                             TEXT_SIZE + 2 * STROKE_WIDTH,
                             canvas
@@ -95,8 +93,6 @@ constructor(
                         Log.d(TAG, "Element boundingbox is: " + element.boundingBox)
                         Log.d(TAG, "Element cornerpoint is: " + Arrays.toString(element.cornerPoints))
                         Log.d(TAG, "Element language is: " + element.recognizedLanguage)
-                        Log.d(TAG, "Element confidence is: " + element.confidence)
-                        Log.d(TAG, "Element angle is: " + element.angle)
                     }
                 }
             }

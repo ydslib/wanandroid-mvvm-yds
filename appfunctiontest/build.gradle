@@ -1,0 +1,48 @@
+if (!isLibrary.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+apply from: "../config.gradle"
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    defaultConfig {
+        if (!isLibrary.toBoolean()) {
+            applicationId "com.crystallake.appfunctiontest"
+        }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+            annotationProcessorOptions {
+                arguments += [
+                        "room.schemaLocation": "$projectDir/schemas".toString(),
+                        "room.incremental"   : "true"
+                ]
+            }
+        }
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+}
+
+dependencies {
+
+    implementation "androidx.core:core-ktx:${Deps.core_ktx}"
+    implementation "androidx.appcompat:appcompat:${Deps.appcompat}"
+    implementation "androidx.constraintlayout:constraintlayout:${Deps.constraintlayout}"
+    testImplementation "junit:junit:${Deps.test_junit}"
+    androidTestImplementation "androidx.test.ext:junit:${Deps.androidTest_junit}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${Deps.androidTest_espresso_core}"
+
+    implementation project(":core")
+    implementation project(":resources")
+    implementation project(":wan-base")
+    implementation project(":apkPatchLib")
+    implementation "com.github.ydslib:Base:${Deps.baseVersion}"
+}

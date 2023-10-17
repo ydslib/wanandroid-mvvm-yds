@@ -46,4 +46,7 @@ object RouterPath {
     const val EYEPETIZER_MINE_FRAGMENT = "/eyepetizer/MineFragment"
     const val EYEPETIZER_HOT_FRAGMENT = "/eyepetizer/HotFragment"
     const val EYEPETIZER_DISCOVERY_FRAGMENT = "/eyepetizer/DiscoveryFragment"
+
+    //------------------
+    const val TOOL_INCREMENTAL_UPDATE_ACTIVITY = ""
 }
