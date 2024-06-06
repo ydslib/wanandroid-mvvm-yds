@@ -12,7 +12,6 @@ import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
-import com.crystallake.base.activity.DataBindingActivity
 import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.resources.RouterPath
 import com.yds.base.BaseDataBindingActivity
@@ -24,7 +23,8 @@ import com.yds.login.vm.LoginViewModel
 class LoginActivity : BaseDataBindingActivity<ActivityLoginBinding, LoginViewModel>() {
 
     override fun initDataBindingConfig(): DataBindingConfig {
-        return DataBindingConfig(R.layout.activity_login)
+        val clickProxy = ClickProxy(this)
+        return DataBindingConfig(R.layout.activity_login).addBindingParam(BR.clickProxy, clickProxy)
     }
 
     override fun initData() {
@@ -72,7 +72,7 @@ class LoginActivity : BaseDataBindingActivity<ActivityLoginBinding, LoginViewMod
 
     override fun initObser() {
         super.initObser()
-        mViewModel.loginData.observe(this){
+        mViewModel.loginData.observe(this) {
             finish()
         }
     }
@@ -105,6 +105,12 @@ class LoginActivity : BaseDataBindingActivity<ActivityLoginBinding, LoginViewMod
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         token?.let {
             imm?.hideSoftInputFromWindow(it, InputMethodManager.HIDE_NOT_ALWAYS)
+        }
+    }
+
+    class ClickProxy(val activity: LoginActivity) {
+        fun finishActivity() {
+            activity.finish()
         }
     }
 }

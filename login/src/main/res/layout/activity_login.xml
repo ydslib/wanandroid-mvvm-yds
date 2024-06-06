@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="clickProxy"
+            type="com.yds.login.LoginActivity.ClickProxy" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,7 +15,17 @@
         tools:context=".LoginActivity"
         android:background="@color/white"
         >
-
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginStart="@dimen/dp_20"
+            android:src="@drawable/ic_back_black"
+            android:onClick="@{()->clickProxy.finishActivity()}"
+            />
         <TextView
             android:id="@+id/login_title"
             android:layout_width="wrap_content"

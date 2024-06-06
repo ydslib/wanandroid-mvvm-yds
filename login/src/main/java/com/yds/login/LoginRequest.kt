@@ -7,22 +7,5 @@ import com.yds.login.model.LoginData
 
 object LoginRequest {
 
-    suspend fun register(
-        username: String,
-        password: String,
-        repassword: String
-    ): BaseResponse<LoginData> {
-        return RetrofitClient.create(LoginApi::class.java).register(username, password, repassword)
-    }
 
-    suspend fun login(
-        username: String,
-        password: String,
-    ): BaseResponse<LoginData> {
-        return RetrofitClient.create(LoginApi::class.java).login(username, password)
-    }
-
-    suspend fun logout(){
-        RetrofitClient.create(LoginApi::class.java).logout()
-    }
 }

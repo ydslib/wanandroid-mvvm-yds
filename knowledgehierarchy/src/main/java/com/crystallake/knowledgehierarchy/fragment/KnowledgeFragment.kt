@@ -5,12 +5,9 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.crystallake.base.config.DataBindingConfig
-import com.crystallake.base.fastrecycler.adapter.MultiDataBindingAdapter
-import com.crystallake.base.fragment.DataBindingFragment
 import com.crystallake.knowledgehierarchy.R
 import com.crystallake.knowledgehierarchy.adapter.KnowledgeAdapter
 import com.crystallake.knowledgehierarchy.databinding.FragmentKnowledgeBinding
-import com.crystallake.knowledgehierarchy.item.KnowledgeArticleItem
 import com.crystallake.knowledgehierarchy.vm.KnowledgeViewModel
 import com.crystallake.resources.RouterPath
 import com.yds.base.BaseDataBindingFragment
@@ -61,7 +58,7 @@ class KnowledgeFragment : BaseDataBindingFragment<FragmentKnowledgeBinding, Know
 
         mBinding?.smartRefreshLayout?.let {
             it.setOnRefreshListener {
-                mViewModel.getKnowledgeData(KnowledgeViewModel.REFRESH)
+                mViewModel.refreshProjectTitle()
             }
             it.setEnableLoadMore(false)
         }
@@ -69,7 +66,7 @@ class KnowledgeFragment : BaseDataBindingFragment<FragmentKnowledgeBinding, Know
     }
 
     override fun lazyLoadData() {
-        mViewModel.getKnowledgeData(KnowledgeViewModel.LOAD)
+        mViewModel.loadProjectTitle()
     }
 
 

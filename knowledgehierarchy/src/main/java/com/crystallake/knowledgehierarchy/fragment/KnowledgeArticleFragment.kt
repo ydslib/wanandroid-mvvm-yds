@@ -18,20 +18,18 @@ import com.crystallake.resources.RouterPath
 import com.yds.base.BaseDataBindingFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asExecutor
-import java.util.concurrent.Executors
 
 @Route(path = RouterPath.KNOWLEDGE_ARTICLE_FRAGMENT)
 class KnowledgeArticleFragment :
     BaseDataBindingFragment<FragmentKnowledgeArticleBinding, KnowledgeViewModel>() {
     private var cid: Int = 0
-    private var page: Int = 0
     private val layoutManager by lazy {
         LinearLayoutManager(requireContext(), VERTICAL, false)
     }
     private var jankStats: JankStats? = null
 
     private val jankFrameListener = JankStats.OnFrameListener {
-        Log.i("JankStatsSample", "${it.toString()}")
+        Log.i("JankStatsSample", "$it")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,7 +64,6 @@ class KnowledgeArticleFragment :
 
     override fun createObserver() {
         mViewModel.articleModelLiveData.observe(this) {
-            page = it?.curPage ?: 0
             it.datas?.let {
                 adapter.update(it)
             }
@@ -87,11 +84,11 @@ class KnowledgeArticleFragment :
         mBinding?.recycler?.setHasFixedSize(true)
 
         mBinding?.smartRefreshLayout?.setOnRefreshListener {
-            mViewModel.getKnowledgeArticle(0, cid, KnowledgeViewModel.REFRESH)
+            mViewModel.getRefreshKnowledgeArticle(cid)
         }
 
         mBinding?.smartRefreshLayout?.setOnLoadMoreListener {
-            mViewModel.getKnowledgeArticle(page, cid, KnowledgeViewModel.LOAD_MORE)
+            mViewModel.getLoadMoreKnowledgeArticle(cid)
         }
 
         mBinding?.recycler?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -107,7 +104,7 @@ class KnowledgeArticleFragment :
     }
 
     override fun lazyLoadData() {
-        mViewModel.getKnowledgeArticle(0, cid, KnowledgeViewModel.LOAD)
+        mViewModel.getLoadKnowledgeArticle(cid)
     }
 
     override fun initDataBindingConfig(): DataBindingConfig {

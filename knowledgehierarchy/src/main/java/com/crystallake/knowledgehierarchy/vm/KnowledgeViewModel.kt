@@ -2,9 +2,8 @@ package com.crystallake.knowledgehierarchy.vm
 
 import androidx.lifecycle.MutableLiveData
 import com.crystallake.base.vm.BaseViewModel
-import com.crystallake.knowledgehierarchy.KnowledgeRequest
+import com.crystallake.knowledgehierarchy.repository.KnowledgeRepository
 import com.yds.home.model.ArticleModel
-import com.yds.home.model.BaseArticle
 import com.yds.project.model.ProjectTitleModel
 
 class KnowledgeViewModel : BaseViewModel() {
@@ -14,19 +13,28 @@ class KnowledgeViewModel : BaseViewModel() {
     val loadingMoreLiveData = MutableLiveData<Boolean>()
     val showLoadingLiveData = MutableLiveData<Boolean>()
     val articleModelLiveData = MutableLiveData<ArticleModel>()
-    var mState = 0
+    var curPage = 0
 
-    companion object {
-        const val REFRESH = 0
-        const val LOAD = 2
-        const val LOAD_MORE = 1
+    val knowledgeRepository by lazy { KnowledgeRepository() }
+
+    fun loadProjectTitle(){
+        showLoadingLiveData.value = true
+        requestProjectTitle {
+            showLoadingLiveData.value = false
+        }
     }
 
-    fun getKnowledgeData(state: Int) {
-        setData(true, state)
+    fun refreshProjectTitle(){
+        refreshLiveData.value = true
+        requestProjectTitle {
+            refreshLiveData.value = false
+        }
+    }
+
+    private fun requestProjectTitle(callback: (Boolean) -> Unit){
         request(
             block = {
-                KnowledgeRequest.getKnowledgeData()
+                knowledgeRepository.getKnowledgeData()
             },
             success = {
                 knowledgeDataLiveData.value = it.data
@@ -35,60 +43,55 @@ class KnowledgeViewModel : BaseViewModel() {
 
             },
             complete = {
-                setData(false, state)
+                callback.invoke(false)
                 showLoadingLiveData.value = false
             }
         )
     }
 
-    private fun setData(requestState: Boolean, state: Int) {
-        mState = state
-        when (state) {
-            REFRESH -> {
-                refreshLiveData.value = requestState
-            }
-            LOAD -> {
-                showLoadingLiveData.value = requestState
-            }
-            LOAD_MORE -> {
-                loadingMoreLiveData.value = requestState
-            }
+    /**
+     * 加载
+     */
+    fun getLoadKnowledgeArticle(cid: Int) {
+        showLoadingLiveData.value = true
+        requestKnowledgeArticle(0, cid) {
+            showLoadingLiveData.value = false
         }
     }
 
-    fun getKnowledgeArticle(page: Int, cid: Int, state: Int) {
-        setData(true, state)
+    /**
+     * 刷新
+     */
+    fun getRefreshKnowledgeArticle(cid: Int) {
+        refreshLiveData.value = true
+        requestKnowledgeArticle(0, cid) {
+            refreshLiveData.value = false
+        }
+    }
+
+    /**
+     * 加载更多
+     */
+    fun getLoadMoreKnowledgeArticle(cid: Int) {
+        loadingMoreLiveData.value = true
+        requestKnowledgeArticle(curPage, cid) {
+            loadingMoreLiveData.value = false
+        }
+    }
+
+    private fun requestKnowledgeArticle(page: Int, cid: Int, callback: (Boolean) -> Unit) {
         request(
             block = {
-                KnowledgeRequest.getKnowledgeArticle(page, cid)
+                knowledgeRepository.getKnowledgeArticle(page, cid)
             },
             success = {
-                setDataWithState(state, it.data)
+                articleModelLiveData.value = it.data
+                curPage = it.data?.curPage ?: 0
             },
             cancel = {},
             complete = {
-                setData(false, state)
+                callback.invoke(false)
             }
         )
-    }
-
-    fun setDataWithState(state: Int, articleModel: ArticleModel?) {
-        val dataList = mutableListOf<BaseArticle>()
-        when (state) {
-            LOAD_MORE -> {
-                articleModelLiveData.value?.datas?.let {
-                    dataList.addAll(it)
-                }
-            }
-            LOAD, REFRESH -> {
-
-            }
-        }
-        articleModel?.datas?.let {
-            dataList.addAll(it)
-        }
-        articleModel?.datas?.clear()
-        articleModel?.datas?.addAll(dataList)
-        articleModelLiveData.value = articleModel
     }
 }

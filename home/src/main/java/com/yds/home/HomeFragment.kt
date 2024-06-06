@@ -36,7 +36,7 @@ class HomeFragment : BaseDataBindingFragment<FragmentHomeBinding, HomeFragmentVi
 
     override fun createObserver() {
         loginStateChangeObserve {
-            mViewModel.getHomeArticle(0, HomeFragmentViewModel.LOAD, requireContext())
+            mViewModel.getHomeArticle()
         }
 
         mViewModel.showLoading.observe(this) {
@@ -105,7 +105,7 @@ class HomeFragment : BaseDataBindingFragment<FragmentHomeBinding, HomeFragmentVi
         }
 
         mBinding?.smartRefreshLayout?.setOnRefreshListener {
-            mViewModel.getHomeArticle(0, HomeFragmentViewModel.REFRESH, requireContext())
+            mViewModel.getRefreshArticle()
         }
 
         mBinding?.smartRefreshLayout?.setOnLoadMoreListener {
@@ -114,7 +114,7 @@ class HomeFragment : BaseDataBindingFragment<FragmentHomeBinding, HomeFragmentVi
     }
 
     override fun lazyLoadData() {
-        mViewModel.loadAllData(requireContext(), HomeFragmentViewModel.LOAD)
+        mViewModel.getHomeArticle()
     }
 
     fun showLoading() {
